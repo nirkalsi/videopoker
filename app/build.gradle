@@ -1,0 +1,39 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'nir.com.videopoker'
+    compileSdk 36
+    defaultConfig {
+        applicationId 'nir.com.videopoker'
+        minSdk 24
+        targetSdk 36
+        versionCode 1
+        versionName '1.0'
+        def appId = project.findProperty('ADMOB_APP_ID') ?: 'ca-app-pub-3940256099942544~3347511713'
+        manifestPlaceholders = [admobAppId: appId]
+        buildConfigField 'String', 'BANNER_ID', "\"${project.findProperty('BANNER_ID') ?: 'ca-app-pub-3940256099942544/9214589741'}\""
+        buildConfigField 'String', 'INTER_ID', "\"${project.findProperty('INTER_ID') ?: 'ca-app-pub-3940256099942544/1033173712'}\""
+        buildConfigField 'String', 'REWARD_ID', "\"${project.findProperty('REWARD_ID') ?: 'ca-app-pub-3940256099942544/5224354917'}\""
+        buildConfigField 'String', 'NATIVE_ID', "\"${project.findProperty('NATIVE_ID') ?: 'ca-app-pub-3940256099942544/2247696110'}\""
+    }
+    buildFeatures { buildConfig true }
+    signingConfigs {
+        release {
+            def ks = System.getenv('KS_FILE')
+            if (ks) { storeFile file(ks); storePassword System.getenv('KS_PASS'); keyAlias System.getenv('KS_ALIAS'); keyPassword System.getenv('KS_PASS') }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            if (System.getenv('KS_FILE')) signingConfig signingConfigs.release
+        }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+dependencies {
+    implementation 'com.google.android.gms:play-services-ads:23.3.0'
+    implementation 'com.google.android.ump:user-messaging-platform:3.0.0'
+    implementation 'com.android.billingclient:billing:8.0.0'
+}
