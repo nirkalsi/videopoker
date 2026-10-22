@@ -20,6 +20,8 @@ public class AdsManager {
     private InterstitialAd inter;
     private RewardedAd rewarded;
     private long lastInterAt = 0;
+    private int interRetry = 0;
+    private int rewardedRetry = 0;
     private boolean initialized = false;
     private volatile boolean adsRemoved = false;
 
@@ -51,17 +53,46 @@ public class AdsManager {
     public void attachBanner(LinearLayout box) {
         if (!initialized || adsRemoved) return;
         AdView av = new AdView(act);
-        av.setAdSize(AdSize.BANNER);
+        av.setAdSize(adaptiveBannerSize());
         av.setAdUnitId(BuildConfig.BANNER_ID);
         box.addView(av);
+        av.setAdListener(new AdListener() {
+            private int attempts = 0;
+            @Override public void onAdLoaded() { attempts = 0; }
+            @Override public void onAdFailedToLoad(LoadAdError e) {
+                long delayMs = backoffMs(attempts++);
+                av.postDelayed(() -> {
+                    if (adsRemoved || !av.isAttachedToWindow()) return;
+                    av.loadAd(new AdRequest.Builder().build());
+                }, delayMs);
+            }
+        });
         av.loadAd(new AdRequest.Builder().build());
+    }
+
+    private AdSize adaptiveBannerSize() {
+        android.util.DisplayMetrics dm = new android.util.DisplayMetrics();
+        act.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int adWidth = (int) (dm.widthPixels / dm.density);
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(act, adWidth);
+    }
+
+    private static long backoffMs(int attempt) {
+        return Math.min(30000L * (1L << Math.min(attempt, 4)), 300000L);
+    }
+
+    private void scheduleRetry(Runnable r, int attempt) {
+        if (attempt >= 6) return; // fresh session re-runs preloads
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            if (initialized && !adsRemoved) r.run();
+        }, backoffMs(attempt));
     }
 
     private void loadInter() {
         InterstitialAd.load(act, BuildConfig.INTER_ID, new AdRequest.Builder().build(),
             new InterstitialAdLoadCallback() {
                 @Override public void onAdLoaded(InterstitialAd ad) { inter = ad; }
-                @Override public void onAdFailedToLoad(LoadAdError e) { inter = null; }
+                @Override public void onAdFailedToLoad(LoadAdError e) { inter = null; scheduleRetry(() -> loadInter(), interRetry++); }
             });
     }
 
@@ -69,7 +100,7 @@ public class AdsManager {
         RewardedAd.load(act, BuildConfig.REWARD_ID, new AdRequest.Builder().build(),
             new RewardedAdLoadCallback() {
                 @Override public void onAdLoaded(RewardedAd ad) { rewarded = ad; }
-                @Override public void onAdFailedToLoad(LoadAdError e) { rewarded = null; }
+                @Override public void onAdFailedToLoad(LoadAdError e) { rewarded = null; scheduleRetry(() -> loadRewarded(), rewardedRetry++); }
             });
     }
 
