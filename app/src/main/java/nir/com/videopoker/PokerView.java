@@ -13,7 +13,9 @@ import java.util.Random;
 public class PokerView extends View {
     public interface Listener {
         void onOutOfCoins();
-        void onSpinComplete(int handsDone);
+        void onSpinComplete(int handsDone, long win, long bet);
+        void onBigWin(long win, long bet);
+        void onLevelUp(int level, long reward);
         void saveState();
     }
 
@@ -32,6 +34,9 @@ public class PokerView extends View {
     private long lastWin = 0;
     private int betIdx = 1;
     private long handsDone = 0;
+    private long xp = 0;
+    private int level = 1;
+    private long levelFlashUntil = 0;
     private long lastRegenAt = System.currentTimeMillis();
 
     // phases: 0=betting, 1=hold/draw, 2=result
@@ -46,7 +51,11 @@ public class PokerView extends View {
 
     public void addCoins(long n) { balance += n; invalidate(); if (listener != null) listener.saveState(); }
 
-    public String serialize() { return balance + ";" + betIdx + ";" + handsDone + ";" + lastRegenAt; }
+    public int getLevel() { return level; }
+    public long getSpinsDone() { return handsDone; }
+    private long xpNeeded() { return level * 500L; }
+
+    public String serialize() { return balance + ";" + betIdx + ";" + handsDone + ";" + lastRegenAt + ";" + xp + ";" + level; }
 
     public void restore(String s) {
         try {
@@ -55,6 +64,8 @@ public class PokerView extends View {
             betIdx = Integer.parseInt(a[1]);
             handsDone = Long.parseLong(a[2]);
             lastRegenAt = Long.parseLong(a[3]);
+            if (a.length > 4) xp = Long.parseLong(a[4]);
+            if (a.length > 5) level = Math.max(1, Integer.parseInt(a[5]));
         } catch (Exception ignored) {}
     }
 
@@ -68,6 +79,7 @@ public class PokerView extends View {
         long bet = BETS[betIdx];
         if (balance < bet) { if (listener != null) listener.onOutOfCoins(); return; }
         balance -= bet;
+        xp += bet;
         lastWin = 0;
         List<Integer> deck = new ArrayList<>();
         for (int i = 0; i < 52; i++) deck.add(i);
@@ -135,7 +147,19 @@ public class PokerView extends View {
         }
         phase = 2;
         handsDone++;
-        if (listener != null) { listener.onSpinComplete((int) handsDone); listener.saveState(); }
+        while (xp >= xpNeeded()) {
+            xp -= xpNeeded();
+            level++;
+            long reward = 150L * level;
+            balance += reward;
+            levelFlashUntil = System.currentTimeMillis() + 2000;
+            if (listener != null) listener.onLevelUp(level, reward);
+        }
+        if (listener != null) {
+            if (idx <= 2) listener.onBigWin(lastWin, bet);
+            listener.onSpinComplete((int) handsDone, lastWin, bet);
+            listener.saveState();
+        }
         if (balance < BETS[0] && listener != null) listener.onOutOfCoins();
         invalidate();
     }
@@ -190,6 +214,24 @@ public class PokerView extends View {
         p.setColor(Color.WHITE);
         p.setTextSize(h * 0.030f);
         cv.drawText("Jacks or Better    COINS  " + balance, w / 2, h * 0.10f, p);
+        // level + xp bar
+        long nowL = System.currentTimeMillis();
+        p.setTextSize(h * 0.020f);
+        p.setColor(Color.rgb(200, 200, 220));
+        cv.drawText("LV " + level, w * 0.14f, h * 0.128f, p);
+        float barL = w * 0.24f, barR = w * 0.76f, barY = h * 0.117f, barH = w * 0.020f;
+        rf.set(barL, barY, barR, barY + barH);
+        p.setColor(Color.rgb(40, 40, 70)); cv.drawRoundRect(rf, 8, 8, p);
+        float frac = Math.min(1f, xp / (float) xpNeeded());
+        rf.set(barL, barY, barL + (barR - barL) * frac, barY + barH);
+        p.setColor(Color.rgb(255, 215, 0)); cv.drawRoundRect(rf, 8, 8, p);
+        if (nowL < levelFlashUntil) {
+            p.setTextSize(h * 0.032f);
+            p.setColor(Color.rgb(255, 215, 0));
+            p.setFakeBoldText(true);
+            cv.drawText("LEVEL UP!", w / 2, h * 0.165f, p);
+            p.setFakeBoldText(false);
+        }
 
         // pay table (compact, two columns of rows 0-4 / 5-8)
         p.setTextSize(h * 0.020f);

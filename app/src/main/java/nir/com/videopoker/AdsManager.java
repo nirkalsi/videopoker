@@ -13,6 +13,9 @@ import com.google.android.ump.*;
 /** Policy-safe ads: banner always bottom, interstitial at most every 3rd completed spin
  *  (min 90s apart, never on first spins, never back-to-back), rewarded only user-initiated. */
 public class AdsManager {
+    public interface AdEvents { void onInterstitialShown(); }
+    private AdEvents events;
+    public void setAdEvents(AdEvents e) { events = e; }
     private final Activity act;
     private InterstitialAd inter;
     private RewardedAd rewarded;
@@ -77,6 +80,7 @@ public class AdsManager {
         long now = System.currentTimeMillis();
         if (now - lastInterAt < 120000) return;
         lastInterAt = now;
+        if (events != null) events.onInterstitialShown();
         InterstitialAd ad = inter; inter = null;
         ad.setFullScreenContentCallback(new FullScreenContentCallback() {
             @Override public void onAdDismissedFullScreenContent() { loadInter(); }

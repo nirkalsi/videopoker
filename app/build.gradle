@@ -6,14 +6,15 @@ android {
         applicationId 'nir.com.videopoker'
         minSdk 24
         targetSdk 36
-        versionCode 1
-        versionName '1.0'
+        versionCode 2
+        versionName '1.1'
         def appId = project.findProperty('ADMOB_APP_ID') ?: 'ca-app-pub-3940256099942544~3347511713'
         manifestPlaceholders = [admobAppId: appId]
         buildConfigField 'String', 'BANNER_ID', "\"${project.findProperty('BANNER_ID') ?: 'ca-app-pub-3940256099942544/9214589741'}\""
         buildConfigField 'String', 'INTER_ID', "\"${project.findProperty('INTER_ID') ?: 'ca-app-pub-3940256099942544/1033173712'}\""
         buildConfigField 'String', 'REWARD_ID', "\"${project.findProperty('REWARD_ID') ?: 'ca-app-pub-3940256099942544/5224354917'}\""
         buildConfigField 'String', 'NATIVE_ID', "\"${project.findProperty('NATIVE_ID') ?: 'ca-app-pub-3940256099942544/2247696110'}\""
+        buildConfigField 'String', 'DEV_PAGE_URL', "\"${project.findProperty('DEV_PAGE_URL') ?: 'https://play.google.com/store/apps/developer?id=Nir+Kalsi'}\""
     }
     buildFeatures { buildConfig true }
     signingConfigs {
@@ -36,4 +37,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads:23.3.0'
     implementation 'com.google.android.ump:user-messaging-platform:3.0.0'
     implementation 'com.android.billingclient:billing:8.0.0'
+    implementation 'com.google.android.play:review:2.0.2'
 }

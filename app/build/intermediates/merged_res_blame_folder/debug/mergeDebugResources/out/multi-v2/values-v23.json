@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "nir.com.videopoker.app-mergeDebugResources-20:/values-v23/values-v23.xml",
+            "map": [
+                {
+                    "source": "/home/sandbox/.gradle/caches/8.13/transforms/493595ff6e7796ce7aec40b80da014f6/transformed/work-runtime-2.7.0/res/values-v23/values-v23.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,121",
+                        "endColumns": "65,62",
+                        "endOffsets": "116,179"
+                    }
+                }
+            ]
+        }
+    ]
+}
