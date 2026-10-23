@@ -125,12 +125,19 @@ public class AdsManager {
     public void showRewarded(Runnable onReward) {
         if (adsRemoved) { onReward.run(); return; }
         RewardedAd ad = rewarded;
-        if (ad == null) { loadRewarded(); onReward.run(); return; } // fallback: grant if no ad available
+        if (ad == null) { // never grant without a completed ad view
+            loadRewarded();
+            android.widget.Toast.makeText(act, "Ad not ready yet - try again in a moment", android.widget.Toast.LENGTH_SHORT).show();
+            return;
+        }
         rewarded = null;
         ad.setFullScreenContentCallback(new FullScreenContentCallback() {
             @Override public void onAdDismissedFullScreenContent() { loadRewarded(); }
-            @Override public void onAdFailedToShowFullScreenContent(AdError e) { loadRewarded(); onReward.run(); }
+            @Override public void onAdFailedToShowFullScreenContent(AdError e) {
+                loadRewarded();
+                android.widget.Toast.makeText(act, "Ad couldn't play - try again in a moment", android.widget.Toast.LENGTH_SHORT).show();
+            }
         });
-        ad.show(act, item -> onReward.run());
+        ad.show(act, item -> onReward.run()); // reward granted ONLY via the earned-reward callback
     }
 }
