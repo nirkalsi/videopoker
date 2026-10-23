@@ -124,20 +124,29 @@ public class AdsManager {
 
     public void showRewarded(Runnable onReward) {
         if (adsRemoved) { onReward.run(); return; }
+        final RewardFlow flow = new RewardFlow();
         RewardedAd ad = rewarded;
         if (ad == null) { // never grant without a completed ad view
+            flow.onNoFill();
             loadRewarded();
-            android.widget.Toast.makeText(act, "Ad not ready yet - try again in a moment", android.widget.Toast.LENGTH_SHORT).show();
+            toast(RewardFlow.MSG_NOT_READY);
             return;
         }
         rewarded = null;
         ad.setFullScreenContentCallback(new FullScreenContentCallback() {
-            @Override public void onAdDismissedFullScreenContent() { loadRewarded(); }
+            @Override public void onAdDismissedFullScreenContent() { flow.onDismissed(); loadRewarded(); }
             @Override public void onAdFailedToShowFullScreenContent(AdError e) {
+                flow.onShowFailed();
                 loadRewarded();
-                android.widget.Toast.makeText(act, "Ad couldn't play - try again in a moment", android.widget.Toast.LENGTH_SHORT).show();
+                toast(RewardFlow.MSG_SHOW_FAILED);
             }
         });
-        ad.show(act, item -> onReward.run()); // reward granted ONLY via the earned-reward callback
+        ad.show(act, item -> { // reward granted ONLY via the earned-reward callback, once
+            if (flow.onEarned() == RewardFlow.Decision.GRANT_REWARD) onReward.run();
+        });
+    }
+
+    private void toast(String msg) {
+        android.widget.Toast.makeText(act, msg, android.widget.Toast.LENGTH_SHORT).show();
     }
 }
