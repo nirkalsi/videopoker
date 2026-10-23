@@ -13,7 +13,6 @@ android {
         buildConfigField 'String', 'BANNER_ID', "\"${project.findProperty('BANNER_ID') ?: 'ca-app-pub-3940256099942544/9214589741'}\""
         buildConfigField 'String', 'INTER_ID', "\"${project.findProperty('INTER_ID') ?: 'ca-app-pub-3940256099942544/1033173712'}\""
         buildConfigField 'String', 'REWARD_ID', "\"${project.findProperty('REWARD_ID') ?: 'ca-app-pub-3940256099942544/5224354917'}\""
-        buildConfigField 'String', 'NATIVE_ID', "\"${project.findProperty('NATIVE_ID') ?: 'ca-app-pub-3940256099942544/2247696110'}\""
         buildConfigField 'String', 'DEV_PAGE_URL', "\"${project.findProperty('DEV_PAGE_URL') ?: 'https://play.google.com/store/apps/developer?id=Nir+Kalsi'}\""
     }
     buildFeatures { buildConfig true }
