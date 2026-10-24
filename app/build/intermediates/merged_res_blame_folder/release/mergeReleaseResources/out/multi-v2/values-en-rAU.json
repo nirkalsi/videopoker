@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "nir.com.videopoker.app-mergeReleaseResources-19:/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "nir.com.videopoker.app-mergeReleaseResources-20:/values-en-rAU/values-en-rAU.xml",
             "map": [
                 {
                     "source": "/home/sandbox/.gradle/caches/8.11.1/transforms/77d08ee97a7a0929b9f21dda428cd18a/transformed/browser-1.4.0/res/values-en-rAU/values-en-rAU.xml",

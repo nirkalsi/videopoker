@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "nir.com.videopoker.app-mergeReleaseResources-19:/values-hr/values-hr.xml",
+            "outputFile": "nir.com.videopoker.app-mergeReleaseResources-20:/values-hr/values-hr.xml",
             "map": [
                 {
                     "source": "/home/sandbox/.gradle/caches/8.11.1/transforms/7438c01f9c9b64e6f9d5887bc0d05462/transformed/core-1.8.0/res/values-hr/values-hr.xml",

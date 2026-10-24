@@ -1,20 +1,21 @@
 -- Merging decision tree log ---
 meta-data#com.google.android.gms.ads.APPLICATION_ID
-INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:12:9-109
+INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:12:9-109
 	android:value
-		INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:12:77-106
+		INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:12:77-106
 	android:name
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:12:20-76
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:12:20-76
 manifest
-ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:2:1-21:12
+ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:2:1-21:12
 MERGED from [com.google.android.gms:play-services-ads:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ce3621e4ea48161e4c1345a4ae068997/transformed/play-services-ads-23.3.0/AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:17:1-95:12
 MERGED from [com.google.android.ump:user-messaging-platform:3.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/abbc8c0b7ea535707c09a26cb00fecb4/transformed/user-messaging-platform-3.0.0/AndroidManifest.xml:2:1-7:12
 MERGED from [com.android.billingclient:billing:8.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ae3911e32070249433053a6970416171/transformed/billing-8.0.0/AndroidManifest.xml:2:1-38:12
+MERGED from [com.google.android.play:review:2.0.2] /home/sandbox/.gradle/caches/8.11.1/transforms/91973c84099721346919b8615b8ed20f/transformed/review-2.0.2/AndroidManifest.xml:2:1-14:12
 MERGED from [androidx.browser:browser:1.4.0] /home/sandbox/.gradle/caches/8.11.1/transforms/77d08ee97a7a0929b9f21dda428cd18a/transformed/browser-1.4.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-ads-base:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ed18dafa6a9f5b277dcb82bc2d586897/transformed/play-services-ads-base-23.3.0/AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/9a1d38f4b094cd4d20d9cb8016315c68/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:17:1-27:12
@@ -56,17 +57,18 @@ MERGED from [androidx.sqlite:sqlite:2.1.0] /home/sandbox/.gradle/caches/8.11.1/t
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] /home/sandbox/.gradle/caches/8.11.1/transforms/5eb2a575e29dfb81a8f7845301ce81b5/transformed/lifecycle-livedata-2.1.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /home/sandbox/.gradle/caches/8.11.1/transforms/f432280746b68184cde2a7f9a313e4c6/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/sandbox/.gradle/caches/8.11.1/transforms/017843d23ff14032b1831a1cd6fb2431/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:2:1-21:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/sandbox/.gradle/caches/8.11.1/transforms/9222b5cc227de6ac23063a06b020dd1b/transformed/annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
 	package
-		INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml
+		INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml
+		INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml
+		INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:3:5-67
+ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:3:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:24:5-67
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/sandbox/.gradle/caches/8.11.1/transforms/5b5ebd6b26d34fbf5766b3ff7d8d0469/transformed/play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:23:5-67
@@ -74,9 +76,9 @@ MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /h
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /home/sandbox/.gradle/caches/8.11.1/transforms/85bc3f8cc97bd85b10d760e1ca7886a3/transformed/transport-backend-cct-3.1.8/AndroidManifest.xml:25:5-67
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /home/sandbox/.gradle/caches/8.11.1/transforms/85bc3f8cc97bd85b10d760e1ca7886a3/transformed/transport-backend-cct-3.1.8/AndroidManifest.xml:25:5-67
 	android:name
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:3:22-64
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:3:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:4:5-79
+ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:4:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:25:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/sandbox/.gradle/caches/8.11.1/transforms/5b5ebd6b26d34fbf5766b3ff7d8d0469/transformed/play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:24:5-79
@@ -88,9 +90,9 @@ MERGED from [com.google.android.datatransport:transport-backend-cct:3.1.8] /home
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] /home/sandbox/.gradle/caches/8.11.1/transforms/390580f802b798735a90189ae7e85163/transformed/transport-runtime-3.1.8/AndroidManifest.xml:22:5-79
 MERGED from [com.google.android.datatransport:transport-runtime:3.1.8] /home/sandbox/.gradle/caches/8.11.1/transforms/390580f802b798735a90189ae7e85163/transformed/transport-runtime-3.1.8/AndroidManifest.xml:22:5-79
 	android:name
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:4:22-76
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:4:22-76
 uses-permission#com.google.android.gms.permission.AD_ID
-ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:5:5-79
+ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:5:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/9a1d38f4b094cd4d20d9cb8016315c68/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:23:5-79
@@ -98,14 +100,16 @@ MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/s
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/sandbox/.gradle/caches/8.11.1/transforms/5b5ebd6b26d34fbf5766b3ff7d8d0469/transformed/play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:26:5-79
 MERGED from [com.google.android.gms:play-services-measurement-sdk-api:20.1.2] /home/sandbox/.gradle/caches/8.11.1/transforms/5b5ebd6b26d34fbf5766b3ff7d8d0469/transformed/play-services-measurement-sdk-api-20.1.2/AndroidManifest.xml:26:5-79
 	android:name
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:5:22-76
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:5:22-76
 application
-ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:6:5-20:19
-INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:6:5-20:19
+ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:6:5-20:19
+INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:6:5-20:19
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:53:5-93:19
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:53:5-93:19
 MERGED from [com.android.billingclient:billing:8.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ae3911e32070249433053a6970416171/transformed/billing-8.0.0/AndroidManifest.xml:21:5-36:19
 MERGED from [com.android.billingclient:billing:8.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ae3911e32070249433053a6970416171/transformed/billing-8.0.0/AndroidManifest.xml:21:5-36:19
+MERGED from [com.google.android.play:review:2.0.2] /home/sandbox/.gradle/caches/8.11.1/transforms/91973c84099721346919b8615b8ed20f/transformed/review-2.0.2/AndroidManifest.xml:11:5-12:19
+MERGED from [com.google.android.play:review:2.0.2] /home/sandbox/.gradle/caches/8.11.1/transforms/91973c84099721346919b8615b8ed20f/transformed/review-2.0.2/AndroidManifest.xml:11:5-12:19
 MERGED from [com.google.android.gms:play-services-ads-base:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ed18dafa6a9f5b277dcb82bc2d586897/transformed/play-services-ads-base-23.3.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-ads-base:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ed18dafa6a9f5b277dcb82bc2d586897/transformed/play-services-ads-base-23.3.0/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:18.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/9a1d38f4b094cd4d20d9cb8016315c68/transformed/play-services-ads-identifier-18.0.0/AndroidManifest.xml:25:5-20
@@ -140,44 +144,46 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] /home/sandbox/.gradle/cache
 MERGED from [androidx.startup:startup-runtime:1.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/b59c16c5411c7426164335905675a626/transformed/startup-runtime-1.0.0/AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.room:room-runtime:2.2.5] /home/sandbox/.gradle/caches/8.11.1/transforms/024433bda07dff77f7d5a6eecb49bf00/transformed/room-runtime-2.2.5/AndroidManifest.xml:24:5-29:19
 MERGED from [androidx.room:room-runtime:2.2.5] /home/sandbox/.gradle/caches/8.11.1/transforms/024433bda07dff77f7d5a6eecb49bf00/transformed/room-runtime-2.2.5/AndroidManifest.xml:24:5-29:19
+MERGED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:11:5-19:19
+MERGED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:11:5-19:19
 	android:extractNativeLibs
-		INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml
+		INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.8.0] /home/sandbox/.gradle/caches/8.11.1/transforms/7438c01f9c9b64e6f9d5887bc0d05462/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
 	android:supportsRtl
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:10:9-35
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:10:9-35
 	android:label
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:9:9-41
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:9:9-41
 	android:icon
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:8:9-43
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:8:9-43
 	android:allowBackup
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:7:9-35
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:7:9-35
 	android:theme
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:11:9-43
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:11:9-43
 activity#nir.com.videopoker.MainActivity
-ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:13:9-19:20
+ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:13:9-19:20
 	android:screenOrientation
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:13:72-108
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:13:72-108
 	android:exported
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:13:48-71
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:13:48-71
 	android:configChanges
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:14:13-74
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:14:13-74
 	android:name
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:13:19-47
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:13:19-47
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:15:13-18:29
+ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:15:13-18:29
 action#android.intent.action.MAIN
-ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:16:17-69
+ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:16:17-69
 	android:name
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:16:25-66
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:16:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:17:17-77
+ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:17:17-77
 	android:name
-		ADDED from /home/sandbox/poker/app/src/main/AndroidManifest.xml:17:27-74
+		ADDED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:17:27-74
 uses-sdk
-INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml
-INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml
+INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml
+INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml
 MERGED from [com.google.android.gms:play-services-ads:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ce3621e4ea48161e4c1345a4ae068997/transformed/play-services-ads-23.3.0/AndroidManifest.xml:21:5-23:52
 MERGED from [com.google.android.gms:play-services-ads:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ce3621e4ea48161e4c1345a4ae068997/transformed/play-services-ads-23.3.0/AndroidManifest.xml:21:5-23:52
 MERGED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:21:5-44
@@ -186,6 +192,8 @@ MERGED from [com.google.android.ump:user-messaging-platform:3.0.0] /home/sandbox
 MERGED from [com.google.android.ump:user-messaging-platform:3.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/abbc8c0b7ea535707c09a26cb00fecb4/transformed/user-messaging-platform-3.0.0/AndroidManifest.xml:5:5-44
 MERGED from [com.android.billingclient:billing:8.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ae3911e32070249433053a6970416171/transformed/billing-8.0.0/AndroidManifest.xml:6:5-8:41
 MERGED from [com.android.billingclient:billing:8.0.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ae3911e32070249433053a6970416171/transformed/billing-8.0.0/AndroidManifest.xml:6:5-8:41
+MERGED from [com.google.android.play:review:2.0.2] /home/sandbox/.gradle/caches/8.11.1/transforms/91973c84099721346919b8615b8ed20f/transformed/review-2.0.2/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.play:review:2.0.2] /home/sandbox/.gradle/caches/8.11.1/transforms/91973c84099721346919b8615b8ed20f/transformed/review-2.0.2/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.browser:browser:1.4.0] /home/sandbox/.gradle/caches/8.11.1/transforms/77d08ee97a7a0929b9f21dda428cd18a/transformed/browser-1.4.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.4.0] /home/sandbox/.gradle/caches/8.11.1/transforms/77d08ee97a7a0929b9f21dda428cd18a/transformed/browser-1.4.0/AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-ads-base:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ed18dafa6a9f5b277dcb82bc2d586897/transformed/play-services-ads-base-23.3.0/AndroidManifest.xml:5:5-44
@@ -268,14 +276,16 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /home/sandbox/.gr
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] /home/sandbox/.gradle/caches/8.11.1/transforms/f432280746b68184cde2a7f9a313e4c6/transformed/lifecycle-livedata-core-2.3.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/sandbox/.gradle/caches/8.11.1/transforms/017843d23ff14032b1831a1cd6fb2431/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/sandbox/.gradle/caches/8.11.1/transforms/017843d23ff14032b1831a1cd6fb2431/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/sandbox/.gradle/caches/8.11.1/transforms/9222b5cc227de6ac23063a06b020dd1b/transformed/annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/sandbox/.gradle/caches/8.11.1/transforms/9222b5cc227de6ac23063a06b020dd1b/transformed/annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 	tools:overrideLibrary
 		ADDED from [com.google.android.gms:play-services-ads:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/ce3621e4ea48161e4c1345a4ae068997/transformed/play-services-ads-23.3.0/AndroidManifest.xml:23:9-49
 	android:targetSdkVersion
-		INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml
+		INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/sandbox/poker/app/src/main/AndroidManifest.xml
+		INJECTED from /home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.ACCESS_ADSERVICES_AD_ID
 ADDED from [com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:27:5-82
 	android:name
@@ -709,3 +719,13 @@ ADDED from [androidx.room:room-runtime:2.2.5] /home/sandbox/.gradle/caches/8.11.
 		ADDED from [androidx.room:room-runtime:2.2.5] /home/sandbox/.gradle/caches/8.11.1/transforms/024433bda07dff77f7d5a6eecb49bf00/transformed/room-runtime-2.2.5/AndroidManifest.xml:27:13-43
 	android:name
 		ADDED from [androidx.room:room-runtime:2.2.5] /home/sandbox/.gradle/caches/8.11.1/transforms/024433bda07dff77f7d5a6eecb49bf00/transformed/room-runtime-2.2.5/AndroidManifest.xml:26:13-74
+activity#com.google.android.play.core.common.PlayCoreDialogWrapperActivity
+ADDED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:14:9-18:65
+	android:stateNotNeeded
+		ADDED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:17:13-42
+	android:exported
+		ADDED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:16:13-37
+	android:theme
+		ADDED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:18:13-62
+	android:name
+		ADDED from [com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:15:13-93

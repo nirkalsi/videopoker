@@ -1,22 +1,22 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 3    package="nir.com.videopoker"
-4    android:versionCode="1"
-5    android:versionName="1.0" >
+4    android:versionCode="3"
+5    android:versionName="1.2" >
 6
 7    <uses-sdk
 8        android:minSdkVersion="24"
 9        android:targetSdkVersion="36" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:3:5-67
-11-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:3:22-64
+11-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:3:5-67
+11-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:3:22-64
 12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-12-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:4:5-79
-12-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:4:22-76
+12-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:4:5-79
+12-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:4:22-76
 13    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-13-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:5:5-79
-13-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:5:22-76
+13-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:5:5-79
+13-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:5:22-76
 14    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID" />
 14-->[com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:27:5-82
 14-->[com.google.android.gms:play-services-ads-lite:23.3.0] /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/AndroidManifest.xml:27:22-79
@@ -78,45 +78,45 @@
 43-->[androidx.work:work-runtime:2.7.0] /home/sandbox/.gradle/caches/8.11.1/transforms/b9aeb67d4e6fbbb5a33173cb56d5dea9/transformed/work-runtime-2.7.0/AndroidManifest.xml:28:22-74
 44
 45    <application
-45-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:6:5-20:19
+45-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:6:5-20:19
 46        android:allowBackup="true"
-46-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:7:9-35
+46-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:7:9-35
 47        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 47-->[androidx.core:core:1.8.0] /home/sandbox/.gradle/caches/8.11.1/transforms/7438c01f9c9b64e6f9d5887bc0d05462/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
 48        android:extractNativeLibs="false"
 49        android:icon="@mipmap/ic_launcher"
-49-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:8:9-43
+49-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:8:9-43
 50        android:label="@string/app_name"
-50-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:9:9-41
+50-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:9:9-41
 51        android:supportsRtl="true"
-51-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:10:9-35
+51-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:10:9-35
 52        android:theme="@style/Theme.Slots" >
-52-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:11:9-43
+52-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:11:9-43
 53        <meta-data
 54            android:name="com.google.android.gms.ads.APPLICATION_ID"
-54-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:12:20-76
-55            android:value="ca-app-pub-3940256099942544~3347511713" />
-55-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:12:77-106
+54-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:12:20-76
+55            android:value="ca-app-pub-2085439511011816~3310858845" />
+55-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:12:77-106
 56
 57        <activity
-57-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:13:9-19:20
+57-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:13:9-19:20
 58            android:name="nir.com.videopoker.MainActivity"
-58-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:13:19-47
+58-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:13:19-47
 59            android:configChanges="orientation|screenSize|keyboardHidden"
-59-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:14:13-74
+59-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:14:13-74
 60            android:exported="true"
-60-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:13:48-71
+60-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:13:48-71
 61            android:screenOrientation="portrait" >
-61-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:13:72-108
+61-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:13:72-108
 62            <intent-filter>
-62-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:15:13-18:29
+62-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:15:13-18:29
 63                <action android:name="android.intent.action.MAIN" />
-63-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:16:17-69
-63-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:16:25-66
+63-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:16:17-69
+63-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:16:25-66
 64
 65                <category android:name="android.intent.category.LAUNCHER" />
-65-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:17:17-77
-65-->/home/sandbox/poker/app/src/main/AndroidManifest.xml:17:27-74
+65-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:17:17-77
+65-->/home/sandbox/repos/videopoker/app/src/main/AndroidManifest.xml:17:27-74
 66            </intent-filter>
 67        </activity>
 68        <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
@@ -463,8 +463,18 @@
 248-->[androidx.room:room-runtime:2.2.5] /home/sandbox/.gradle/caches/8.11.1/transforms/024433bda07dff77f7d5a6eecb49bf00/transformed/room-runtime-2.2.5/AndroidManifest.xml:26:13-74
 249            android:directBootAware="true"
 249-->[androidx.room:room-runtime:2.2.5] /home/sandbox/.gradle/caches/8.11.1/transforms/024433bda07dff77f7d5a6eecb49bf00/transformed/room-runtime-2.2.5/AndroidManifest.xml:27:13-43
-250            android:exported="false" />
+250            android:exported="false" /> <!-- The activities will be merged into the manifest of the hosting app. -->
 250-->[androidx.room:room-runtime:2.2.5] /home/sandbox/.gradle/caches/8.11.1/transforms/024433bda07dff77f7d5a6eecb49bf00/transformed/room-runtime-2.2.5/AndroidManifest.xml:28:13-37
-251    </application>
-252
-253</manifest>
+251        <activity
+251-->[com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:14:9-18:65
+252            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+252-->[com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:15:13-93
+253            android:exported="false"
+253-->[com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:16:13-37
+254            android:stateNotNeeded="true"
+254-->[com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:17:13-42
+255            android:theme="@style/Theme.PlayCore.Transparent" />
+255-->[com.google.android.play:core-common:2.0.4] /home/sandbox/.gradle/caches/8.11.1/transforms/04063b4b15eb87678a63581af9ff0ba9/transformed/core-common-2.0.4/AndroidManifest.xml:18:13-62
+256    </application>
+257
+258</manifest>
