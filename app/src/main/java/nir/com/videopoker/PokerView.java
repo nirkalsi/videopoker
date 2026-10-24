@@ -236,7 +236,7 @@ public class PokerView extends View {
         // pay table (compact, two columns of rows 0-4 / 5-8)
         p.setTextSize(h * 0.020f);
         p.setTextAlign(Paint.Align.LEFT);
-        float ty = h * 0.135f;
+        float ty = h * 0.152f;
         for (int i = 0; i < 5; i++) {
             p.setColor(Color.rgb(200, 190, 220));
             cv.drawText(PAY_NAMES[i], w * 0.06f, ty + i * h * 0.026f, p);
@@ -261,16 +261,16 @@ public class PokerView extends View {
         // message
         p.setColor(lastWin > 0 ? Color.rgb(124, 252, 0) : Color.WHITE);
         p.setTextSize(h * 0.034f); p.setFakeBoldText(true); p.setTextAlign(Paint.Align.CENTER);
-        cv.drawText(message, w / 2, h * 0.68f, p);
+        cv.drawText(message, w / 2, h * 0.66f, p);
         p.setFakeBoldText(false);
 
         float bh = h * 0.062f, bw = w * 0.28f, bg = w * 0.04f;
         if (phase == 0 || phase == 2) {
             p.setColor(Color.WHITE); p.setTextSize(h * 0.03f);
-            cv.drawText("BET  " + BETS[betIdx], w / 2, h * 0.75f, p);
-            drawButton(cv, w / 2 - bw - bg, h * 0.72f, bw, bh, "- BET", Color.rgb(70, 50, 120), true);
-            drawButton(cv, w / 2 + bg, h * 0.72f, bw, bh, "+ BET", Color.rgb(70, 50, 120), true);
-            drawButton(cv, w / 2 - bw * 1.2f, h * 0.80f, bw * 2.4f, bh, "DEAL", Color.rgb(198, 40, 40), true);
+            cv.drawText("BET  " + BETS[betIdx], w / 2, h * 0.715f, p);
+            drawButton(cv, w / 2 - bw - bg, h * 0.75f, bw, bh, "- BET", Color.rgb(70, 50, 120), true);
+            drawButton(cv, w / 2 + bg, h * 0.75f, bw, bh, "+ BET", Color.rgb(70, 50, 120), true);
+            drawButton(cv, w / 2 - bw * 1.2f, h * 0.83f, bw * 2.4f, bh, "DEAL", Color.rgb(198, 40, 40), true);
         } else {
             drawButton(cv, w / 2 - bw * 1.2f, h * 0.76f, bw * 2.4f, bh, "DRAW", Color.rgb(198, 40, 40), true);
         }
@@ -294,11 +294,11 @@ public class PokerView extends View {
             if (y >= h * 0.76f && y <= h * 0.76f + bh && x >= w / 2 - bw * 1.2f && x <= w / 2 + bw * 1.2f) draw();
             return true;
         }
-        if (y >= h * 0.72f && y <= h * 0.72f + bh) {
+        if (y >= h * 0.75f && y <= h * 0.75f + bh) {
             if (x >= w / 2 - bw - bg && x <= w / 2 - bg && betIdx > 0) { betIdx--; invalidate(); if (listener != null) listener.saveState(); }
             if (x >= w / 2 + bg && x <= w / 2 + bg + bw && betIdx < BETS.length - 1) { betIdx++; invalidate(); if (listener != null) listener.saveState(); }
         }
-        if (y >= h * 0.80f && y <= h * 0.80f + bh && x >= w / 2 - bw * 1.2f && x <= w / 2 + bw * 1.2f) deal();
+        if (y >= h * 0.83f && y <= h * 0.83f + bh && x >= w / 2 - bw * 1.2f && x <= w / 2 + bw * 1.2f) deal();
         return true;
     }
 }

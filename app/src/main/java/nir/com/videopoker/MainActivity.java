@@ -93,7 +93,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         btn.setTextColor(Color.WHITE);
         btn.setBackgroundColor(0xFF3A1F66);
         btn.setMinHeight(0); btn.setMinimumHeight(0);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, -2, 1f);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, (int) (48 * getResources().getDisplayMetrics().density), 1f);
         lp.setMargins(4, 0, 4, 0);
         row.addView(btn, lp);
         btn.setOnClickListener(l);
