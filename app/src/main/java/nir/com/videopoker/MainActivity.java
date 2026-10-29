@@ -192,6 +192,19 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
                 ads.showRewarded(() -> grantDaily(fStreak, bonus * 2)))
             .setCancelable(false)
             .show();
+        animateDialogIn(box);
+    }
+
+
+    /** Pop-in entrance animation for modal dialogs (daily bonus etc.). */
+    private void animateDialogIn(android.view.View content) {
+        content.setAlpha(0f);
+        content.setScaleX(0.8f);
+        content.setScaleY(0.8f);
+        content.post(() -> content.animate().alpha(1f).scaleX(1f).scaleY(1f)
+            .setDuration(280)
+            .setInterpolator(new android.view.animation.OvershootInterpolator())
+            .start());
     }
 
     private void grantDaily(int streak, long coins) {
