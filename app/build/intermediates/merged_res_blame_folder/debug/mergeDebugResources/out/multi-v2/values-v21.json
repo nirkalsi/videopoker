@@ -4,7 +4,7 @@
             "outputFile": "nir.com.videopoker.app-mergeDebugResources-20:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "/home/sandbox/.gradle/caches/8.11.1/transforms/7438c01f9c9b64e6f9d5887bc0d05462/transformed/core-1.8.0/res/values-v21/values-v21.xml",
+                    "source": "/home/sandbox/.gradle/caches/8.13/transforms/3b074d212b7fbc6f45ea0b734f0e64c6/transformed/core-1.8.0/res/values-v21/values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
