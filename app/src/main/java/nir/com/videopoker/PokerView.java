@@ -93,7 +93,7 @@ public class PokerView extends View {
     }
 
     private void deal() {
-        GameSounds.play(GameSounds.CARD);
+        GameSounds.play(getContext(), GameSounds.CARD);
         long bet = BETS[betIdx];
         if (balance < bet) { if (listener != null) listener.onOutOfCoins(); return; }
         balance -= bet;
@@ -116,7 +116,7 @@ public class PokerView extends View {
     }
 
     private void draw() {
-        GameSounds.play(GameSounds.CARD);
+        GameSounds.play(getContext(), GameSounds.CARD);
         List<Integer> deck = new ArrayList<>();
         for (int i = 0; i < 52; i++) if (!hand.contains(i)) deck.add(i);
         Collections.shuffle(deck, rng);
@@ -173,7 +173,7 @@ public class PokerView extends View {
             winRow = idx;
             spawnParticles();
         } else {
-            GameSounds.play(GameSounds.LOSE);
+            GameSounds.play(getContext(), GameSounds.LOSE);
             lastWin = 0;
             message = "No win - try again";
             winRow = -1;
@@ -352,6 +352,16 @@ public class PokerView extends View {
         p.setFakeBoldText(false);
         p.setTextSize(h * 0.010f); p.setColor(0x99FFFFFF);
         cv.drawText("LEVEL", lvX, lvY + lvR * 1.5f, p);
+        // sound toggle
+        float spX = w * 0.93f, spY = h * 0.042f, spR = w * 0.045f;
+        p.setColor(0x66000000);
+        cv.drawCircle(spX, spY, spR, p);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(2); p.setColor(0x55FFFFFF);
+        cv.drawCircle(spX, spY, spR, p);
+        p.setStyle(Paint.Style.FILL);
+        p.setTextSize(spR * 0.9f); p.setTextAlign(Paint.Align.CENTER);
+        cv.drawText(GameSounds.isEnabled(getContext()) ? "\uD83D\uDD0A" : "\uD83D\uDD07", spX, spY + spR * 0.32f, p);
+
 
         float pillW = w * 0.34f, pillH = h * 0.032f, pillX = w / 2f - pillW / 2f + w * 0.06f, pillY = h * 0.026f;
         rf.set(pillX, pillY, pillX + pillW, pillY + pillH);
@@ -525,6 +535,12 @@ public class PokerView extends View {
     @Override public boolean onTouchEvent(MotionEvent e) {
         int w = getWidth(), h = getHeight();
         float x = e.getX(), y = e.getY();
+        if (Math.hypot(x - w * 0.93f, y - getHeight() * 0.042f) <= w * 0.06f) {
+            GameSounds.toggle(getContext());
+            invalidate();
+            return true;
+        }
+
         float bh = h * 0.056f;
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
             lastTouchAt = System.currentTimeMillis();

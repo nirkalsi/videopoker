@@ -9,6 +9,27 @@ public class GameSounds {
     public static final int CLICK = 0, CHIP = 1, CARD = 2, WIN = 3, BIG_WIN = 4, LOSE = 5, LEVEL_UP = 6, SPIN = 7;
     private static ToneGenerator tg;
     private static boolean failed = false;
+    private static Boolean enabled = null;
+
+    public static boolean isEnabled(android.content.Context c) {
+        if (enabled == null)
+            enabled = c.getSharedPreferences("game_sounds", 0).getBoolean("enabled", true);
+        return enabled;
+    }
+
+    /** Toggle sound on/off, persisted. Returns the new state. */
+    public static boolean toggle(android.content.Context c) {
+        boolean now = !isEnabled(c);
+        c.getSharedPreferences("game_sounds", 0).edit().putBoolean("enabled", now).apply();
+        enabled = now;
+        return now;
+    }
+
+    /** Release the tone generator (call from Activity onDestroy). */
+    public static void release() {
+        try { if (tg != null) tg.release(); } catch (Throwable ignored) {}
+        tg = null;
+    }
 
     private static ToneGenerator tg() {
         if (failed) return null;
@@ -20,6 +41,11 @@ public class GameSounds {
     }
 
     public static void play(int sound) {
+        play(null, sound);
+    }
+
+    public static void play(android.content.Context c, int sound) {
+        if (c != null && !isEnabled(c)) return;
         ToneGenerator g = tg();
         if (g == null) return;
         try {
