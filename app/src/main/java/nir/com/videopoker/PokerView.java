@@ -93,6 +93,7 @@ public class PokerView extends View {
     }
 
     private void deal() {
+        GameSounds.play(GameSounds.CARD);
         long bet = BETS[betIdx];
         if (balance < bet) { if (listener != null) listener.onOutOfCoins(); return; }
         balance -= bet;
@@ -115,6 +116,7 @@ public class PokerView extends View {
     }
 
     private void draw() {
+        GameSounds.play(GameSounds.CARD);
         List<Integer> deck = new ArrayList<>();
         for (int i = 0; i < 52; i++) if (!hand.contains(i)) deck.add(i);
         Collections.shuffle(deck, rng);
@@ -165,11 +167,13 @@ public class PokerView extends View {
         if (idx >= 0) {
             long w = bet * PAY_MULT[idx];
             balance += w;
+            GameSounds.play(idx >= 6 ? GameSounds.BIG_WIN : GameSounds.WIN);
             lastWin = w;
             message = PAY_NAMES[idx] + "!";
             winRow = idx;
             spawnParticles();
         } else {
+            GameSounds.play(GameSounds.LOSE);
             lastWin = 0;
             message = "No win - try again";
             winRow = -1;

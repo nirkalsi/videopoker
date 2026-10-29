@@ -70,7 +70,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         if (sp.getString("first_run", null) == null)
             sp.edit().putString("first_run", today()).apply();
 
-        handler.postDelayed(this::maybeDailyBonus, 900);
+        if (sp.getInt("rounds_done", 0) > 0) handler.postDelayed(this::maybeDailyBonus, 900);
         handler.postDelayed(this::maybeDay2Offer, 2000);
     }
 
@@ -329,7 +329,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
     private void maybeDay2Offer() {
         if (sp.getBoolean("ads_removed", false) || sp.getBoolean("offer_day2_done", false)) return;
         String first = sp.getString("first_run", today());
-        if (!today().equals(first)) {
+        if (!today().equals(first) && today().equals(sp.getString("daily_last", ""))) {
             sp.edit().putBoolean("offer_day2_done", true).apply();
             offerRemoveAds("day2");
         }
@@ -358,6 +358,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         if (sp.getInt("rounds_done", 0) == 0) {
             sp.edit().putInt("rounds_done", 1).apply();
             if (!sp.getBoolean("ads_removed", false)) ads.attachBanner(bannerBox);
+            handler.postDelayed(this::maybeDailyBonus, 1200);
         }
     }
 
