@@ -10,6 +10,7 @@ public class GameSounds {
     private static ToneGenerator tg;
     private static boolean failed = false;
     private static Boolean enabled = null;
+    private static boolean foreground = true;
 
     public static boolean isEnabled(android.content.Context c) {
         if (enabled == null)
@@ -24,6 +25,15 @@ public class GameSounds {
         enabled = now;
         return now;
     }
+
+    /** App moved to background: silence everything until onAppResume. */
+    public static void onAppPause() { foreground = false; }
+
+    /** App back in foreground. */
+    public static void onAppResume() { foreground = true; }
+
+    /** Visible for tests. */
+    public static boolean isForeground() { return foreground; }
 
     /** Release the tone generator (call from Activity onDestroy). */
     public static void release() {
@@ -45,6 +55,7 @@ public class GameSounds {
     }
 
     public static void play(android.content.Context c, int sound) {
+        if (!foreground) return;
         if (c != null && !isEnabled(c)) return;
         ToneGenerator g = tg();
         if (g == null) return;
