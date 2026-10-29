@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.RenderSmokeTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-29T21:58:17.409Z" hostname="e2b.local" time="6.319">
+<testsuite name="nir.com.videopoker.RenderSmokeTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-10-29T21:59:44.087Z" hostname="e2b.local" time="6.459">
   <properties/>
-  <testcase name="renderGameView720" classname="nir.com.videopoker.RenderSmokeTest" time="3.86"/>
-  <testcase name="renderGameView1080" classname="nir.com.videopoker.RenderSmokeTest" time="0.116"/>
-  <testcase name="renderOutOfCoinsRewardPrompt" classname="nir.com.videopoker.RenderSmokeTest" time="1.457"/>
-  <testcase name="renderDailyBonus" classname="nir.com.videopoker.RenderSmokeTest" time="0.335"/>
-  <testcase name="renderShop" classname="nir.com.videopoker.RenderSmokeTest" time="0.19"/>
-  <testcase name="renderMissions" classname="nir.com.videopoker.RenderSmokeTest" time="0.19"/>
-  <testcase name="renderFullScreen1080" classname="nir.com.videopoker.RenderSmokeTest" time="0.17"/>
+  <testcase name="renderGameView720" classname="nir.com.videopoker.RenderSmokeTest" time="3.89"/>
+  <testcase name="renderGameView1080" classname="nir.com.videopoker.RenderSmokeTest" time="0.11"/>
+  <testcase name="renderOutOfCoinsRewardPrompt" classname="nir.com.videopoker.RenderSmokeTest" time="1.509"/>
+  <testcase name="renderDailyBonus" classname="nir.com.videopoker.RenderSmokeTest" time="0.346"/>
+  <testcase name="renderShop" classname="nir.com.videopoker.RenderSmokeTest" time="0.191"/>
+  <testcase name="renderMissions" classname="nir.com.videopoker.RenderSmokeTest" time="0.228"/>
+  <testcase name="renderFullScreen1080" classname="nir.com.videopoker.RenderSmokeTest" time="0.184"/>
   <system-out><![CDATA[WARNING: No manifest file found at ./AndroidManifest.xml.
 Falling back to the Android OS resources only.
 To remove this warning, annotate your test class with @Config(manifest=Config.NONE).
 If you're using Android Gradle Plugin, add testOptions.unitTests.includeAndroidResources = true to your build.gradle
 ]]></system-out>
-  <system-err><![CDATA[Oct 29, 2026 11:58:22 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+  <system-err><![CDATA[Oct 29, 2026 11:59:49 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
 WARNING: Transport backend 'cct' is not registered
-Oct 29, 2026 11:58:22 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+Oct 29, 2026 11:59:49 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
 WARNING: Transport backend 'cct' is not registered
-Oct 29, 2026 11:58:23 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+Oct 29, 2026 11:59:50 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
 WARNING: Transport backend 'cct' is not registered
-Oct 29, 2026 11:58:23 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+Oct 29, 2026 11:59:50 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
 WARNING: Transport backend 'cct' is not registered
-Oct 29, 2026 11:58:23 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+Oct 29, 2026 11:59:50 PM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
 WARNING: Transport backend 'cct' is not registered
 ]]></system-err>
 </testsuite>

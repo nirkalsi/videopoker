@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.RewardFlowTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-29T21:58:23.731Z" hostname="e2b.local" time="0.003">
+<testsuite name="nir.com.videopoker.RewardFlowTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-10-29T21:59:50.551Z" hostname="e2b.local" time="0.004">
   <properties/>
-  <testcase name="dismissal_isTerminal_lateEarnedNeverGrants" classname="nir.com.videopoker.RewardFlowTest" time="0.001"/>
+  <testcase name="dismissal_isTerminal_lateEarnedNeverGrants" classname="nir.com.videopoker.RewardFlowTest" time="0.0"/>
   <testcase name="normalOrder_earnThenDismiss_keepsSingleGrant" classname="nir.com.videopoker.RewardFlowTest" time="0.0"/>
   <testcase name="showFailure_notifies_andIsTerminal" classname="nir.com.videopoker.RewardFlowTest" time="0.0"/>
-  <testcase name="noFill_notifies_and_neverGrants" classname="nir.com.videopoker.RewardFlowTest" time="0.001"/>
+  <testcase name="noFill_notifies_and_neverGrants" classname="nir.com.videopoker.RewardFlowTest" time="0.0"/>
   <testcase name="attemptsAreIndependent" classname="nir.com.videopoker.RewardFlowTest" time="0.0"/>
-  <testcase name="earnedCallback_grantsExactlyOnce" classname="nir.com.videopoker.RewardFlowTest" time="0.0"/>
+  <testcase name="earnedCallback_grantsExactlyOnce" classname="nir.com.videopoker.RewardFlowTest" time="0.001"/>
   <testcase name="failureStrings_areUserSafe" classname="nir.com.videopoker.RewardFlowTest" time="0.001"/>
   <testcase name="duplicateEarnedCallbacks_grantOnlyOnce" classname="nir.com.videopoker.RewardFlowTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
