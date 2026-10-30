@@ -64,9 +64,9 @@ public class MissionsManager {
 
     public List<Item> achievements(int level, long totalSpins) {
         List<Item> out = new ArrayList<>();
-        out.add(mkA("ach1", "First spin", 1, 100, totalSpins, sp.getBoolean("ach1c", false)));
-        out.add(mkA("ach2", "100 spins", 100, 500, totalSpins, sp.getBoolean("ach2c", false)));
-        out.add(mkA("ach3", "1,000 spins", 1000, 2000, totalSpins, sp.getBoolean("ach3c", false)));
+        out.add(mkA("ach1", "First hand", 1, 100, totalSpins, sp.getBoolean("ach1c", false)));
+        out.add(mkA("ach2", "100 hands", 100, 500, totalSpins, sp.getBoolean("ach2c", false)));
+        out.add(mkA("ach3", "1,000 hands", 1000, 2000, totalSpins, sp.getBoolean("ach3c", false)));
         out.add(mkA("ach4", "Four of a kind or better", 1, 1000,
             sp.getBoolean("ach4_done", false) ? 1 : 0, sp.getBoolean("ach4c", false)));
         out.add(mkA("ach5", "Reach level 5", 5, 1500, level, sp.getBoolean("ach5c", false)));
