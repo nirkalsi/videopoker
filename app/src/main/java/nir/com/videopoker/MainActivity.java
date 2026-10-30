@@ -49,6 +49,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         bannerBox = new LinearLayout(this);
         root.addView(bannerBox, new LinearLayout.LayoutParams(-1, -2));
         setContentView(root);
+        applySystemBarInsets(root);
 
         String s = sp.getString(KEY, null);
         if (s != null) game.restore(s);
@@ -75,6 +76,14 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
     }
 
     private int dp(int v) { return (int) (v * getResources().getDisplayMetrics().density); }
+
+    // Edge-to-edge is enforced on API 35+ (targetSdk 36): pad the content below the status bar and above the nav bar.
+    private void applySystemBarInsets(View root) {
+        root.setOnApplyWindowInsetsListener((v, insets) -> {
+            v.setPadding(0, insets.getSystemWindowInsetTop(), 0, insets.getSystemWindowInsetBottom());
+            return insets;
+        });
+    }
 
     private GradientDrawable pill(int color, int radiusDp) {
         GradientDrawable g = new GradientDrawable();

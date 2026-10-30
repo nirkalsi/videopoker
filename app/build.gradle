@@ -8,6 +8,7 @@ android {
         targetSdk 36
         versionCode 4
         versionName '1.3'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         def appId = project.findProperty('ADMOB_APP_ID') ?: 'ca-app-pub-3940256099942544~3347511713'
         manifestPlaceholders = [admobAppId: appId]
         buildConfigField 'String', 'BANNER_ID', "\"${project.findProperty('BANNER_ID') ?: 'ca-app-pub-3940256099942544/9214589741'}\""
@@ -33,6 +34,9 @@ android {
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
 dependencies {
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.robolectric:robolectric:4.14.1'
     implementation 'com.google.android.gms:play-services-ads:23.3.0'
