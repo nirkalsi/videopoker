@@ -109,4 +109,13 @@ public class RenderSmokeTest {
         renderLatestDialog("videopoker-outofcoins");
     }
 
+    @GraphicsMode(GraphicsMode.Mode.NATIVE)
+    @Test public void coinBurstMidFlight() throws Exception {
+        PokerView v = new PokerView(RuntimeEnvironment.getApplication());
+        v.coinBurst();
+        java.lang.reflect.Field f = PokerView.class.getDeclaredField("coinBurstAt");
+        f.setAccessible(true);
+        f.setLong(v, System.currentTimeMillis() - 350);
+        renderView(v, 1080, 2243, "/tmp/renders/videopoker-coinburst.png");
+    }
 }

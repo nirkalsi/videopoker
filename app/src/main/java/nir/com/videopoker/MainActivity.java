@@ -234,6 +234,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         sp.edit().putString("daily_last", today()).putInt("daily_streak", streak).apply();
         missions.onDailyClaimed(streak);
         game.addCoins(coins);
+        game.coinBurst();
         Toast.makeText(this, "+" + coins + " daily coins!", Toast.LENGTH_SHORT).show();
     }
 

@@ -52,6 +52,11 @@ public class PokerView extends View {
     private long resultAt = 0;
     private final float[] px = new float[16], py = new float[16], pvx = new float[16], pvy = new float[16];
     private boolean particlesOn = false;
+    // coin burst: coins fly from screen center to the balance pill (daily bonus claim)
+    private final float[] cbx = new float[14], cby = new float[14], cbvx = new float[14], cbvy = new float[14];
+    private boolean coinBurstOn = false;
+    private long coinBurstAt = 0;
+
     private int levelUpPending = 0;
     private long levelUpReward = 0;
     private boolean levelUpShowing = false;
@@ -196,6 +201,40 @@ public class PokerView extends View {
         }
         if (balance < BETS[0] && listener != null) listener.onOutOfCoins();
         invalidate();
+    }
+
+
+    /** Coins burst from center and fly to the balance pill (e.g. daily claim). */
+    public void coinBurst() {
+        java.util.Random r = new java.util.Random();
+        for (int i = 0; i < 14; i++) {
+            cbx[i] = 0.5f + (r.nextFloat() - 0.5f) * 0.12f;
+            cby[i] = 0.45f + (r.nextFloat() - 0.5f) * 0.08f;
+            cbvx[i] = (r.nextFloat() - 0.5f) * 0.08f;
+            cbvy[i] = (r.nextFloat() - 0.5f) * 0.08f;
+        }
+        coinBurstOn = true;
+        coinBurstAt = System.currentTimeMillis();
+        invalidate();
+    }
+
+    private void drawCoinBurst(Canvas cv, float w, float h, long now) {
+        if (!coinBurstOn) return;
+        float t = (now - coinBurstAt) / 750f;
+        if (t >= 1f) { coinBurstOn = false; return; }
+        for (int i = 0; i < 14; i++) {
+            float local = Math.min(1f, Math.max(0f, t * 1.25f - i * 0.015f));
+            float e = local * local;
+            float x = (cbx[i] + cbvx[i] * local + (0.5f - cbx[i]) * e) * w;
+            float y = (cby[i] + cbvy[i] * local + (0.045f - cby[i]) * e) * h;
+            float rad = w * 0.014f * (1f - 0.4f * local);
+            p.setStyle(Paint.Style.FILL);
+            p.setColor(0xFFFFD54F);
+            cv.drawCircle(x, y, rad, p);
+            p.setColor(0xFFB8860B);
+            cv.drawCircle(x, y, rad * 0.55f, p);
+        }
+        postInvalidateDelayed(28);
     }
 
     private void spawnParticles() {
@@ -475,6 +514,8 @@ public class PokerView extends View {
             cv.drawText(message, w / 2, h * 0.625f, p);
             p.setFakeBoldText(false);
         }
+
+        drawCoinBurst(cv, w, h, now);
 
         // ---- controls ----
         float bh = h * 0.056f;
