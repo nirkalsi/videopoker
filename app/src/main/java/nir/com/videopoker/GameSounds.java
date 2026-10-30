@@ -125,7 +125,7 @@ public class GameSounds {
             double f = f0 + (f1 - f0) * t;
             phase += 2 * Math.PI * f / SR;
             double env = Math.min(1, t * 8) * Math.min(1, (1 - t) * 4);
-            out[i] = (short) (Math.sin(phase) * env * 32767 * 0.5);
+            out[i] = (short) (Math.sin(phase) * env * 32767 * 0.35);
         }
         return out;
     }
