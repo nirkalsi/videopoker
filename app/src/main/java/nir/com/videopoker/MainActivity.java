@@ -155,7 +155,8 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
             cell.setGravity(Gravity.CENTER);
             boolean isToday = d == Math.min(streak, 7);
             boolean claimed = d < streak;
-            cell.setBackground(pill(isToday ? 0xFFFFD54F : (claimed ? 0xFFC8E6C9 : 0xFFECEFF1), 10));
+            boolean isDay7 = d == 7;
+            cell.setBackground(pill(isToday || isDay7 ? 0xFFFFD54F : (claimed ? 0xFFC8E6C9 : 0xFFECEFF1), 10));
             cell.setPadding(dp(2), dp(6), dp(2), dp(6));
             TextView dl = new TextView(this);
             dl.setText("Day " + d);
@@ -165,7 +166,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
             cell.addView(dl);
             TextView dv = new TextView(this);
             dv.setText(claimed ? "\u2714" : (d == 7 ? "\uD83C\uDFC6 " + DAILY_BONUS[6] : "" + DAILY_BONUS[d - 1]));
-            dv.setTextSize(10f);
+            dv.setTextSize(isDay7 ? 12f : 10f);
             dv.setTypeface(Typeface.DEFAULT_BOLD);
             dv.setTextColor(isToday ? 0xFF6D4C00 : 0xFF37474F);
             dv.setGravity(Gravity.CENTER);
