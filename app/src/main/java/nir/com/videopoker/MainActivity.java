@@ -185,13 +185,35 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         box.addView(sub);
 
         final int fStreak = streak;
-        new AlertDialog.Builder(this)
+        AlertDialog dlg = new AlertDialog.Builder(this)
             .setView(box)
-            .setPositiveButton("Claim +" + bonus, (d, w) -> grantDaily(fStreak, bonus))
-            .setNeutralButton("\u25B6 Watch ad for 2X", (d, w) ->
-                ads.showRewarded(() -> grantDaily(fStreak, bonus * 2)))
             .setCancelable(false)
-            .show();
+            .create();
+
+        // 2X ad option is the visual primary (polish doc A7); claim is secondary text
+        TextView ad2x = new TextView(this);
+        ad2x.setText("\u25B6 WATCH AD FOR 2X \u2728");
+        ad2x.setTextSize(16f);
+        ad2x.setTypeface(Typeface.DEFAULT_BOLD);
+        ad2x.setTextColor(0xFFFFFFFF);
+        ad2x.setGravity(Gravity.CENTER);
+        ad2x.setBackground(pill(0xFF7B1FA2, 22));
+        ad2x.setPadding(dp(10), dp(12), dp(10), dp(12));
+        LinearLayout.LayoutParams alp = new LinearLayout.LayoutParams(-1, -2);
+        alp.setMargins(dp(8), dp(10), dp(8), 0);
+        box.addView(ad2x, alp);
+        ad2x.setOnClickListener(v -> { dlg.dismiss(); ads.showRewarded(() -> grantDaily(fStreak, bonus * 2)); });
+
+        TextView claim = new TextView(this);
+        claim.setText("Claim +" + bonus);
+        claim.setTextSize(13f);
+        claim.setTextColor(0xFFB0BEC5);
+        claim.setGravity(Gravity.CENTER);
+        claim.setPadding(dp(10), dp(8), dp(10), dp(10));
+        box.addView(claim);
+        claim.setOnClickListener(v -> { dlg.dismiss(); grantDaily(fStreak, bonus); });
+
+        dlg.show();
         animateDialogIn(box);
     }
 

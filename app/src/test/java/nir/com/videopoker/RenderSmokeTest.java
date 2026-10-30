@@ -44,10 +44,21 @@ public class RenderSmokeTest {
         m.invoke(o);
     }
 
+    private static void resetAnimationState(android.view.View v) {
+        v.setAlpha(1f);
+        v.setScaleX(1f);
+        v.setScaleY(1f);
+        if (v instanceof android.view.ViewGroup) {
+            android.view.ViewGroup g = (android.view.ViewGroup) v;
+            for (int i = 0; i < g.getChildCount(); i++) resetAnimationState(g.getChildAt(i));
+        }
+    }
+
     private void renderLatestDialog(String tag) throws Exception {
         AlertDialog d = ShadowAlertDialog.getLatestAlertDialog();
         assertNotNull("no dialog for " + tag, d);
         android.view.View content = d.getWindow().getDecorView();
+        resetAnimationState(content); // dialogs enter with alpha/scale animation; render post-animation state
         content.measure(View.MeasureSpec.makeMeasureSpec(1000, View.MeasureSpec.AT_MOST),
                         View.MeasureSpec.makeMeasureSpec(1700, View.MeasureSpec.AT_MOST));
         renderView(content, Math.max(content.getMeasuredWidth(), 400),
