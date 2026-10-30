@@ -387,9 +387,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         }, 1800);
     }
 
-    @Override public void onLevelUp(int level, long reward) {
-        Toast.makeText(this, "Level " + level + "! +" + reward + " coins", Toast.LENGTH_SHORT).show();
-    }
+    @Override public void onLevelUp(int level, long reward) { /* in-game celebration overlay handles this */ }
 
     @Override public void saveState() {
         sp.edit().putString(KEY, game.serialize()).apply();
