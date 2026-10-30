@@ -10,7 +10,7 @@ import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.ump.*;
 
-/** Policy-safe ads: banner always bottom, interstitial at most every 3rd completed spin
+/** Policy-safe ads: banner always bottom, interstitial at most every 6th completed round, min 2 minutes apart
  *  (min 90s apart, never on first spins, never back-to-back), rewarded only user-initiated. */
 public class AdsManager {
     public interface AdEvents { void onInterstitialShown(); }
