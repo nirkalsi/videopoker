@@ -29,6 +29,7 @@ public class GameSounds {
         boolean now = !isEnabled(c);
         c.getSharedPreferences("game_sounds", 0).edit().putBoolean("enabled", now).apply();
         enabled = now;
+        if (now) startMusic(c); else stopMusic();
         return now;
     }
 
@@ -41,9 +42,13 @@ public class GameSounds {
     /** Visible for tests. */
     public static boolean isForeground() { return foreground; }
 
-    /** Drop cached buffers (call from Activity onDestroy). */
+    /** Drop cached buffers and stop music (call from Activity onDestroy). */
     public static void release() {
         synchronized (cache) { cache.clear(); }
+        synchronized (GameSounds.class) {
+            try { if (music != null) { music.stop(); music.release(); } } catch (Throwable ignored) {}
+            music = null;
+        }
     }
 
     public static void play(int sound) { play(null, sound); }
@@ -184,5 +189,74 @@ public class GameSounds {
             b[i] = (short) (b[i] * i / f);
             b[b.length - 1 - i] = (short) (b[b.length - 1 - i] * i / f);
         }
+    }
+
+    // ---------------- background music ----------------
+
+    private static AudioTrack music;
+
+    /** Per-theme transpose factor for the shared chord loop. */
+    private static final double MUSIC_PITCH = 0.891;
+
+    /** Start (or resume) the ambient music loop, if sound is enabled. */
+    public static synchronized void startMusic(android.content.Context c) {
+        if (!isEnabled(c) || failed) return;
+        if (music != null) {
+            try { music.play(); } catch (Throwable ignored) {}
+            return;
+        }
+        try {
+            short[] loop = synthMusic();
+            music = new AudioTrack.Builder()
+                .setAudioAttributes(new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_GAME)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build())
+                .setAudioFormat(new AudioFormat.Builder()
+                    .setSampleRate(SR)
+                    .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                    .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
+                    .build())
+                .setBufferSizeInBytes(loop.length * 2)
+                .setTransferMode(AudioTrack.MODE_STATIC)
+                .build();
+            music.write(loop, 0, loop.length);
+            music.setLoopPoints(0, loop.length, -1);
+            music.setVolume(0.35f);
+            music.play();
+        } catch (Throwable t) {
+            music = null;
+        }
+    }
+
+    /** Pause the music loop (background, mute). */
+    public static synchronized void stopMusic() {
+        try { if (music != null) music.pause(); } catch (Throwable ignored) {}
+    }
+
+    /** Ambient chord-pad loop: Am - F - C - G, soft attack, ~14s. */
+    static short[] synthMusic() {
+        double[][] chords = {
+            {110.00, 130.81, 164.81, 220.00},   // Am7-ish
+            { 87.31, 110.00, 130.81, 174.61},   // F
+            {130.81, 164.81, 196.00, 261.63},   // C
+            { 98.00, 123.47, 146.83, 196.00},   // G
+        };
+        int chordMs = 3500;
+        int n = SR * chordMs / 1000;
+        short[] out = new short[n * chords.length];
+        for (int k = 0; k < chords.length; k++) {
+            for (int i = 0; i < n; i++) {
+                double t = (double) i / n;
+                double env = Math.min(1, t * 6) * Math.min(1, (1 - t) * 6); // slow in/out
+                double v = 0;
+                for (double f : chords[k]) {
+                    v += Math.sin(2 * Math.PI * f * MUSIC_PITCH * i / SR);
+                }
+                v += 0.3 * Math.sin(4 * Math.PI * chords[k][0] * MUSIC_PITCH * i / SR); // soft octave
+                out[k * n + i] = (short) (v * env * 32767 * 0.07);
+            }
+        }
+        return out;
     }
 }

@@ -35,6 +35,16 @@ public class GameSoundsTest {
         }
     }
 
+    @Test public void musicLoopIsNonSilent() {
+        short[] pcm = GameSounds.synthMusic();
+        assertNotNull(pcm);
+        assertTrue(pcm.length > 100000);
+        int peak = 0;
+        for (short v : pcm) peak = Math.max(peak, Math.abs((int) v));
+        assertTrue("music silent", peak > 1000);
+        assertTrue("music may clip", peak < 25000);
+    }
+
     @Test public void backgroundedAppIsSilent() {
         android.content.Context c = RuntimeEnvironment.getApplication();
         GameSounds.onAppResume();
