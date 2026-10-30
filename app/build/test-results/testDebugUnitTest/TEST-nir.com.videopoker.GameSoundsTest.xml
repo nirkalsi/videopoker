@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.GameSoundsTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-30T02:13:11.745Z" hostname="e2b.local" time="1.842">
+<testsuite name="nir.com.videopoker.GameSoundsTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-30T02:16:37.039Z" hostname="e2b.local" time="1.869">
   <properties/>
-  <testcase name="backgroundedAppIsSilent" classname="nir.com.videopoker.GameSoundsTest" time="1.758"/>
-  <testcase name="mutePersistsAcrossReads" classname="nir.com.videopoker.GameSoundsTest" time="0.017"/>
-  <testcase name="synthBuffersAreNonSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.02"/>
-  <testcase name="musicLoopIsNonSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.046"/>
+  <testcase name="backgroundedAppIsSilent" classname="nir.com.videopoker.GameSoundsTest" time="1.78"/>
+  <testcase name="mutePersistsAcrossReads" classname="nir.com.videopoker.GameSoundsTest" time="0.021"/>
+  <testcase name="synthBuffersAreNonSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.024"/>
+  <testcase name="musicLoopIsNonSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.044"/>
   <system-out><![CDATA[WARNING: No manifest file found at ./AndroidManifest.xml.
 Falling back to the Android OS resources only.
 To remove this warning, annotate your test class with @Config(manifest=Config.NONE).

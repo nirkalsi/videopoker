@@ -135,12 +135,19 @@ public class RenderSmokeTest {
     @Test public void winResultBanner() throws Exception {
         PokerView v = new PokerView(RuntimeEnvironment.getApplication());
         callPrivate(v, "deal");
+        // coherent settled state: real two-pair hand (Ks Kh 9d 9c 4s) paying x2 on the default bet 10
+        java.lang.reflect.Field fh = PokerView.class.getDeclaredField("hand"); fh.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        java.util.List<Integer> hand = (java.util.List<Integer>) fh.get(v);
+        hand.clear();
+        for (int c : new int[]{12, 25, 34, 47, 3}) hand.add(c);
         java.lang.reflect.Field fc = PokerView.class.getDeclaredField("cardT");
         fc.setAccessible(true);
         java.util.Arrays.fill((long[]) fc.get(v), 0L);
         java.lang.reflect.Field fm = PokerView.class.getDeclaredField("message"); fm.setAccessible(true); fm.set(v, "Two Pair!");
         java.lang.reflect.Field fp = PokerView.class.getDeclaredField("phase"); fp.setAccessible(true); fp.setInt(v, 2);
-        java.lang.reflect.Field fw = PokerView.class.getDeclaredField("lastWin"); fw.setAccessible(true); fw.setLong(v, 250L);
+        java.lang.reflect.Field fw = PokerView.class.getDeclaredField("lastWin"); fw.setAccessible(true); fw.setLong(v, 20L);
+        java.lang.reflect.Field fwr = PokerView.class.getDeclaredField("winRow"); fwr.setAccessible(true); fwr.setInt(v, 7);
         java.lang.reflect.Field fr = PokerView.class.getDeclaredField("resultAt"); fr.setAccessible(true); fr.setLong(v, System.currentTimeMillis() - 1000);
         renderView(v, 1080, 2243, "/tmp/renders/videopoker-win.png");
     }
