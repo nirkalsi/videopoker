@@ -51,5 +51,12 @@ public class GameplayScriptTest {
         Thread.sleep(1200);
         tap(0.5f, 0.808f); Thread.sleep(3500);                 // DRAW, result
         tap(0.5f, 0.646f); Thread.sleep(1500);                 // dismiss level-up overlay if shown
+        d.pressHome(); Thread.sleep(2000);
+        android.content.SharedPreferences sp = androidx.test.platform.app.InstrumentationRegistry.getInstrumentation()
+                .getTargetContext().getSharedPreferences("videopoker", 0);
+        String state = sp.getString("state", "");
+        if (state.isEmpty()) throw new AssertionError("no saved state after scripted hand");
+        long handsDone = Long.parseLong(state.split(";")[2]);
+        if (handsDone < 1) throw new AssertionError("hand did not complete, state=" + state);
     }
 }
