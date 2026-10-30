@@ -118,4 +118,45 @@ public class RenderSmokeTest {
         f.setLong(v, System.currentTimeMillis() - 350);
         renderView(v, 1080, 2243, "/tmp/renders/videopoker-coinburst.png");
     }
+
+    @GraphicsMode(GraphicsMode.Mode.NATIVE)
+    @Test public void renderDealtCards() throws Exception {
+        PokerView v = new PokerView(RuntimeEnvironment.getApplication());
+        v.measure(View.MeasureSpec.makeMeasureSpec(1080, View.MeasureSpec.EXACTLY),
+                  View.MeasureSpec.makeMeasureSpec(2243, View.MeasureSpec.EXACTLY));
+        callPrivate(v, "deal");
+        java.lang.reflect.Field fl = PokerView.class.getDeclaredField("cardT");
+        fl.setAccessible(true);
+        long[] ts = (long[]) fl.get(v);
+        java.util.Arrays.fill(ts, 0L);
+        renderView(v, 1080, 2243, "/tmp/renders/videopoker-dealt.png");
+    }
+    @GraphicsMode(GraphicsMode.Mode.NATIVE)
+    @Test public void winResultBanner() throws Exception {
+        PokerView v = new PokerView(RuntimeEnvironment.getApplication());
+        callPrivate(v, "deal");
+        java.lang.reflect.Field fc = PokerView.class.getDeclaredField("cardT");
+        fc.setAccessible(true);
+        java.util.Arrays.fill((long[]) fc.get(v), 0L);
+        java.lang.reflect.Field fm = PokerView.class.getDeclaredField("message"); fm.setAccessible(true); fm.set(v, "Two Pair!");
+        java.lang.reflect.Field fp = PokerView.class.getDeclaredField("phase"); fp.setAccessible(true); fp.setInt(v, 2);
+        java.lang.reflect.Field fw = PokerView.class.getDeclaredField("lastWin"); fw.setAccessible(true); fw.setLong(v, 250L);
+        java.lang.reflect.Field fr = PokerView.class.getDeclaredField("resultAt"); fr.setAccessible(true); fr.setLong(v, System.currentTimeMillis() - 1000);
+        renderView(v, 1080, 2243, "/tmp/renders/videopoker-win.png");
+    }
+    @GraphicsMode(GraphicsMode.Mode.NATIVE)
+    @Test public void levelUpOverlay() throws Exception {
+        PokerView v = new PokerView(RuntimeEnvironment.getApplication());
+        java.lang.reflect.Field fp = PokerView.class.getDeclaredField("levelUpPending"); fp.setAccessible(true); fp.setInt(v, 4);
+        java.lang.reflect.Field fr = PokerView.class.getDeclaredField("levelUpReward"); fr.setAccessible(true); fr.setLong(v, 200L);
+        java.lang.reflect.Field fs = PokerView.class.getDeclaredField("levelUpShowing"); fs.setAccessible(true); fs.setBoolean(v, true);
+        java.lang.reflect.Field fa = PokerView.class.getDeclaredField("levelUpAt"); fa.setAccessible(true); fa.setLong(v, System.currentTimeMillis() - 1000);
+        renderView(v, 1080, 2243, "/tmp/renders/videopoker-levelup.png");
+    }
+
+    @GraphicsMode(GraphicsMode.Mode.NATIVE)
+    @Test public void renderGameViewSmall() throws Exception {
+        renderView(new PokerView(RuntimeEnvironment.getApplication()), 960, 1600, "/tmp/renders/videopoker-game-960x1600.png");
+    }
+
 }
