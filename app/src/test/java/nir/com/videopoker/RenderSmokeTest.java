@@ -166,4 +166,21 @@ public class RenderSmokeTest {
         renderView(new PokerView(RuntimeEnvironment.getApplication()), 960, 1600, "/tmp/renders/videopoker-game-960x1600.png");
     }
 
+
+    @GraphicsMode(GraphicsMode.Mode.NATIVE)
+    @Test public void holdPhaseSmall() throws Exception {
+        PokerView v = new PokerView(RuntimeEnvironment.getApplication());
+        v.measure(View.MeasureSpec.makeMeasureSpec(960, View.MeasureSpec.EXACTLY),
+                  View.MeasureSpec.makeMeasureSpec(1600, View.MeasureSpec.EXACTLY));
+        callPrivate(v, "deal");
+        java.lang.reflect.Field fc = PokerView.class.getDeclaredField("cardT");
+        fc.setAccessible(true);
+        java.util.Arrays.fill((long[]) fc.get(v), 0L);
+        java.lang.reflect.Field fh = PokerView.class.getDeclaredField("held");
+        fh.setAccessible(true);
+        boolean[] held = (boolean[]) fh.get(v);
+        held[0] = true; held[4] = true;
+        renderView(v, 960, 1600, "/tmp/renders/videopoker-hold-960x1600.png");
+    }
+
 }
