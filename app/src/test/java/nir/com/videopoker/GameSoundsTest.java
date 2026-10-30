@@ -22,6 +22,19 @@ public class GameSoundsTest {
         assertTrue(GameSounds.isEnabled(c));
     }
 
+    @Test public void synthBuffersAreNonSilent() {
+        int[] all = {GameSounds.CLICK, GameSounds.CHIP, GameSounds.CARD, GameSounds.SPIN,
+                GameSounds.WIN, GameSounds.BIG_WIN, GameSounds.LOSE, GameSounds.LEVEL_UP};
+        for (int snd : all) {
+            short[] pcm = GameSounds.synth(snd);
+            assertNotNull("synth " + snd, pcm);
+            assertTrue("synth " + snd + " too short", pcm.length > 500);
+            int peak = 0;
+            for (short v : pcm) peak = Math.max(peak, Math.abs((int) v));
+            assertTrue("synth " + snd + " silent", peak > 2000);
+        }
+    }
+
     @Test public void backgroundedAppIsSilent() {
         android.content.Context c = RuntimeEnvironment.getApplication();
         GameSounds.onAppResume();
