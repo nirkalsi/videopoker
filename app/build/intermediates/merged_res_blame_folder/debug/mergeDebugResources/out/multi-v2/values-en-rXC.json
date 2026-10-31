@@ -1,0 +1,36 @@
+{
+    "logs": [
+        {
+            "outputFile": "nir.com.videopoker.app-mergeDebugResources-20:/values-en-rXC/values-en-rXC.xml",
+            "map": [
+                {
+                    "source": "/home/sandbox/.gradle/caches/8.13/transforms/3b074d212b7fbc6f45ea0b734f0e64c6/transformed/core-1.8.0/res/values-en-rXC/values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "203",
+                        "endOffsets": "254"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "867",
+                        "endColumns": "203",
+                        "endOffsets": "1066"
+                    }
+                },
+                {
+                    "source": "/home/sandbox/.gradle/caches/8.13/transforms/2195537cdbbfd94244b949a73851705f/transformed/browser-1.4.0/res/values-en-rXC/values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,255,454,665",
+                        "endColumns": "199,198,210,201",
+                        "endOffsets": "250,449,660,862"
+                    }
+                }
+            ]
+        }
+    ]
+}

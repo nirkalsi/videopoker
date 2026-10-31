@@ -83,10 +83,14 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
     }
 
     private GradientDrawable pill(int color, int radiusDp) {
-        GradientDrawable g = new GradientDrawable();
-        g.setColor(color);
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[2] = Math.min(1f, hsv[2] * 1.38f);
+        int lighter = Color.HSVToColor(hsv);
+        GradientDrawable g = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
+            new int[]{lighter, color});
         g.setCornerRadius(dp(radiusDp));
-        g.setStroke(dp(1), 0x33FFFFFF);
+        g.setStroke(dp(1), 0x66FFFFFF);
         return g;
     }
 
@@ -104,11 +108,13 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
     private Button addRowButton(LinearLayout row, String label, View.OnClickListener l, int color) {
         Button btn = new Button(this);
         btn.setText(label);
-        btn.setTextSize(12f);
+        btn.setTextSize(12.5f);
         btn.setSingleLine(true);
         btn.setPadding(0, 0, 0, 0);
         btn.setTypeface(Typeface.DEFAULT_BOLD);
         btn.setTextColor(Color.WHITE);
+        btn.setLetterSpacing(0.06f);
+        btn.setElevation(dp(4));
         btn.setBackground(pill(color, 22));
         btn.setMinHeight(0); btn.setMinimumHeight(0);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, dp(46), 1f);

@@ -440,13 +440,26 @@ public class PokerView extends View {
         p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0xFF8E6BB8);
         cv.drawRoundRect(rf, 14, 14, p);
         p.setStyle(Paint.Style.FILL);
+        rf.set(ptX + 5, ptY + 4, ptX + ptW - 5, ptY + h * 0.027f);
+        p.setColor(0xFF3A2066);
+        cv.drawRoundRect(rf, 10, 10, p);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(1.5f); p.setColor(0x55FFD700);
+        cv.drawRoundRect(rf, 10, 10, p);
+        p.setStyle(Paint.Style.FILL);
         p.setTextAlign(Paint.Align.CENTER); p.setColor(0xFFFFD700); p.setTextSize(h * 0.014f); p.setFakeBoldText(true);
-        cv.drawText("JACKS OR BETTER  -  PAYTABLE  (BET " + BETS[betIdx] + ")", w / 2f, ptY + h * 0.020f, p);
+        p.setShadowLayer(6, 0, 0, 0x88FFD700);
+        cv.drawText("JACKS OR BETTER  \u2726  PAYTABLE  (BET " + BETS[betIdx] + ")", w / 2f, ptY + h * 0.021f, p);
+        p.clearShadowLayer();
         p.setFakeBoldText(false);
         float rowH = h * 0.020f, rowY0 = ptY + h * 0.038f;
         for (int i = 0; i < 9; i++) {
             boolean hot = i == winRow && now - resultAt < 2400;
             float ry = rowY0 + i * rowH;
+            if (i % 2 == 0) {
+                rf.set(ptX + 6, ry - rowH * 0.78f, ptX + ptW - 6, ry + rowH * 0.22f);
+                p.setColor(0x14FFFFFF);
+                cv.drawRoundRect(rf, 8, 8, p);
+            }
             if (hot) {
                 rf.set(ptX + 6, ry - rowH * 0.78f, ptX + ptW - 6, ry + rowH * 0.22f);
                 p.setColor(0x55FFD700);
@@ -488,8 +501,17 @@ public class PokerView extends View {
                 cv.drawRoundRect(rf, cw * 0.09f, cw * 0.09f, p);
                 p.setStyle(Paint.Style.FILL);
             }
-            p.setColor(0xFF9F8ABF); p.setTextAlign(Paint.Align.CENTER); p.setTextSize(h * 0.022f);
-            cv.drawText("Press DEAL to start", w / 2, y0 + ch / 2, p);
+            float bw = w * 0.52f, bhh = h * 0.038f;
+            rf.set(w / 2f - bw / 2f, y0 + ch / 2f - bhh / 2f, w / 2f + bw / 2f, y0 + ch / 2f + bhh / 2f);
+            p.setShader(new LinearGradient(0, rf.top, 0, rf.bottom, 0xFF4A2A7A, 0xFF2A184A, Shader.TileMode.CLAMP));
+            cv.drawRoundRect(rf, bhh / 2, bhh / 2, p);
+            p.setShader(null);
+            p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0xFF8E6BB8);
+            cv.drawRoundRect(rf, bhh / 2, bhh / 2, p);
+            p.setStyle(Paint.Style.FILL);
+            p.setColor(0xFFFFD700); p.setTextAlign(Paint.Align.CENTER); p.setTextSize(h * 0.017f); p.setFakeBoldText(true);
+            cv.drawText("\u25B6  TAP DEAL TO PLAY", w / 2, y0 + ch / 2 + h * 0.006f, p);
+            p.setFakeBoldText(false);
         }
 
         // ---- message / win banner ----
@@ -526,8 +548,11 @@ public class PokerView extends View {
             float chipR = w * 0.060f, chipGap = w * 0.040f;
             float rowW = BETS.length * chipR * 2 + (BETS.length - 1) * chipGap;
             float cx0 = w / 2f - rowW / 2f + chipR;
-            p.setColor(0x99FFFFFF); p.setTextSize(h * 0.011f); p.setTextAlign(Paint.Align.CENTER);
-            cv.drawText("TAP A CHIP TO SET YOUR BET", w / 2f, h * 0.685f, p);
+            p.setColor(0xCCFFD54F); p.setTextSize(h * 0.0125f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
+            p.setShadowLayer(4, 0, 1, 0x66000000);
+            cv.drawText("\u25BC  TAP A CHIP TO SET YOUR BET  \u25BC", w / 2f, h * 0.685f, p);
+            p.clearShadowLayer();
+            p.setFakeBoldText(false);
             for (int i = 0; i < BETS.length; i++) {
                 boolean sel = i == betIdx;
                 drawChip(cv, cx0 + i * (chipR * 2 + chipGap), h * 0.735f + (sel ? -h * 0.008f : 0), chipR, CHIP_COLORS[i], "" + BETS[i], sel);
