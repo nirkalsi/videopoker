@@ -587,7 +587,7 @@ public class PokerView extends View {
             drawPillButton(cv, w * 0.14f, h * 0.785f, w * 0.72f, bh, "DEAL   \u25B6", 0xFF43A047, 0xFF1B5E20,
                     balance >= BETS[betIdx], pressedBtn == 0, pulse);
         } else {
-            drawPillButton(cv, w * 0.14f, h * 0.765f, w * 0.72f, bh, "DRAW", 0xFFE53935, 0xFF8E0000, true, pressedBtn == 1, pulse > 0 ? pulse : (float) (0.35 + 0.35 * Math.sin(now / 450.0)));
+            drawPillButton(cv, w * 0.14f, h * 0.765f, w * 0.72f, bh, "DRAW", 0xFFFF5252, 0xFFB71C1C, true, pressedBtn == 1, pulse > 0 ? Math.max(pulse, 0.55f) : (float) (0.55 + 0.35 * Math.sin(now / 450.0)));
             animating = true;
         }
 
