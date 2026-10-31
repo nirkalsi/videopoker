@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.DesignPreviewTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-31T09:58:25.333Z" hostname="e2b.local" time="4.438">
+<testsuite name="nir.com.videopoker.DesignPreviewTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-31T10:46:56.751Z" hostname="e2b.local" time="4.093">
   <properties/>
-  <testcase name="renderStates" classname="nir.com.videopoker.DesignPreviewTest" time="4.438"/>
+  <testcase name="renderStates" classname="nir.com.videopoker.DesignPreviewTest" time="4.093"/>
   <system-out><![CDATA[WARNING: No manifest file found at ./AndroidManifest.xml.
 Falling back to the Android OS resources only.
 To remove this warning, annotate your test class with @Config(manifest=Config.NONE).

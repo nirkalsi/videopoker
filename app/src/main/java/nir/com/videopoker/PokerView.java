@@ -372,8 +372,8 @@ public class PokerView extends View {
         int w = getWidth(), h = getHeight();
         boolean animating = false;
 
-        // cabinet background: deep purple machine
-        p.setShader(new LinearGradient(0, 0, 0, h, 0xFF3D2463, 0xFF14092B, Shader.TileMode.CLAMP));
+        // cabinet background: deep blue machine (genre-standard cabinet look)
+        p.setShader(new LinearGradient(0, 0, 0, h, 0xFF1B34A8, 0xFF081040, Shader.TileMode.CLAMP));
         p.setStyle(Paint.Style.FILL);
         cv.drawRect(0, 0, w, h, p);
         p.setShader(null);
@@ -433,25 +433,34 @@ public class PokerView extends View {
         }
 
         // ---- paytable panel (machine display) ----
-        float ptX = w * 0.035f, ptY = h * 0.102f, ptW = w * 0.93f, ptH = h * 0.205f;
+        float ptX = w * 0.035f, ptY = h * 0.100f, ptW = w * 0.93f, ptH = h * 0.228f;
         rf.set(ptX, ptY, ptX + ptW, ptY + ptH);
-        p.setColor(0xE60A0618);
+        p.setShader(new LinearGradient(0, ptY, 0, ptY + ptH, 0xFF12278A, 0xFF0A1750, Shader.TileMode.CLAMP));
         cv.drawRoundRect(rf, 14, 14, p);
-        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0xFF8E6BB8);
+        p.setShader(null);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0xFFFFD54F);
         cv.drawRoundRect(rf, 14, 14, p);
         p.setStyle(Paint.Style.FILL);
         rf.set(ptX + 5, ptY + 4, ptX + ptW - 5, ptY + h * 0.027f);
-        p.setColor(0xFF3A2066);
+        p.setColor(0xFF1B34A8);
         cv.drawRoundRect(rf, 10, 10, p);
-        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(1.5f); p.setColor(0x55FFD700);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(1.5f); p.setColor(0x88FFD54F);
         cv.drawRoundRect(rf, 10, 10, p);
         p.setStyle(Paint.Style.FILL);
-        p.setTextAlign(Paint.Align.CENTER); p.setColor(0xFFFFD700); p.setTextSize(h * 0.014f); p.setFakeBoldText(true);
-        p.setShadowLayer(6, 0, 0, 0x88FFD700);
-        cv.drawText("JACKS OR BETTER  \u2726  PAYTABLE  (BET " + BETS[betIdx] + ")", w / 2f, ptY + h * 0.021f, p);
+        p.setTextAlign(Paint.Align.CENTER); p.setColor(0xFFFFD54F); p.setTextSize(h * 0.014f); p.setFakeBoldText(true);
+        p.setShadowLayer(6, 0, 0, 0x88FFD54F);
+        cv.drawText("JACKS OR BETTER  \u2726  PAYTABLE", w / 2f, ptY + h * 0.021f, p);
         p.clearShadowLayer();
         p.setFakeBoldText(false);
-        float rowH = h * 0.020f, rowY0 = ptY + h * 0.038f;
+        for (int b = 0; b < BETS.length; b++) {
+            float hx = ptX + ptW * (0.52f + b * 0.12f);
+            if (b == betIdx) { p.setColor(0xFFC62828); rf.set(hx - ptW * 0.055f, ptY + h * 0.0265f, hx + ptW * 0.055f, ptY + h * 0.0335f); cv.drawRoundRect(rf, 6, 6, p); }
+            p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
+            p.setColor(b == betIdx ? 0xFFFFFFFF : 0xFFFFD54F); p.setTextSize(h * 0.011f);
+            cv.drawText("" + BETS[b], hx, ptY + h * 0.0320f, p);
+        }
+        p.setFakeBoldText(false);
+        float rowH = h * 0.0195f, rowY0 = ptY + h * 0.050f;
         for (int i = 0; i < 9; i++) {
             boolean hot = i == winRow && now - resultAt < 2400;
             float ry = rowY0 + i * rowH;
@@ -467,14 +476,22 @@ public class PokerView extends View {
                 animating = true;
             }
             p.setTextAlign(Paint.Align.LEFT);
-            p.setColor(hot ? 0xFFFFD700 : 0xFFC5B3E0);
-            p.setTextSize(h * 0.0135f);
+            p.setColor(hot ? 0xFFFFD54F : 0xFFD6E4FF);
+            p.setTextSize(h * 0.0125f);
             p.setFakeBoldText(i == 0 || hot);
-            cv.drawText(PAY_NAMES[i], ptX + ptW * 0.05f, ry, p);
-            p.setTextAlign(Paint.Align.RIGHT);
-            cv.drawText("x" + PAY_MULT[i], ptX + ptW * 0.68f, ry, p);
-            p.setColor(hot ? 0xFFFFD700 : 0xFF9F8ABF);
-            cv.drawText("" + (PAY_MULT[i] * BETS[betIdx]), ptX + ptW * 0.95f, ry, p);
+            cv.drawText(PAY_NAMES[i], ptX + ptW * 0.04f, ry, p);
+            for (int b = 0; b < BETS.length; b++) {
+                float cxR = ptX + ptW * (0.52f + b * 0.12f);
+                if (b == betIdx) {
+                    rf.set(cxR - ptW * 0.055f, ry - rowH * 0.78f, cxR + ptW * 0.055f, ry + rowH * 0.22f);
+                    p.setColor(i == 0 ? 0xFFC62828 : 0x66C62828);
+                    cv.drawRoundRect(rf, 6, 6, p);
+                }
+                p.setTextAlign(Paint.Align.CENTER);
+                p.setColor(hot ? 0xFFFFD54F : (b == betIdx ? 0xFFFFFFFF : 0xFF9FB6E8));
+                p.setFakeBoldText(b == betIdx || i == 0 || hot);
+                cv.drawText("" + (PAY_MULT[i] * BETS[b]), cxR, ry, p);
+            }
             p.setFakeBoldText(false);
             p.setTextAlign(Paint.Align.LEFT);
         }
@@ -497,16 +514,16 @@ public class PokerView extends View {
             // empty card slots
             for (int i = 0; i < 5; i++) {
                 rf.set(x0 + i * (cw + gap), y0, x0 + i * (cw + gap) + cw, y0 + ch);
-                p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0x338E6BB8);
+                p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0x336FA8FF);
                 cv.drawRoundRect(rf, cw * 0.09f, cw * 0.09f, p);
                 p.setStyle(Paint.Style.FILL);
             }
             float bw = w * 0.52f, bhh = h * 0.038f;
             rf.set(w / 2f - bw / 2f, y0 + ch / 2f - bhh / 2f, w / 2f + bw / 2f, y0 + ch / 2f + bhh / 2f);
-            p.setShader(new LinearGradient(0, rf.top, 0, rf.bottom, 0xFF4A2A7A, 0xFF2A184A, Shader.TileMode.CLAMP));
+            p.setShader(new LinearGradient(0, rf.top, 0, rf.bottom, 0xFF1B34A8, 0xFF0A1750, Shader.TileMode.CLAMP));
             cv.drawRoundRect(rf, bhh / 2, bhh / 2, p);
             p.setShader(null);
-            p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0xFF8E6BB8);
+            p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0xFFFFD54F);
             cv.drawRoundRect(rf, bhh / 2, bhh / 2, p);
             p.setStyle(Paint.Style.FILL);
             p.setColor(0xFFFFD700); p.setTextAlign(Paint.Align.CENTER); p.setTextSize(h * 0.017f); p.setFakeBoldText(true);
@@ -532,7 +549,7 @@ public class PokerView extends View {
                 }
             }
         } else {
-            p.setColor(0xFFD1C4E9); p.setTextSize(h * 0.022f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
+            p.setColor(0xFFE8F0FF); p.setTextSize(h * 0.022f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
             cv.drawText(message, w / 2, h * 0.598f, p);
             p.setFakeBoldText(false);
         }
@@ -567,7 +584,7 @@ public class PokerView extends View {
             p.setColor(0xFF6D4C00); p.setTextSize(chipR * 0.4f * bump); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
             cv.drawText("MAX", mx, h * 0.710f + chipR * 0.14f * bump, p);
             p.setFakeBoldText(false);
-            drawPillButton(cv, w * 0.14f, h * 0.785f, w * 0.72f, bh, "DEAL   \u25B6", 0xFF8E24AA, 0xFF4A148C,
+            drawPillButton(cv, w * 0.14f, h * 0.785f, w * 0.72f, bh, "DEAL   \u25B6", 0xFF43A047, 0xFF1B5E20,
                     balance >= BETS[betIdx], pressedBtn == 0, pulse);
         } else {
             drawPillButton(cv, w * 0.14f, h * 0.765f, w * 0.72f, bh, "DRAW", 0xFFE53935, 0xFF8E0000, true, pressedBtn == 1, pulse > 0 ? pulse : (float) (0.35 + 0.35 * Math.sin(now / 450.0)));
