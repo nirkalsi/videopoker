@@ -339,6 +339,7 @@ public class PokerView extends View {
             cv.drawRoundRect(glow, dh * 0.5f + grow, dh * 0.5f + grow, p);
             p.setStyle(Paint.Style.FILL);
         }
+        p.setColor(0xFFFFFFFF);
         if (enabled) p.setShader(new LinearGradient(0, rf.top, 0, rf.bottom, bgTop, bgBottom, Shader.TileMode.CLAMP));
         else { p.setShader(null); p.setColor(0xFF37474F); }
         cv.drawRoundRect(rf, dh * 0.5f, dh * 0.5f, p);
@@ -434,61 +435,106 @@ public class PokerView extends View {
 
         // ---- paytable panel (machine display) ----
         float ptX = w * 0.035f, ptY = h * 0.100f, ptW = w * 0.93f, ptH = h * 0.228f;
+        // metallic gold bezel with inner groove
         rf.set(ptX, ptY, ptX + ptW, ptY + ptH);
-        p.setShader(new LinearGradient(0, ptY, 0, ptY + ptH, 0xFF12278A, 0xFF0A1750, Shader.TileMode.CLAMP));
-        cv.drawRoundRect(rf, 14, 14, p);
+        p.setShader(new LinearGradient(ptX, ptY, ptX + ptW, ptY + ptH, 0xFFFFF59D, 0xFF9A6A08, Shader.TileMode.CLAMP));
+        cv.drawRoundRect(rf, 16, 16, p);
         p.setShader(null);
-        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0xFFFFD54F);
-        cv.drawRoundRect(rf, 14, 14, p);
+        rf.set(ptX + 3, ptY + 3, ptX + ptW - 3, ptY + ptH - 3);
+        p.setColor(0xFF050E38); cv.drawRoundRect(rf, 13, 13, p);
+        rf.set(ptX + 6, ptY + 6, ptX + ptW - 6, ptY + ptH - 6);
+        p.setShader(new LinearGradient(0, ptY, 0, ptY + ptH, 0xFF1B35A6, 0xFF0B1C64, Shader.TileMode.CLAMP));
+        cv.drawRoundRect(rf, 11, 11, p);
+        p.setShader(null);
+        // corner rivets
+        for (int rc = 0; rc < 4; rc++) {
+            float rvx = (rc % 2 == 0) ? ptX + ptW * 0.024f : ptX + ptW * 0.976f;
+            float rvy = (rc < 2) ? ptY + ptH * 0.088f : ptY + ptH * 0.912f;
+            p.setColor(0xFF7A5C10); cv.drawCircle(rvx, rvy, h * 0.0038f, p);
+            p.setColor(0xFFFFF59D); cv.drawCircle(rvx - h * 0.0013f, rvy - h * 0.0013f, h * 0.0024f, p);
+        }
+        // engraved gold header plaque
+        float plW = ptW * 0.66f, plH = h * 0.030f, plX = w / 2f - plW / 2f, plY = ptY + h * 0.009f;
+        rf.set(plX, plY, plX + plW, plY + plH);
+        p.setShader(new LinearGradient(0, plY, 0, plY + plH, 0xFFFFE082, 0xFFB8860B, Shader.TileMode.CLAMP));
+        cv.drawRoundRect(rf, plH * 0.5f, plH * 0.5f, p);
+        p.setShader(null);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(2); p.setColor(0xFFFFF9C4);
+        cv.drawRoundRect(rf, plH * 0.5f, plH * 0.5f, p);
         p.setStyle(Paint.Style.FILL);
-        rf.set(ptX + 5, ptY + 4, ptX + ptW - 5, ptY + h * 0.027f);
-        p.setColor(0xFF1B34A8);
-        cv.drawRoundRect(rf, 10, 10, p);
-        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(1.5f); p.setColor(0x88FFD54F);
-        cv.drawRoundRect(rf, 10, 10, p);
-        p.setStyle(Paint.Style.FILL);
-        p.setTextAlign(Paint.Align.CENTER); p.setColor(0xFFFFD54F); p.setTextSize(h * 0.014f); p.setFakeBoldText(true);
-        p.setShadowLayer(6, 0, 0, 0x88FFD54F);
-        cv.drawText("JACKS OR BETTER  \u2726  PAYTABLE", w / 2f, ptY + h * 0.021f, p);
-        p.clearShadowLayer();
+        p.setTextAlign(Paint.Align.CENTER); p.setTextSize(h * 0.0145f); p.setFakeBoldText(true);
+        p.setColor(0x99FFFFFF); cv.drawText("JACKS OR BETTER  \u2726  PAYTABLE", w / 2f, plY + plH * 0.66f - 1.5f, p);
+        p.setColor(0xFF5D4300); cv.drawText("JACKS OR BETTER  \u2726  PAYTABLE", w / 2f, plY + plH * 0.66f, p);
+        p.setFakeBoldText(false);
+        // bet medallions (active bet is lit red)
+        float medY = ptY + h * 0.052f, medR = h * 0.0118f;
+        p.setTextAlign(Paint.Align.LEFT); p.setColor(0x88FFD54F); p.setTextSize(h * 0.010f); p.setFakeBoldText(true);
+        cv.drawText("BET", ptX + ptW * 0.04f, medY + h * 0.004f, p);
         p.setFakeBoldText(false);
         for (int b = 0; b < BETS.length; b++) {
             float hx = ptX + ptW * (0.52f + b * 0.12f);
-            if (b == betIdx) { p.setColor(0xFFC62828); rf.set(hx - ptW * 0.055f, ptY + h * 0.0265f, hx + ptW * 0.055f, ptY + h * 0.0335f); cv.drawRoundRect(rf, 6, 6, p); }
+            if (b == betIdx) {
+                p.setColor(0x66FFD700);
+                cv.drawCircle(hx, medY, medR * 1.45f, p);
+            }
+            p.setShader(new LinearGradient(0, medY - medR, 0, medY + medR,
+                    b == betIdx ? 0xFFFF5252 : 0xFFFFD54F, b == betIdx ? 0xFFB71C1C : 0xFF9A6A08, Shader.TileMode.CLAMP));
+            cv.drawCircle(hx, medY, medR, p);
+            p.setShader(null);
+            p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(2);
+            p.setColor(b == betIdx ? 0xFFFFFFFF : 0x88FFF9C4);
+            cv.drawCircle(hx, medY, medR, p);
+            p.setStyle(Paint.Style.FILL);
             p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
-            p.setColor(b == betIdx ? 0xFFFFFFFF : 0xFFFFD54F); p.setTextSize(h * 0.011f);
-            cv.drawText("" + BETS[b], hx, ptY + h * 0.0320f, p);
+            p.setColor(b == betIdx ? 0xFFFFFFFF : 0xFF4A3200);
+            p.setTextSize(h * 0.011f);
+            cv.drawText("" + BETS[b], hx, medY + h * 0.0045f, p);
         }
         p.setFakeBoldText(false);
-        float rowH = h * 0.0195f, rowY0 = ptY + h * 0.050f;
+        // lit lane under the active bet column
+        float laneX = ptX + ptW * (0.52f + betIdx * 0.12f);
+        rf.set(laneX - ptW * 0.058f, ptY + h * 0.066f, laneX + ptW * 0.058f, ptY + ptH - h * 0.006f);
+        p.setShader(new LinearGradient(0, ptY + h * 0.066f, 0, ptY + ptH - h * 0.006f, 0x44FF5252, 0x33B71C1C, Shader.TileMode.CLAMP));
+        cv.drawRoundRect(rf, 8, 8, p);
+        p.setShader(null);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(1.5f); p.setColor(0x66FF8A80);
+        cv.drawRoundRect(rf, 8, 8, p);
+        p.setStyle(Paint.Style.FILL);
+        // rows
+        float rowH = h * 0.0172f, rowY0 = ptY + h * 0.082f;
         for (int i = 0; i < 9; i++) {
             boolean hot = i == winRow && now - resultAt < 2400;
             float ry = rowY0 + i * rowH;
-            if (i % 2 == 0) {
-                rf.set(ptX + 6, ry - rowH * 0.78f, ptX + ptW - 6, ry + rowH * 0.22f);
-                p.setColor(0x14FFFFFF);
+            if (i == 0) {
+                // Royal Flush celebration banner
+                rf.set(ptX + 8, ry - rowH * 0.80f, ptX + ptW - 8, ry + rowH * 0.24f);
+                p.setShader(new LinearGradient(0, ry - rowH, 0, ry + rowH * 0.24f, 0xF2FFE082, 0xF2FFB300, Shader.TileMode.CLAMP));
+                cv.drawRoundRect(rf, 8, 8, p);
+                p.setShader(null);
+            } else if (i % 2 == 1) {
+                rf.set(ptX + 8, ry - rowH * 0.80f, ptX + ptW - 8, ry + rowH * 0.24f);
+                p.setColor(0x10FFFFFF);
                 cv.drawRoundRect(rf, 8, 8, p);
             }
             if (hot) {
-                rf.set(ptX + 6, ry - rowH * 0.78f, ptX + ptW - 6, ry + rowH * 0.22f);
+                rf.set(ptX + 8, ry - rowH * 0.80f, ptX + ptW - 8, ry + rowH * 0.24f);
                 p.setColor(0x55FFD700);
                 cv.drawRoundRect(rf, 8, 8, p);
                 animating = true;
             }
+            if (i > 0) {
+                p.setColor(0x2EFFD54F);
+                cv.drawRect(ptX + ptW * 0.03f, ry - rowH * 0.92f, ptX + ptW * 0.97f, ry - rowH * 0.92f + 1.2f, p);
+            }
             p.setTextAlign(Paint.Align.LEFT);
-            p.setColor(hot ? 0xFFFFD54F : 0xFFD6E4FF);
-            p.setTextSize(h * 0.0125f);
+            p.setColor(hot ? 0xFFFFD54F : (i == 0 ? 0xFF4A3200 : 0xFFD6E4FF));
+            p.setTextSize(h * 0.0122f);
             p.setFakeBoldText(i == 0 || hot);
             cv.drawText(PAY_NAMES[i], ptX + ptW * 0.04f, ry, p);
             for (int b = 0; b < BETS.length; b++) {
                 float cxR = ptX + ptW * (0.52f + b * 0.12f);
-                if (b == betIdx) {
-                    rf.set(cxR - ptW * 0.055f, ry - rowH * 0.78f, cxR + ptW * 0.055f, ry + rowH * 0.22f);
-                    p.setColor(i == 0 ? 0xFFC62828 : 0x66C62828);
-                    cv.drawRoundRect(rf, 6, 6, p);
-                }
                 p.setTextAlign(Paint.Align.CENTER);
-                p.setColor(hot ? 0xFFFFD54F : (b == betIdx ? 0xFFFFFFFF : 0xFF9FB6E8));
+                p.setColor(hot ? 0xFFFFD54F : (i == 0 ? 0xFF4A3200 : (b == betIdx ? 0xFFFFFFFF : 0xFF9FB6E8)));
                 p.setFakeBoldText(b == betIdx || i == 0 || hot);
                 cv.drawText("" + (PAY_MULT[i] * BETS[b]), cxR, ry, p);
             }
