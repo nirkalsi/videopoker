@@ -24,7 +24,7 @@
   <manifestPlaceholders>
     <placeholder
         name="admobAppId"
-        value="ca-app-pub-3940256099942544~3347511713" />
+        value="ca-app-pub-2085439511011816~3310858845" />
   </manifestPlaceholders>
   <artifact
       classOutputs="build/intermediates/javac/release/compileReleaseJavaWithJavac/classes:build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/release/processReleaseResources/R.jar"

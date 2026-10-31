@@ -52,7 +52,7 @@
         android:theme="@style/Theme.Slots" >
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-2085439511011816~3310858845" />
 
         <activity
             android:name="nir.com.videopoker.MainActivity"
