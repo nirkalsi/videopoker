@@ -32,7 +32,6 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
     private MissionsManager missions;
     private SharedPreferences sp;
     private LinearLayout bannerBox;
-    private Button removeAdsBtn;
     private final Handler handler = new Handler();
 
     @Override protected void onCreate(Bundle b) {
@@ -57,7 +56,6 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         missions = new MissionsManager(this, null);
 
         ads = new AdsManager(this);
-        ads.setAdEvents(this::onInterstitialShown);
         boolean removed = sp.getBoolean("ads_removed", false) || sp.getBoolean("remove_ads", false);
         if (removed) sp.edit().putBoolean("ads_removed", true).apply();
         ads.setAdsRemoved(removed);
@@ -72,7 +70,6 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
             sp.edit().putString("first_run", today()).apply();
 
         if (sp.getInt("rounds_done", 0) > 0) handler.postDelayed(this::maybeDailyBonus, 900);
-        handler.postDelayed(this::maybeDay2Offer, 2000);
     }
 
     private int dp(int v) { return (int) (v * getResources().getDisplayMetrics().density); }
@@ -101,7 +98,6 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         addRowButton(row, "\uD83C\uDF81 FREE", v -> freeCoins(), 0xFF2E7D32);
         addRowButton(row, "\uD83C\uDFAF MISSIONS", v -> showMissions(), 0xFF1565C0);
         addRowButton(row, "\uD83D\uDED2 SHOP", v -> showShop(), 0xFFF9A825);
-        removeAdsBtn = addRowButton(row, "NO ADS", v -> buyRemoveAds(), 0xFF546E7A);
         return row;
     }
 
@@ -342,48 +338,8 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
             .setNegativeButton("Close", null).show();
     }
 
-    private void buyRemoveAds() {
-        if (billing.getDetails(BillingManager.REMOVE_ADS) != null) {
-            billing.buy(this, BillingManager.REMOVE_ADS);
-        } else {
-            Toast.makeText(this, "Not available yet - try again soon", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void offerRemoveAds(String why) {
-        if (sp.getBoolean("ads_removed", false)) return;
-        String price = billing.priceOf(BillingManager.REMOVE_ADS);
-        String text = "Enjoying Video Poker? Remove banner and between-round ads forever with one small one-time purchase"
-            + (price != null ? " (" + price + ")" : "") + ". Free rewarded ads for coins stay available either way.";
-        new AlertDialog.Builder(this)
-            .setTitle("Remove ads")
-            .setMessage(text)
-            .setPositiveButton(price != null ? "Remove ads - " + price : "Remove ads", (d, w) -> buyRemoveAds())
-            .setNegativeButton("No thanks", null)
-            .show();
-    }
-
-    private void onInterstitialShown() {
-        int total = sp.getInt("inter_total", 0) + 1;
-        sp.edit().putInt("inter_total", total).apply();
-        if (total == 3 && !sp.getBoolean("offer3_done", false)) {
-            sp.edit().putBoolean("offer3_done", true).apply();
-            handler.postDelayed(() -> offerRemoveAds("after3"), 1500);
-        }
-    }
-
-    private void maybeDay2Offer() {
-        if (sp.getBoolean("ads_removed", false) || sp.getBoolean("offer_day2_done", false)) return;
-        String first = sp.getString("first_run", today());
-        if (!today().equals(first) && today().equals(sp.getString("daily_last", ""))) {
-            sp.edit().putBoolean("offer_day2_done", true).apply();
-            offerRemoveAds("day2");
-        }
-    }
-
     private void applyAdsRemoved() {
         bannerBox.removeAllViews();
-        if (removeAdsBtn != null) removeAdsBtn.setVisibility(View.GONE);
     }
 
     // ---------- PokerView.Listener ----------
@@ -393,14 +349,11 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
             .setMessage("Watch a short ad for +300 free coins? Coins also refill slowly over time. Coins are virtual only - no cash value, no prizes.")
             .setPositiveButton("Watch ad", (d, w) -> ads.showRewarded(() -> game.addCoins(300)))
             .setNegativeButton("Not now", null);
-        if (!sp.getBoolean("ads_removed", false))
-            b.setNeutralButton("Remove all ads", (d, w) -> offerRemoveAds("outofcoins"));
         b.show();
     }
 
     @Override public void onSpinComplete(int spinsDone, long win, long bet) {
         missions.onSpin(win, bet, game.getLevel(), spinsDone);
-        ads.maybeShowInterstitial(spinsDone);
         if (sp.getInt("rounds_done", 0) == 0) {
             sp.edit().putInt("rounds_done", 1).apply();
             if (!sp.getBoolean("ads_removed", false)) ads.attachBanner(bannerBox);

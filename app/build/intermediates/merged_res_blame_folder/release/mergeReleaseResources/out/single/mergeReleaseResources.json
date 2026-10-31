@@ -1,15 +1,15 @@
 [
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_text_light.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_text_light.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_text_light.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-mdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-mdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_icon_light_normal.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_icon_light_normal.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_icon_light_normal.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/mipmap-anydpi-v26_ic_launcher.xml.flat",
@@ -17,31 +17,31 @@
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_notification_bg.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable/notification_bg.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable/notification_bg.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/color_common_google_signin_btn_text_light.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/color/common_google_signin_btn_text_light.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/color/common_google_signin_btn_text_light.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/raw_com_android_billingclient_heterodyne_info.flat",
-        "source": "nir.com.videopoker.app-billing-8.0.0-10:/raw/com_android_billingclient_heterodyne_info"
+        "source": "nir.com.videopoker.app-billing-8.0.0-6:/raw/com_android_billingclient_heterodyne_info"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-hdpi-v4/notification_bg_low_normal.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout_offline_ads_dialog.xml.flat",
@@ -49,7 +49,7 @@
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-mdpi-v4/notify_panel_notification_icon_bg.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-mdpi-v4/notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout_admob_empty_layout.xml.flat",
@@ -57,87 +57,87 @@
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-hdpi-v4/googleg_disabled_color_18.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-hdpi-v4/googleg_disabled_color_18.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_icon_dark_normal.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_icon_dark_normal.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_icon_dark_normal.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-hdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-hdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_icon_disabled.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_icon_disabled.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_icon_disabled.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xxhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout-v21_notification_template_icon_group.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/layout-v21/notification_template_icon_group.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/layout-v21/notification_template_icon_group.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-hdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-hdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xxhdpi-v4_common_google_signin_btn_icon_dark_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xxhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xxhdpi-v4/common_google_signin_btn_icon_dark_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_text_dark_focused.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_text_dark_focused.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_text_dark_focused.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout_notification_template_part_chronometer.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/layout/notification_template_part_chronometer.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-mdpi-v4/googleg_disabled_color_18.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-mdpi-v4/googleg_disabled_color_18.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/raw_com_android_billingclient_registration_info.binarypb.flat",
-        "source": "nir.com.videopoker.app-billing-8.0.0-10:/raw/com_android_billingclient_registration_info.binarypb"
+        "source": "nir.com.videopoker.app-billing-8.0.0-6:/raw/com_android_billingclient_registration_info.binarypb"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout-v21_notification_action.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/layout-v21/notification_action.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/layout-v21/notification_action.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-mdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-mdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_common_full_open_on_phone.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-hdpi-v4/common_full_open_on_phone.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-hdpi-v4/common_full_open_on_phone.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xxhdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xxhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xxhdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/xml_com_android_billingclient_phenotype.xml.flat",
-        "source": "nir.com.videopoker.app-billing-8.0.0-10:/xml/com_android_billingclient_phenotype.xml"
+        "source": "nir.com.videopoker.app-billing-8.0.0-6:/xml/com_android_billingclient_phenotype.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-mdpi-v4/notification_bg_low_pressed.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-mdpi-v4/notification_bg_low_pressed.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_admob_close_button_black_circle_white_cross.xml.flat",
@@ -145,7 +145,7 @@
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_icon_light_focused.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_icon_light_focused.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_icon_light_focused.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_ic_bg.xml.flat",
@@ -161,27 +161,27 @@
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xxhdpi-v4/googleg_standard_color_18.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xxhdpi-v4/googleg_standard_color_18.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xhdpi-v4/googleg_standard_color_18.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xhdpi-v4/googleg_standard_color_18.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-mdpi-v4/notification_bg_normal_pressed.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-mdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/xml_image_share_filepaths.xml.flat",
-        "source": "nir.com.videopoker.app-browser-1.4.0-5:/xml/image_share_filepaths.xml"
+        "source": "nir.com.videopoker.app-browser-1.4.0-2:/xml/image_share_filepaths.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xhdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_text_dark_normal.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_text_dark_normal.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_text_dark_normal.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/xml_gma_ad_services_config.xml.flat",
@@ -193,135 +193,135 @@
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_icon_dark.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_icon_dark.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_icon_dark.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout_custom_dialog.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/layout/custom_dialog.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/layout/custom_dialog.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_icon_dark_focused.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_icon_dark_focused.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_icon_dark_focused.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-mdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_notification_tile_bg.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable/notification_tile_bg.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable/notification_tile_bg.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-mdpi-v4/notification_bg_low_normal.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-mdpi-v4/notification_bg_low_normal.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/color_common_google_signin_btn_text_dark.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/color/common_google_signin_btn_text_dark.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/color/common_google_signin_btn_text_dark.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_text_light_focused.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_text_light_focused.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_text_light_focused.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout-v21_notification_action_tombstone.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/layout-v21/notification_action_tombstone.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/layout-v21/notification_action_tombstone.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_text_dark.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_text_dark.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_text_dark.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout-v21_notification_template_custom_big.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/layout-v21/notification_template_custom_big.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/layout-v21/notification_template_custom_big.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout_browser_actions_context_menu_row.xml.flat",
-        "source": "nir.com.videopoker.app-browser-1.4.0-5:/layout/browser_actions_context_menu_row.xml"
+        "source": "nir.com.videopoker.app-browser-1.4.0-2:/layout/browser_actions_context_menu_row.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_text_disabled.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_text_disabled.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_text_disabled.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xxhdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xxhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xxhdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-hdpi-v4/googleg_standard_color_18.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-hdpi-v4/googleg_standard_color_18.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-xhdpi-v4/notification_bg_low_pressed.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xhdpi-v4/googleg_disabled_color_18.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xhdpi-v4/googleg_disabled_color_18.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xxhdpi-v4/googleg_disabled_color_18.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xxhdpi-v4/googleg_disabled_color_18.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-xhdpi-v4/notification_bg_normal.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-xhdpi-v4/notification_bg_normal.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_text_light_normal.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_text_light_normal.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_text_light_normal.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_common_google_signin_btn_text_light_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-mdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-mdpi-v4/common_google_signin_btn_text_light_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-xhdpi-v4/common_full_open_on_phone.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-xhdpi-v4/common_full_open_on_phone.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_common_google_signin_btn_icon_light.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable/common_google_signin_btn_icon_light.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable/common_google_signin_btn_icon_light.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-hdpi-v4/notification_bg_normal.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-hdpi-v4/notification_bg_normal.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout_browser_actions_context_menu_page.xml.flat",
-        "source": "nir.com.videopoker.app-browser-1.4.0-5:/layout/browser_actions_context_menu_page.xml"
+        "source": "nir.com.videopoker.app-browser-1.4.0-2:/layout/browser_actions_context_menu_page.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_notification_icon_background.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable/notification_icon_background.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable/notification_icon_background.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/layout_notification_template_part_time.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/layout/notification_template_part_time.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/layout/notification_template_part_time.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/color_common_google_signin_btn_tint.xml.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/color/common_google_signin_btn_tint.xml"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/color/common_google_signin_btn_tint.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-hdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-hdpi-v4/common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_notification_bg_normal.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-mdpi-v4/notification_bg_normal.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-mdpi-v4/notification_bg_normal.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-v21_notification_action_background.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-v21/notification_action_background.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-v21/notification_action_background.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_offline_dialog_background.xml.flat",
@@ -329,15 +329,15 @@
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-hdpi-v4_common_google_signin_btn_icon_light_normal_background.9.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-hdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-hdpi-v4/common_google_signin_btn_icon_light_normal_background.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable-xhdpi-v4/notification_bg_low_normal.9.png"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_notification_bg_low.xml.flat",
-        "source": "nir.com.videopoker.app-core-1.8.0-4:/drawable/notification_bg_low.xml"
+        "source": "nir.com.videopoker.app-core-1.8.0-3:/drawable/notification_bg_low.xml"
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable_ic_fg.xml.flat",
@@ -345,6 +345,6 @@
     },
     {
         "merged": "nir.com.videopoker.app-release-23:/drawable-mdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "nir.com.videopoker.app-play-services-base-18.5.0-2:/drawable-mdpi-v4/googleg_standard_color_18.png"
+        "source": "nir.com.videopoker.app-play-services-base-18.5.0-9:/drawable-mdpi-v4/googleg_standard_color_18.png"
     }
 ]

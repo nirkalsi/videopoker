@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nir.com.videopoker"
-    android:versionCode="3"
-    android:versionName="1.2" >
+    android:versionCode="4"
+    android:versionName="1.3" >
 
     <uses-sdk
         android:minSdkVersion="24"
@@ -52,7 +52,7 @@
         android:theme="@style/Theme.Slots" >
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2085439511011816~3310858845" />
+            android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <activity
             android:name="nir.com.videopoker.MainActivity"

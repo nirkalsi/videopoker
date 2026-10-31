@@ -1,4 +1,4 @@
-# The proguard configuration file for the following section is /home/sandbox/repos/videopoker/app/build/intermediates/aapt_proguard_file/release/processReleaseResources/aapt_rules.txt
+# The proguard configuration file for the following section is /home/sandbox/games/videopoker/app/build/intermediates/aapt_proguard_file/release/processReleaseResources/aapt_rules.txt
 -keep class androidx.core.app.CoreComponentFactory { <init>(); }
 -keep class androidx.room.MultiInstanceInvalidationService { <init>(); }
 -keep class androidx.startup.InitializationProvider { <init>(); }
@@ -29,8 +29,8 @@
 -keep class androidx.browser.browseractions.BrowserActionsFallbackMenuView { <init>(android.content.Context, android.util.AttributeSet); }
 
 
-# End of content from /home/sandbox/repos/videopoker/app/build/intermediates/aapt_proguard_file/release/processReleaseResources/aapt_rules.txt
-# The proguard configuration file for the following section is /home/sandbox/repos/videopoker/app/build/intermediates/default_proguard_files/global/proguard-android-optimize.txt-8.9.1
+# End of content from /home/sandbox/games/videopoker/app/build/intermediates/aapt_proguard_file/release/processReleaseResources/aapt_rules.txt
+# The proguard configuration file for the following section is /home/sandbox/games/videopoker/app/build/intermediates/default_proguard_files/global/proguard-android-optimize.txt-8.9.1
 # This is a configuration file for ProGuard.
 # http://proguard.sourceforge.net/index.html#manual/usage.html
 #
@@ -121,12 +121,12 @@
 # These classes are duplicated between android.jar and core-lambda-stubs.jar.
 -dontnote java.lang.invoke.**
 
-# End of content from /home/sandbox/repos/videopoker/app/build/intermediates/default_proguard_files/global/proguard-android-optimize.txt-8.9.1
-# The proguard configuration file for the following section is /home/sandbox/repos/videopoker/app/proguard-rules.pro
+# End of content from /home/sandbox/games/videopoker/app/build/intermediates/default_proguard_files/global/proguard-android-optimize.txt-8.9.1
+# The proguard configuration file for the following section is /home/sandbox/games/videopoker/app/proguard-rules.pro
 -keep class nir.com.neonvegasslots.** { *; }
 
-# End of content from /home/sandbox/repos/videopoker/app/proguard-rules.pro
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/ce3621e4ea48161e4c1345a4ae068997/transformed/play-services-ads-23.3.0/proguard.txt
+# End of content from /home/sandbox/games/videopoker/app/proguard-rules.pro
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/f02de9a4ae0e499d603eb4ca4b679764/transformed/play-services-ads-23.3.0/proguard.txt
 -keep public class com.google.android.gms.ads.internal.ClientApi {
   <init>();
 }
@@ -202,8 +202,8 @@
 -dontwarn com.google.android.gms.ads.internal.util.zzy
 
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/ce3621e4ea48161e4c1345a4ae068997/transformed/play-services-ads-23.3.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/f02de9a4ae0e499d603eb4ca4b679764/transformed/play-services-ads-23.3.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/f21ef52d67c4536c57535220967f8ad4/transformed/play-services-ads-lite-23.3.0/proguard.txt
 # Keep implementations of the AdMob mediation adapter interfaces. Adapters for
 # third party ad networks implement these interfaces and are invoked by the
 # AdMob SDK via reflection.
@@ -257,8 +257,8 @@
   <fields>;
 }
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/e53b8aa1bde7209a98b79d1603c010aa/transformed/play-services-ads-lite-23.3.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/ae3911e32070249433053a6970416171/transformed/billing-8.0.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/f21ef52d67c4536c57535220967f8ad4/transformed/play-services-ads-lite-23.3.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/6eafe31bb2a6191b5be83391f75d4cfd/transformed/billing-8.0.0/proguard.txt
 # Keep the AIDL interface
 -keep class com.android.vending.billing.** { *; }
 -keep class com.google.android.apps.play.billingtestcompanion.aidl.** { *; }
@@ -294,8 +294,8 @@
   <fields>;
 }
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/ae3911e32070249433053a6970416171/transformed/billing-8.0.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/57bacb9ef58048c0e6f8321d8067096b/transformed/play-services-base-18.5.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/6eafe31bb2a6191b5be83391f75d4cfd/transformed/billing-8.0.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/a4ea276af7d0c4f7c300674a82cab2d6/transformed/play-services-base-18.5.0/proguard.txt
 # b/35135904 Ensure that proguard will not strip the mResultGuardian.
 -keepclassmembers class com.google.android.gms.common.api.internal.BasePendingResult {
   com.google.android.gms.common.api.internal.BasePendingResult$ReleasableResultGuardian mResultGuardian;
@@ -303,12 +303,12 @@
 
 
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/57bacb9ef58048c0e6f8321d8067096b/transformed/play-services-base-18.5.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/f2a6b48e9a6cb6e056c7b13574ad3934/transformed/play-services-tasks-18.2.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/a4ea276af7d0c4f7c300674a82cab2d6/transformed/play-services-base-18.5.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/52050ec47c4a89cc6d47e3ece0878591/transformed/play-services-tasks-18.2.0/proguard.txt
 
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/f2a6b48e9a6cb6e056c7b13574ad3934/transformed/play-services-tasks-18.2.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/5b5ebd6b26d34fbf5766b3ff7d8d0469/transformed/play-services-measurement-sdk-api-20.1.2/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/52050ec47c4a89cc6d47e3ece0878591/transformed/play-services-tasks-18.2.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/006fffa4f600f821f232cb5bb873d7b7/transformed/play-services-measurement-sdk-api-20.1.2/proguard.txt
 # We keep all fields for every generated proto file as the runtime uses
 # reflection over them that ProGuard cannot detect. Without this keep
 # rule, fields may be removed that would cause runtime failures.
@@ -316,8 +316,8 @@
   <fields>;
 }
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/5b5ebd6b26d34fbf5766b3ff7d8d0469/transformed/play-services-measurement-sdk-api-20.1.2/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/5f67c73c8455cf32c1cbce1b26753137/transformed/play-services-measurement-base-20.1.2/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/006fffa4f600f821f232cb5bb873d7b7/transformed/play-services-measurement-sdk-api-20.1.2/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/a9b41f1639216cb153d8451d29163c9b/transformed/play-services-measurement-base-20.1.2/proguard.txt
 # We keep all fields for every generated proto file as the runtime uses
 # reflection over them that ProGuard cannot detect. Without this keep
 # rule, fields may be removed that would cause runtime failures.
@@ -325,8 +325,8 @@
   <fields>;
 }
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/5f67c73c8455cf32c1cbce1b26753137/transformed/play-services-measurement-base-20.1.2/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/af1250092db6525f6762c9b32f91bede/transformed/play-services-basement-18.4.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/a9b41f1639216cb153d8451d29163c9b/transformed/play-services-measurement-base-20.1.2/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/01bfeae9be118235d2301ff034a69e1b/transformed/play-services-basement-18.4.0/proguard.txt
 # Needed when building against pre-Marshmallow SDK.
 -dontwarn android.security.NetworkSecurityPolicy
 
@@ -404,8 +404,8 @@
 
 
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/af1250092db6525f6762c9b32f91bede/transformed/play-services-basement-18.4.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/438b076a4d2d26b7d11e89c6a57bc93d/transformed/webkit-1.11.0-alpha02/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/01bfeae9be118235d2301ff034a69e1b/transformed/play-services-basement-18.4.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/b49008c836b3b3901836dfdaa06b94a3/transformed/webkit-1.11.0-alpha02/proguard.txt
 # Copyright 2018 The Chromium Authors
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
@@ -438,8 +438,8 @@
 -keepnames public class androidx.webkit.ProcessGlobalConfig {
     private static final *** sProcessGlobalConfig;
 }
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/438b076a4d2d26b7d11e89c6a57bc93d/transformed/webkit-1.11.0-alpha02/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/b9aeb67d4e6fbbb5a33173cb56d5dea9/transformed/work-runtime-2.7.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/b49008c836b3b3901836dfdaa06b94a3/transformed/webkit-1.11.0-alpha02/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/493595ff6e7796ce7aec40b80da014f6/transformed/work-runtime-2.7.0/proguard.txt
 -keep class * extends androidx.work.Worker
 -keep class * extends androidx.work.InputMerger
 # Keep all constructors on ListenableWorker, Worker (also marked with @Keep)
@@ -449,8 +449,8 @@
 # We need to keep WorkerParameters for the ListenableWorker constructor
 -keep class androidx.work.WorkerParameters
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/b9aeb67d4e6fbbb5a33173cb56d5dea9/transformed/work-runtime-2.7.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/7438c01f9c9b64e6f9d5887bc0d05462/transformed/core-1.8.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/493595ff6e7796ce7aec40b80da014f6/transformed/work-runtime-2.7.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/3b074d212b7fbc6f45ea0b734f0e64c6/transformed/core-1.8.0/proguard.txt
 # Never inline methods, but allow shrinking and obfuscation.
 -keepclassmembernames,allowobfuscation,allowshrinking class androidx.core.view.ViewCompat$Api* {
   <methods>;
@@ -468,25 +468,25 @@
   <methods>;
 }
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/7438c01f9c9b64e6f9d5887bc0d05462/transformed/core-1.8.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/80cbc4dba6c47357d96551e666b341e2/transformed/versionedparcelable-1.1.1/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/3b074d212b7fbc6f45ea0b734f0e64c6/transformed/core-1.8.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/bb94a8cd1928853b385e5a3061fa8bf8/transformed/versionedparcelable-1.1.1/proguard.txt
 -keep class * implements androidx.versionedparcelable.VersionedParcelable
 -keep public class android.support.**Parcelizer { *; }
 -keep public class androidx.**Parcelizer { *; }
 -keep public class androidx.versionedparcelable.ParcelImpl
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/80cbc4dba6c47357d96551e666b341e2/transformed/versionedparcelable-1.1.1/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/85bc3f8cc97bd85b10d760e1ca7886a3/transformed/transport-backend-cct-3.1.8/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/bb94a8cd1928853b385e5a3061fa8bf8/transformed/versionedparcelable-1.1.1/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/ba4e9a07bbadafef27fba8650defe665/transformed/transport-backend-cct-3.1.8/proguard.txt
 -dontwarn com.google.auto.value.AutoValue
 -dontwarn com.google.auto.value.AutoValue$Builder
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/85bc3f8cc97bd85b10d760e1ca7886a3/transformed/transport-backend-cct-3.1.8/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/697bc74ea5c0de88d2e10b1368645f78/transformed/transport-api-3.0.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/ba4e9a07bbadafef27fba8650defe665/transformed/transport-backend-cct-3.1.8/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/ad5447982ddb342aba548a40aabf0f53/transformed/transport-api-3.0.0/proguard.txt
 -dontwarn com.google.auto.value.AutoValue
 -dontwarn com.google.auto.value.AutoValue$Builder
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/697bc74ea5c0de88d2e10b1368645f78/transformed/transport-api-3.0.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/7bdd9e3391ad84bdccaad1e0d96d2738/transformed/lifecycle-runtime-2.3.1/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/ad5447982ddb342aba548a40aabf0f53/transformed/transport-api-3.0.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/cbce9b9ea74301fe4ca85c44a011eed5/transformed/lifecycle-runtime-2.3.1/proguard.txt
 -keepattributes *Annotation*
 
 -keepclassmembers enum androidx.lifecycle.Lifecycle$Event {
@@ -507,8 +507,8 @@
 # this rule is need to work properly when app is compiled with api 28, see b/142778206
 # Also this rule prevents registerIn from being inlined.
 -keepclassmembers class androidx.lifecycle.ReportFragment$LifecycleCallbacks { *; }
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/7bdd9e3391ad84bdccaad1e0d96d2738/transformed/lifecycle-runtime-2.3.1/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/db7a554921d5f0bf72a9e3ff61c5c1c5/transformed/lifecycle-viewmodel-savedstate-2.3.1/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/cbce9b9ea74301fe4ca85c44a011eed5/transformed/lifecycle-runtime-2.3.1/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/1431ea6043453536e916cd9a63ef1807/transformed/lifecycle-viewmodel-savedstate-2.3.1/proguard.txt
 -keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
     <init>(androidx.lifecycle.SavedStateHandle);
 }
@@ -517,8 +517,8 @@
     <init>(android.app.Application,androidx.lifecycle.SavedStateHandle);
 }
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/db7a554921d5f0bf72a9e3ff61c5c1c5/transformed/lifecycle-viewmodel-savedstate-2.3.1/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/ebab47f2f2d0f0abbd7bd9c77aa3b7a0/transformed/lifecycle-viewmodel-2.3.1/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/1431ea6043453536e916cd9a63ef1807/transformed/lifecycle-viewmodel-savedstate-2.3.1/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/d98130918531a4534f2ead9cf184b419/transformed/lifecycle-viewmodel-2.3.1/proguard.txt
 -keepclassmembers,allowobfuscation class * extends androidx.lifecycle.ViewModel {
     <init>();
 }
@@ -527,8 +527,8 @@
     <init>(android.app.Application);
 }
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/ebab47f2f2d0f0abbd7bd9c77aa3b7a0/transformed/lifecycle-viewmodel-2.3.1/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/c112e2907b8fb468f4b8ec308058a79b/transformed/savedstate-1.1.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/d98130918531a4534f2ead9cf184b419/transformed/lifecycle-viewmodel-2.3.1/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/1788fcba9f6800746a6245b375801c63/transformed/savedstate-1.1.0/proguard.txt
 # Copyright (C) 2019 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -547,8 +547,8 @@
     <init>();
 }
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/c112e2907b8fb468f4b8ec308058a79b/transformed/savedstate-1.1.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/b59c16c5411c7426164335905675a626/transformed/startup-runtime-1.0.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/1788fcba9f6800746a6245b375801c63/transformed/savedstate-1.1.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/f38f380d847bcf8a4d99852d6c2adb91/transformed/startup-runtime-1.0.0/proguard.txt
 # This Proguard rule ensures that ComponentInitializers are are neither shrunk nor obfuscated.
 # This is because they are discovered and instantiated during application initialization.
 -keep class * extends androidx.startup.Initializer {
@@ -558,16 +558,16 @@
 
 -assumenosideeffects class androidx.startup.StartupLogger
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/b59c16c5411c7426164335905675a626/transformed/startup-runtime-1.0.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/ff5ffd328ca3417fbb38a1e1582cc96d/transformed/firebase-encoders-json-18.0.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/f38f380d847bcf8a4d99852d6c2adb91/transformed/startup-runtime-1.0.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/70dfcdcb6027c55c1e83d7a34f81cf62/transformed/firebase-encoders-json-18.0.0/proguard.txt
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/ff5ffd328ca3417fbb38a1e1582cc96d/transformed/firebase-encoders-json-18.0.0/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/024433bda07dff77f7d5a6eecb49bf00/transformed/room-runtime-2.2.5/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/70dfcdcb6027c55c1e83d7a34f81cf62/transformed/firebase-encoders-json-18.0.0/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/61a927f64a4c79e29dfcbc91899551f6/transformed/room-runtime-2.2.5/proguard.txt
 -keep class * extends androidx.room.RoomDatabase
 -dontwarn androidx.room.paging.**
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/024433bda07dff77f7d5a6eecb49bf00/transformed/room-runtime-2.2.5/proguard.txt
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/59a6df265b21c07d594cb5fa984cf0ff/transformed/rules/lib/META-INF/proguard/androidx-annotations.pro
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/61a927f64a4c79e29dfcbc91899551f6/transformed/room-runtime-2.2.5/proguard.txt
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/2094f84270421f114c75debfd578a517/transformed/rules/lib/META-INF/proguard/androidx-annotations.pro
 -keep,allowobfuscation @interface androidx.annotation.Keep
 -keep @androidx.annotation.Keep class * {*;}
 
@@ -587,8 +587,8 @@
   @androidx.annotation.DoNotInline <methods>;
 }
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/59a6df265b21c07d594cb5fa984cf0ff/transformed/rules/lib/META-INF/proguard/androidx-annotations.pro
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/5d68bd89b4870a874287b6d4061fa815/transformed/rules/lib/META-INF/com.android.tools/r8/coroutines.pro
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/2094f84270421f114c75debfd578a517/transformed/rules/lib/META-INF/proguard/androidx-annotations.pro
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/34500afe66f5253ad1da522e2834db5a/transformed/rules/lib/META-INF/com.android.tools/r8/coroutines.pro
 # When editing this file, update the following files as well:
 # - META-INF/proguard/coroutines.pro
 # - META-INF/com.android.tools/proguard/coroutines.pro
@@ -616,8 +616,8 @@
 
 # An annotation used for build tooling, won't be directly accessed.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/5d68bd89b4870a874287b6d4061fa815/transformed/rules/lib/META-INF/com.android.tools/r8/coroutines.pro
-# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.11.1/transforms/9222b5cc227de6ac23063a06b020dd1b/transformed/annotation-experimental-1.1.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/34500afe66f5253ad1da522e2834db5a/transformed/rules/lib/META-INF/com.android.tools/r8/coroutines.pro
+# The proguard configuration file for the following section is /home/sandbox/.gradle/caches/8.13/transforms/8c01443c17d175a6c1aef5bd09afaeb6/transformed/annotation-experimental-1.1.0/proguard.txt
 # Copyright (C) 2020 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -642,7 +642,7 @@
 -dontwarn kotlin.annotation.Retention
 -dontwarn kotlin.annotation.Target
 
-# End of content from /home/sandbox/.gradle/caches/8.11.1/transforms/9222b5cc227de6ac23063a06b020dd1b/transformed/annotation-experimental-1.1.0/proguard.txt
+# End of content from /home/sandbox/.gradle/caches/8.13/transforms/8c01443c17d175a6c1aef5bd09afaeb6/transformed/annotation-experimental-1.1.0/proguard.txt
 # The proguard configuration file for the following section is <unknown>
 
 # End of content from <unknown>

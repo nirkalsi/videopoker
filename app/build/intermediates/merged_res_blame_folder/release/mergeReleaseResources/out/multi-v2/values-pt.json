@@ -4,7 +4,17 @@
             "outputFile": "nir.com.videopoker.app-mergeReleaseResources-20:/values-pt/values-pt.xml",
             "map": [
                 {
-                    "source": "/home/sandbox/.gradle/caches/8.11.1/transforms/7438c01f9c9b64e6f9d5887bc0d05462/transformed/core-1.8.0/res/values-pt/values-pt.xml",
+                    "source": "/home/sandbox/.gradle/caches/8.13/transforms/2195537cdbbfd94244b949a73851705f/transformed/browser-1.4.0/res/values-pt/values-pt.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,170,269,381",
+                        "endColumns": "114,98,111,105",
+                        "endOffsets": "165,264,376,482"
+                    }
+                },
+                {
+                    "source": "/home/sandbox/.gradle/caches/8.13/transforms/3b074d212b7fbc6f45ea0b734f0e64c6/transformed/core-1.8.0/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -18,16 +28,6 @@
                         "startOffsets": "487",
                         "endColumns": "100",
                         "endOffsets": "583"
-                    }
-                },
-                {
-                    "source": "/home/sandbox/.gradle/caches/8.11.1/transforms/77d08ee97a7a0929b9f21dda428cd18a/transformed/browser-1.4.0/res/values-pt/values-pt.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,170,269,381",
-                        "endColumns": "114,98,111,105",
-                        "endOffsets": "165,264,376,482"
                     }
                 }
             ]

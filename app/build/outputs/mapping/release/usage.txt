@@ -20094,12 +20094,28 @@ kotlinx.coroutines.sync.SemaphoreSegment
 kotlinx.coroutines.time.TimeKt
 nir.com.videopoker.BillingManager:
     public static final java.lang.String REMOVE_ADS
+    public com.android.billingclient.api.ProductDetails getDetails(java.lang.String)
 nir.com.videopoker.BuildConfig
+nir.com.videopoker.GameSounds:
+    public static final int BIG_WIN
+    public static final int CARD
+    public static final int CHIP
+    public static final int CLICK
+    public static final int LEVEL_UP
+    public static final int LOSE
+    private static final double MUSIC_PITCH
+    public static final int SPIN
+    private static final int SR
+    public static final int WIN
+    public void <init>()
+    public static boolean isForeground()
 nir.com.videopoker.MainActivity:
     private static final java.lang.String KEY
     private static final java.lang.String PREFS
 nir.com.videopoker.MissionsManager:
     public boolean hasClaimable(int,long)
+nir.com.videopoker.PokerView:
+    private float easeOut(float)
 nir.com.videopoker.R$drawable
 nir.com.videopoker.R$mipmap
 nir.com.videopoker.R$string
@@ -22430,9 +22446,12 @@ com.android.billingclient.api.QueryProductDetailsParams$Builder:
     public static com.android.billingclient.api.QueryProductDetailsParams build()
     public static com.android.billingclient.api.QueryProductDetailsParams$Builder setProductList()
 com.android.billingclient.api.QueryProductDetailsParams$Product$Builder:
+    public java.lang.String zzb
+    public static com.android.billingclient.api.QueryProductDetailsParams$Product build()
     public static com.android.billingclient.api.QueryProductDetailsParams$Product$Builder setProductId()
     public static com.android.billingclient.api.QueryProductDetailsParams$Product$Builder setProductType()
 com.android.billingclient.api.QueryProductDetailsParams$Product:
+    public final java.lang.String zzb
     public static java.lang.String zza()
     public static java.lang.String zzb()
 com.android.billingclient.api.QueryProductDetailsParams:
@@ -23230,7 +23249,10 @@ com.google.android.gms.ads.BaseAdView:
     public abstract void resume()
 com.google.android.gms.ads.FullScreenContentCallback:
     public abstract void onAdClicked()
+    public abstract void onAdDismissedFullScreenContent()
+    public void onAdFailedToShowFullScreenContent()
     public abstract void onAdImpression()
+    public void onAdShowedFullScreenContent()
 com.google.android.gms.ads.LoadAdError:
     public static com.google.android.gms.ads.ResponseInfo getResponseInfo()
 com.google.android.gms.ads.OnAdInspectorClosedListener
@@ -23719,7 +23741,7 @@ com.google.android.gms.ads.internal.zzu:
     public final com.google.android.gms.internal.ads.zzbas zzy
 com.google.android.gms.ads.interstitial.InterstitialAd:
     public abstract com.google.android.gms.ads.ResponseInfo getResponseInfo()
-    public abstract void setFullScreenContentCallback(com.google.android.gms.ads.FullScreenContentCallback)
+    public abstract void setFullScreenContentCallback()
     public abstract void setImmersiveMode()
 com.google.android.gms.ads.mediation.MediationAdConfiguration:
     public final java.lang.String zza
@@ -25995,7 +26017,7 @@ com.google.android.gms.internal.ads.zzblr:
     public final com.google.android.gms.internal.ads.zzboi zze
     public com.google.android.gms.ads.FullScreenContentCallback zzh
     public final com.google.android.gms.ads.ResponseInfo getResponseInfo()
-    public final void setFullScreenContentCallback(com.google.android.gms.ads.FullScreenContentCallback)
+    public final void setFullScreenContentCallback()
     public final void setImmersiveMode()
 com.google.android.gms.internal.ads.zzblt:
     public static void zza(com.google.android.gms.internal.ads.zzblu,java.lang.String,java.util.HashMap)
@@ -35043,17 +35065,10 @@ nir.com.videopoker.AdsManager$$InternalSyntheticLambda$4$cfb63d6f25a9d81c77cf9bb
     public static void onInitializationComplete()
 nir.com.videopoker.AdsManager$2:
     public static void onAdLoaded()
-nir.com.videopoker.AdsManager$3:
-    public static void onAdLoaded$1()
-nir.com.videopoker.AdsManager$AdEvents
 nir.com.videopoker.AdsManager:
-    public static void -$$Nest$mscheduleRetry(nir.com.videopoker.AdsManager,java.lang.Runnable,int)
-    public static void attachBanner()
     public static long backoffMs(int)
     public static boolean hasRewarded()
     public static void initWithConsent()
-    public static void maybeShowInterstitial()
-    public static void setAdEvents()
     public static void setAdsRemoved()
     public final void toast(java.lang.String)
 nir.com.videopoker.BillingManager$$InternalSyntheticLambda$2$23a8bc31b65f4c9b4cdb1da290601ae2a97dffcf41a9d75023fc92344e724a68$0:
@@ -35063,11 +35078,12 @@ nir.com.videopoker.BillingManager$$InternalSyntheticLambda$4$13a08399678a881e370
 nir.com.videopoker.BillingManager$Listener
 nir.com.videopoker.BillingManager:
     public final android.content.Context ctx
+    public static void buy()
     public final void connect()
-    public static com.android.billingclient.api.ProductDetails getDetails()
     public static boolean hasProducts()
-nir.com.videopoker.MainActivity$$InternalSyntheticLambda$1$15fad18b92c1497dc4753fc52143a25982450c0bd8520cc68ccb87957bca276d$0:
-    public static void onInterstitialShown()
+    public static java.lang.String priceOf()
+nir.com.videopoker.GameSounds:
+    public static synchronized void stopMusic()
 nir.com.videopoker.MainActivity:
     public final void applyAdsRemoved()
     public final void onAdsRemovedOwned()
@@ -35094,6 +35110,10 @@ nir.com.videopoker.PokerView$Listener:
     public abstract void onSpinComplete()
     public abstract void saveState()
 nir.com.videopoker.PokerView:
+    public int heldFlash
+    public long heldFlashAt
+    public static void coinBurst()
+    public static float easeOutBack(float)
     public static void restore()
     public static java.lang.String serialize()
     public final long xpNeeded()

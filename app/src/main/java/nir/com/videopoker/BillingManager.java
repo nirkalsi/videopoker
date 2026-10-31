@@ -55,8 +55,6 @@ public class BillingManager implements PurchasesUpdatedListener {
 
     private void queryProducts() {
         List<QueryProductDetailsParams.Product> prods = new ArrayList<>();
-        prods.add(QueryProductDetailsParams.Product.newBuilder()
-            .setProductId(REMOVE_ADS).setProductType(BillingClient.ProductType.INAPP).build());
         for (String id : PACK_IDS) prods.add(QueryProductDetailsParams.Product.newBuilder()
             .setProductId(id).setProductType(BillingClient.ProductType.INAPP).build());
         bc.queryProductDetailsAsync(QueryProductDetailsParams.newBuilder().setProductList(prods).build(),

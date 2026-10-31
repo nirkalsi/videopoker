@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nir.com.videopoker.GameplayCaptureTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-31T07:31:59.637Z" hostname="e2b.local" time="41.396">
+  <properties/>
+  <testcase name="capturePokerRound" classname="nir.com.videopoker.GameplayCaptureTest" time="41.396"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

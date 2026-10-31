@@ -1,6 +1,6 @@
 <lint-module
     format="1"
-    dir="/home/sandbox/repos/videopoker/app"
+    dir="/home/sandbox/games/videopoker/app"
     name=":app"
     type="APP"
     maven="VideoPoker:app:unspecified"
