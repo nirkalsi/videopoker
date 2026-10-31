@@ -51,6 +51,10 @@ public class GameplayScriptTest {
         Thread.sleep(1200);
         tap(0.5f, 0.808f); Thread.sleep(3500);                 // DRAW, result
         tap(0.5f, 0.646f); Thread.sleep(1500);                 // dismiss level-up overlay if shown
+        assertForeground("nir.com.videopoker");
+        assertNoNoAdsButton();
+        checkShop("nir.com.videopoker");
+        assertForeground("nir.com.videopoker");
         d.pressHome(); Thread.sleep(2000);
         android.content.SharedPreferences sp = androidx.test.platform.app.InstrumentationRegistry.getInstrumentation()
                 .getTargetContext().getSharedPreferences("videopoker", 0);
@@ -58,5 +62,28 @@ public class GameplayScriptTest {
         if (state.isEmpty()) throw new AssertionError("no saved state after scripted hand");
         long handsDone = Long.parseLong(state.split(";")[2]);
         if (handsDone < 1) throw new AssertionError("hand did not complete, state=" + state);
+    }
+
+    private void assertNoNoAdsButton() {
+        if (d.wait(Until.hasObject(By.textContains("NO ADS")), 800))
+            throw new AssertionError("NO ADS purchase button still present after monetization removal");
+    }
+
+    private void assertForeground(String pkg) {
+        String cur = d.getCurrentPackageName();
+        if (!pkg.equals(cur))
+            throw new AssertionError("foreground=" + cur + " expected=" + pkg + " (possible interstitial/ad takeover)");
+    }
+
+    private void checkShop(String pkg) {
+        UiObject2 shop = d.wait(Until.findObject(By.pkg(pkg).textContains("SHOP")), 5000);
+        if (shop == null) throw new AssertionError("SHOP button missing - coin-pack offers not reachable");
+        shop.click();
+        UiObject2 dlg = d.wait(Until.findObject(By.textContains("Coin shop")), 6000);
+        if (dlg == null) throw new AssertionError("shop dialog did not open");
+        UiObject2 close = d.wait(Until.findObject(By.text("Close")), 2000);
+        if (close != null) { close.click(); return; }
+        UiObject2 ok = d.wait(Until.findObject(By.text("OK")), 2000);
+        if (ok != null) ok.click();
     }
 }

@@ -1,35 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidx.test:core:1.6.1$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidx.test:core:1.6.1" from-dependency="true" generated-set="androidx.test:core:1.6.1$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res"><file path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res/values-v18/values.xml" qualifiers="v18"><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
-<item name="android:windowNoTitle">true</item>
-<item name="android:windowFullscreen">false</item>
-<item name="android:windowOverscan">true</item>
-<item name="android:fadingEdge">none</item>
-<item name="android:windowBackground">@android:color/white</item>
-<item name="android:windowAnimationStyle">@null</item>
-</style><style name="WhiteBackgroundTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
-<item name="android:windowNoTitle">true</item>
-<item name="android:windowFullscreen">false</item>
-<item name="android:windowOverscan">true</item>
-<item name="android:fadingEdge">none</item>
-<item name="android:windowBackground">@android:color/white</item>
-<item name="android:windowAnimationStyle">@null</item>
-</style></file><file path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res/values-v28/values.xml" qualifiers="v28"><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Material.Dialog.NoActionBar">
-<item name="android:windowNoTitle">true</item>
-<item name="android:windowFullscreen">false</item>
-<item name="android:windowOverscan">true</item>
-<item name="android:fadingEdge">none</item>
-<item name="android:windowBackground">@android:color/white</item>
-<item name="android:windowContentTransitions">false</item>
-<item name="android:windowAnimationStyle">@null</item>
-</style><style name="WhiteBackgroundTheme" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
-<item name="android:windowNoTitle">true</item>
-<item name="android:windowFullscreen">false</item>
-<item name="android:windowOverscan">true</item>
-<item name="android:fadingEdge">none</item>
-<item name="android:windowBackground">@android:color/white</item>
-<item name="android:windowContentTransitions">false</item>
-<item name="android:windowAnimationStyle">@null</item>
-</style></file><file path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res/values-v21/values.xml" qualifiers="v21"><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
+<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidx.test:core:1.6.1$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidx.test:core:1.6.1" from-dependency="true" generated-set="androidx.test:core:1.6.1$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res"><file path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res/values-v21/values.xml" qualifiers="v21"><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
 <item name="android:windowNoTitle">true</item>
 <item name="android:windowFullscreen">false</item>
 <item name="android:windowOverscan">true</item>
@@ -54,6 +24,36 @@
 </style><style name="WhiteBackgroundTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
 <item name="android:windowNoTitle">true</item>
 <item name="android:windowFullscreen">false</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style></file><file path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res/values-v28/values.xml" qualifiers="v28"><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Material.Dialog.NoActionBar">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowContentTransitions">false</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style><style name="WhiteBackgroundTheme" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowContentTransitions">false</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style></file><file path="/home/sandbox/.gradle/caches/8.13/transforms/a3ceb9d673e2d2af7eeb24ad4226b752/transformed/core-1.6.1/res/values-v18/values.xml" qualifiers="v18"><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style><style name="WhiteBackgroundTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
 <item name="android:fadingEdge">none</item>
 <item name="android:windowBackground">@android:color/white</item>
 <item name="android:windowAnimationStyle">@null</item>
