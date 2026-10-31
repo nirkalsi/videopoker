@@ -437,25 +437,28 @@ public class PokerView extends View {
         float ptX = w * 0.035f, ptY = h * 0.100f, ptW = w * 0.93f, ptH = h * 0.228f;
         // metallic gold bezel with inner groove
         rf.set(ptX, ptY, ptX + ptW, ptY + ptH);
+        p.setColor(0xFFFFFFFF);
         p.setShader(new LinearGradient(ptX, ptY, ptX + ptW, ptY + ptH, 0xFFFFF59D, 0xFF9A6A08, Shader.TileMode.CLAMP));
         cv.drawRoundRect(rf, 16, 16, p);
         p.setShader(null);
         rf.set(ptX + 3, ptY + 3, ptX + ptW - 3, ptY + ptH - 3);
         p.setColor(0xFF050E38); cv.drawRoundRect(rf, 13, 13, p);
         rf.set(ptX + 6, ptY + 6, ptX + ptW - 6, ptY + ptH - 6);
+        p.setColor(0xFFFFFFFF);
         p.setShader(new LinearGradient(0, ptY, 0, ptY + ptH, 0xFF1B35A6, 0xFF0B1C64, Shader.TileMode.CLAMP));
         cv.drawRoundRect(rf, 11, 11, p);
         p.setShader(null);
         // corner rivets
         for (int rc = 0; rc < 4; rc++) {
-            float rvx = (rc % 2 == 0) ? ptX + ptW * 0.024f : ptX + ptW * 0.976f;
-            float rvy = (rc < 2) ? ptY + ptH * 0.088f : ptY + ptH * 0.912f;
+            float rvx = (rc % 2 == 0) ? ptX + 11 : ptX + ptW - 11;
+            float rvy = (rc < 2) ? ptY + 11 : ptY + ptH - 11;
             p.setColor(0xFF7A5C10); cv.drawCircle(rvx, rvy, h * 0.0038f, p);
             p.setColor(0xFFFFF59D); cv.drawCircle(rvx - h * 0.0013f, rvy - h * 0.0013f, h * 0.0024f, p);
         }
         // engraved gold header plaque
         float plW = ptW * 0.66f, plH = h * 0.030f, plX = w / 2f - plW / 2f, plY = ptY + h * 0.009f;
         rf.set(plX, plY, plX + plW, plY + plH);
+        p.setColor(0xFFFFFFFF);
         p.setShader(new LinearGradient(0, plY, 0, plY + plH, 0xFFFFE082, 0xFFB8860B, Shader.TileMode.CLAMP));
         cv.drawRoundRect(rf, plH * 0.5f, plH * 0.5f, p);
         p.setShader(null);
@@ -468,7 +471,7 @@ public class PokerView extends View {
         p.setFakeBoldText(false);
         // bet medallions (active bet is lit red)
         float medY = ptY + h * 0.052f, medR = h * 0.0118f;
-        p.setTextAlign(Paint.Align.LEFT); p.setColor(0x88FFD54F); p.setTextSize(h * 0.010f); p.setFakeBoldText(true);
+        p.setTextAlign(Paint.Align.LEFT); p.setColor(0xCCFFD54F); p.setTextSize(h * 0.010f); p.setFakeBoldText(true);
         cv.drawText("BET", ptX + ptW * 0.04f, medY + h * 0.004f, p);
         p.setFakeBoldText(false);
         for (int b = 0; b < BETS.length; b++) {
@@ -477,6 +480,7 @@ public class PokerView extends View {
                 p.setColor(0x66FFD700);
                 cv.drawCircle(hx, medY, medR * 1.45f, p);
             }
+            p.setColor(0xFFFFFFFF);
             p.setShader(new LinearGradient(0, medY - medR, 0, medY + medR,
                     b == betIdx ? 0xFFFF5252 : 0xFFFFD54F, b == betIdx ? 0xFFB71C1C : 0xFF9A6A08, Shader.TileMode.CLAMP));
             cv.drawCircle(hx, medY, medR, p);
@@ -494,10 +498,11 @@ public class PokerView extends View {
         // lit lane under the active bet column
         float laneX = ptX + ptW * (0.52f + betIdx * 0.12f);
         rf.set(laneX - ptW * 0.058f, ptY + h * 0.066f, laneX + ptW * 0.058f, ptY + ptH - h * 0.006f);
-        p.setShader(new LinearGradient(0, ptY + h * 0.066f, 0, ptY + ptH - h * 0.006f, 0x44FF5252, 0x33B71C1C, Shader.TileMode.CLAMP));
+        p.setColor(0xFFFFFFFF);
+        p.setShader(new LinearGradient(0, ptY + h * 0.066f, 0, ptY + ptH - h * 0.006f, 0x66FF5252, 0x4DB71C1C, Shader.TileMode.CLAMP));
         cv.drawRoundRect(rf, 8, 8, p);
         p.setShader(null);
-        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(1.5f); p.setColor(0x66FF8A80);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(1.5f); p.setColor(0x99FF8A80);
         cv.drawRoundRect(rf, 8, 8, p);
         p.setStyle(Paint.Style.FILL);
         // rows
@@ -508,7 +513,8 @@ public class PokerView extends View {
             if (i == 0) {
                 // Royal Flush celebration banner
                 rf.set(ptX + 8, ry - rowH * 0.80f, ptX + ptW - 8, ry + rowH * 0.24f);
-                p.setShader(new LinearGradient(0, ry - rowH, 0, ry + rowH * 0.24f, 0xF2FFE082, 0xF2FFB300, Shader.TileMode.CLAMP));
+                p.setColor(0xFFFFFFFF);
+                p.setShader(new LinearGradient(0, ry - rowH, 0, ry + rowH * 0.24f, 0xFFFFE082, 0xFFFFB300, Shader.TileMode.CLAMP));
                 cv.drawRoundRect(rf, 8, 8, p);
                 p.setShader(null);
             } else if (i % 2 == 1) {
