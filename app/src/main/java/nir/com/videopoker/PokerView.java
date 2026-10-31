@@ -482,7 +482,7 @@ public class PokerView extends View {
         // ---- hand row ----
         float cw = w * 0.165f, ch = cw * 1.42f, gap = w * 0.028f;
         float total = 5 * cw + 4 * gap;
-        float x0 = (w - total) / 2f, y0 = h * 0.345f;
+        float x0 = (w - total) / 2f, y0 = h * 0.358f;
         for (int i = 0; i < hand.size(); i++) {
             long t0 = cardT[i];
             float t = Math.min(1f, (now - t0) / 300f);
@@ -520,9 +520,9 @@ public class PokerView extends View {
             float sc = easeOutBack(t);
             animating = true;
             cv.save();
-            cv.scale(sc, sc, w / 2f, h * 0.62f);
-            drawFancyText(cv, message, w / 2f, h * 0.62f, h * 0.036f, 0xFFFFE082, 0xFFFF8F00);
-            drawFancyText(cv, "+" + lastWin, w / 2f, h * 0.665f, h * 0.030f, 0xFFA5D6A7, 0xFF2E7D32);
+            cv.scale(sc, sc, w / 2f, h * 0.590f);
+            drawFancyText(cv, message, w / 2f, h * 0.590f, h * 0.036f, 0xFFFFE082, 0xFFFF8F00);
+            drawFancyText(cv, "+" + lastWin, w / 2f, h * 0.635f, h * 0.030f, 0xFFA5D6A7, 0xFF2E7D32);
             cv.restore();
             if (particlesOn) {
                 for (int i = 0; i < 16; i++) {
@@ -533,7 +533,7 @@ public class PokerView extends View {
             }
         } else {
             p.setColor(0xFFD1C4E9); p.setTextSize(h * 0.022f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
-            cv.drawText(message, w / 2, h * 0.625f, p);
+            cv.drawText(message, w / 2, h * 0.598f, p);
             p.setFakeBoldText(false);
         }
 
@@ -550,12 +550,12 @@ public class PokerView extends View {
             float cx0 = w / 2f - rowW / 2f + chipR;
             p.setColor(0xCCFFD54F); p.setTextSize(h * 0.0125f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
             p.setShadowLayer(4, 0, 1, 0x66000000);
-            cv.drawText("\u25BC  TAP A CHIP TO SET YOUR BET  \u25BC", w / 2f, h * 0.685f, p);
+            cv.drawText("\u25BC  TAP A CHIP TO SET YOUR BET  \u25BC", w / 2f, h * 0.660f, p);
             p.clearShadowLayer();
             p.setFakeBoldText(false);
             for (int i = 0; i < BETS.length; i++) {
                 boolean sel = i == betIdx;
-                drawChip(cv, cx0 + i * (chipR * 2 + chipGap), h * 0.735f + (sel ? -h * 0.008f : 0), chipR, CHIP_COLORS[i], "" + BETS[i], sel);
+                drawChip(cv, cx0 + i * (chipR * 2 + chipGap), h * 0.710f + (sel ? -h * 0.008f : 0), chipR, CHIP_COLORS[i], "" + BETS[i], sel);
             }
 
             // MAX BET shortcut
@@ -563,14 +563,14 @@ public class PokerView extends View {
             float bump = now - betBumpAt < 250 ? 1f + 0.25f * (1f - (now - betBumpAt) / 250f) : 1f;
             if (now - betBumpAt < 250) postInvalidateDelayed(28);
             p.setColor(0xFFFFD54F);
-            cv.drawCircle(mx, h * 0.735f, chipR * 0.8f * bump, p);
+            cv.drawCircle(mx, h * 0.710f, chipR * 0.8f * bump, p);
             p.setColor(0xFF6D4C00); p.setTextSize(chipR * 0.4f * bump); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
-            cv.drawText("MAX", mx, h * 0.735f + chipR * 0.14f * bump, p);
+            cv.drawText("MAX", mx, h * 0.710f + chipR * 0.14f * bump, p);
             p.setFakeBoldText(false);
-            drawPillButton(cv, w * 0.14f, h * 0.80f, w * 0.72f, bh, "DEAL   \u25B6", 0xFF8E24AA, 0xFF4A148C,
+            drawPillButton(cv, w * 0.14f, h * 0.785f, w * 0.72f, bh, "DEAL   \u25B6", 0xFF8E24AA, 0xFF4A148C,
                     balance >= BETS[betIdx], pressedBtn == 0, pulse);
         } else {
-            drawPillButton(cv, w * 0.14f, h * 0.78f, w * 0.72f, bh, "DRAW", 0xFFE53935, 0xFF8E0000, true, pressedBtn == 1, pulse > 0 ? pulse : (float) (0.35 + 0.35 * Math.sin(now / 450.0)));
+            drawPillButton(cv, w * 0.14f, h * 0.765f, w * 0.72f, bh, "DRAW", 0xFFE53935, 0xFF8E0000, true, pressedBtn == 1, pulse > 0 ? pulse : (float) (0.35 + 0.35 * Math.sin(now / 450.0)));
             animating = true;
         }
 
@@ -636,7 +636,7 @@ public class PokerView extends View {
                 // card taps toggle hold
                 float cw = w * 0.165f, ch = cw * 1.42f, gap = w * 0.028f;
                 float total = 5 * cw + 4 * gap;
-                float x0 = (w - total) / 2f, y0 = h * 0.345f;
+                float x0 = (w - total) / 2f, y0 = h * 0.358f;
                 if (y >= y0 - h * 0.045f && y <= y0 + ch) {
                     for (int i = 0; i < hand.size(); i++) {
                         if (x >= x0 + i * (cw + gap) && x <= x0 + i * (cw + gap) + cw) {
@@ -663,9 +663,9 @@ public class PokerView extends View {
             return -1;
         }
         if (phase == 0 || phase == 2) {
-            if (x >= w * 0.14f && x <= w * 0.86f && y >= h * 0.80f && y <= h * 0.80f + bh) return 0;
+            if (x >= w * 0.14f && x <= w * 0.86f && y >= h * 0.785f && y <= h * 0.785f + bh) return 0;
         } else if (phase == 1) {
-            if (x >= w * 0.14f && x <= w * 0.86f && y >= h * 0.78f && y <= h * 0.78f + bh) return 1;
+            if (x >= w * 0.14f && x <= w * 0.86f && y >= h * 0.765f && y <= h * 0.765f + bh) return 1;
         }
         return -1;
     }
@@ -691,10 +691,10 @@ public class PokerView extends View {
         float rowW = BETS.length * chipR * 2 + (BETS.length - 1) * chipGap;
         float cx0 = w / 2f - rowW / 2f + chipR;
         float mx = w / 2f + rowW / 2f + chipGap * 0.6f + chipR * 0.8f;
-        if (Math.hypot(x - mx, y - h * 0.735f) <= chipR * 1.2f) { maxBet(); return; }
+        if (Math.hypot(x - mx, y - h * 0.710f) <= chipR * 1.2f) { maxBet(); return; }
         for (int i = 0; i < BETS.length; i++) {
             float cx = cx0 + i * (chipR * 2 + chipGap);
-            float ddx = x - cx, ddy = y - h * 0.735f;
+            float ddx = x - cx, ddy = y - h * 0.710f;
             if (ddx * ddx + ddy * ddy <= chipR * chipR * 1.44f && i != betIdx) {
                 betIdx = i;
                 invalidate();
