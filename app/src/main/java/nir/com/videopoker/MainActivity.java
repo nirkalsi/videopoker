@@ -95,7 +95,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         row.setOrientation(LinearLayout.HORIZONTAL);
         row.setGravity(Gravity.CENTER);
         row.setPadding(dp(6), dp(6), dp(6), dp(2));
-        addRowButton(row, "\uD83C\uDF81 FREE", v -> freeCoins(), 0xFF2E7D32);
+        addRowButton(row, "\u25B6 FREE", v -> freeCoins(), 0xFF2E7D32);
         addRowButton(row, "\uD83C\uDFAF MISSIONS", v -> showMissions(), 0xFF1565C0);
         addRowButton(row, "\uD83D\uDED2 SHOP", v -> showShop(), 0xFFF9A825);
         return row;

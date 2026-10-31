@@ -1,3 +1,0 @@
-nir.com.videopoker.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme
