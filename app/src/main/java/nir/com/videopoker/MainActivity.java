@@ -273,46 +273,28 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         LinearLayout box = new LinearLayout(this);
         box.setOrientation(LinearLayout.VERTICAL);
         int pad = (int) (16 * getResources().getDisplayMetrics().density);
-        box.setPadding(pad, pad / 2, pad, 0);
-        addSection(box, "Daily missions", missions.dailyMissions());
-        addSection(box, "Achievements", missions.achievements(game.getLevel(), game.getSpinsDone()));
+        box.setPadding(pad, 0, pad, pad / 2);
+        box.addView(MissionViews.title(this, "Missions"));
+        MissionViews.Claimer claimer = (item, btn) -> {
+            long reward = missions.claim(item);
+            if (reward > 0) {
+                game.addCoins(reward);
+                Toast.makeText(this, "+" + reward + " coins!", Toast.LENGTH_SHORT).show();
+            }
+            btn.setEnabled(false);
+            btn.setText("Done");
+        };
+        box.addView(MissionViews.header(this, "DAILY MISSIONS"));
+        for (MissionsManager.Item i : missions.dailyMissions()) box.addView(MissionViews.row(this, i, claimer));
+        box.addView(MissionViews.header(this, "ACHIEVEMENTS"));
+        for (MissionsManager.Item i : missions.achievements(game.getLevel(), game.getSpinsDone()))
+            box.addView(MissionViews.row(this, i, claimer));
         ScrollView sv = new ScrollView(this);
         sv.addView(box);
-        new AlertDialog.Builder(this).setTitle("Missions").setView(sv)
-            .setNegativeButton("Close", null).show();
-    }
-
-    private void addSection(LinearLayout box, String title, List<MissionsManager.Item> items) {
-        TextView h = new TextView(this);
-        h.setText(title);
-        h.setTypeface(Typeface.DEFAULT_BOLD);
-        h.setTextSize(16f);
-        h.setPadding(0, 12, 0, 6);
-        box.addView(h);
-        for (MissionsManager.Item i : items) {
-            LinearLayout line = new LinearLayout(this);
-            line.setOrientation(LinearLayout.HORIZONTAL);
-            line.setGravity(Gravity.CENTER_VERTICAL);
-            TextView t = new TextView(this);
-            String status = i.claimed ? " (claimed)" : " - " + i.progress + "/" + i.goal;
-            t.setText(i.title + status + (i.reward > 0 ? "  [+" + i.reward + "]" : "  [badge]"));
-            line.addView(t, new LinearLayout.LayoutParams(0, -2, 1f));
-            if (!i.claimed && i.done()) {
-                Button c = new Button(this);
-                c.setText("Claim");
-                c.setOnClickListener(v -> {
-                    long reward = missions.claim(i);
-                    if (reward > 0) {
-                        game.addCoins(reward);
-                        Toast.makeText(this, "+" + reward + " coins!", Toast.LENGTH_SHORT).show();
-                    }
-                    c.setEnabled(false); c.setText("Done");
-                    t.setText(i.title + " (claimed)" + (i.reward > 0 ? "  [+" + i.reward + "]" : "  [badge]"));
-                });
-                line.addView(c);
-            }
-            box.addView(line);
-        }
+        AlertDialog d = new AlertDialog.Builder(this).setView(sv)
+            .setNegativeButton("Close", null).create();
+        d.show();
+        if (d.getWindow() != null) d.getWindow().setBackgroundDrawable(MissionViews.dialogBg());
     }
 
     // ---------- shop & remove ads ----------
