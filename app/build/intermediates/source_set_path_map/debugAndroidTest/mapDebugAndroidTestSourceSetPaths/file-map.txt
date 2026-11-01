@@ -1,0 +1,6 @@
+nir.com.videopoker.test.app-core-1.6.1-0 /home/sandbox/.gradle/caches/8.11.1/transforms/744d7b1360835b03ac8014b990a5ce85/transformed/core-1.6.1/res
+nir.com.videopoker.test.app-uiautomator-2.3.0-1 /home/sandbox/.gradle/caches/8.11.1/transforms/f2eae9a281cb22c2132aa12e01ca0a1a/transformed/uiautomator-2.3.0/res
+nir.com.videopoker.test.app-androidTest-2 /home/sandbox/games/videopoker/app/build/generated/res/resValues/androidTest/debug
+nir.com.videopoker.test.app-mergeDebugAndroidTestResources-3 /home/sandbox/games/videopoker/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+nir.com.videopoker.test.app-mergeDebugAndroidTestResources-4 /home/sandbox/games/videopoker/app/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+nir.com.videopoker.test.app-debugAndroidTest-5 /home/sandbox/games/videopoker/app/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources

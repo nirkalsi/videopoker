@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "nir.com.videopoker.test.app-mergeDebugAndroidTestResources-3:/values-v21/values-v21.xml",
+            "map": [
+                {
+                    "source": "/home/sandbox/.gradle/caches/8.11.1/transforms/744d7b1360835b03ac8014b990a5ce85/transformed/core-1.6.1/res/values-v21/values.xml",
+                    "from": {
+                        "startLines": "4,13",
+                        "startColumns": "0,0",
+                        "startOffsets": "146,621",
+                        "endLines": "12,21",
+                        "endColumns": "8,8",
+                        "endOffsets": "620,1093"
+                    },
+                    "to": {
+                        "startLines": "2,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,534",
+                        "endLines": "10,19",
+                        "endColumns": "8,8",
+                        "endOffsets": "529,1006"
+                    }
+                }
+            ]
+        }
+    ]
+}

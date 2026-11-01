@@ -16,6 +16,10 @@ public class AdsManager {
     private int rewardedRetry = 0;
     private boolean initialized = false;
     private volatile boolean adsRemoved = false;
+    // test hook: instrumentation reads these from the app process to verify an actual load
+    public static volatile long lastBannerLoadedAt = 0;
+    public static volatile String lastBannerError = null;
+    public static volatile String lastBannerUnit = null;
 
     public void setAdsRemoved(boolean removed) { adsRemoved = removed; }
 
@@ -50,8 +54,9 @@ public class AdsManager {
         box.addView(av);
         av.setAdListener(new AdListener() {
             private int attempts = 0;
-            @Override public void onAdLoaded() { attempts = 0; }
+            @Override public void onAdLoaded() { attempts = 0; lastBannerLoadedAt = System.currentTimeMillis(); lastBannerError = null; lastBannerUnit = BuildConfig.BANNER_ID; }
             @Override public void onAdFailedToLoad(LoadAdError e) {
+                lastBannerError = e.getCode() + ": " + e.getMessage();
                 long delayMs = backoffMs(attempts++);
                 av.postDelayed(() -> {
                     if (adsRemoved || !av.isAttachedToWindow()) return;
