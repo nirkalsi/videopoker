@@ -1261,7 +1261,7 @@ public class PokerView extends View {
             p.setColor(0xFF4A3200); p.setTextSize(chipR * 0.4f * bump); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
             cv.drawText("MAX", mx, h * 0.710f + chipR * 0.14f * bump, p);
             p.setFakeBoldText(false);
-            debugPhase = 0;
+            debugPhase = phase; // this branch draws for BOTH 0 (betting) and 2 (result)
             debugActionBtn = new android.graphics.Rect((int)(w * 0.14f), (int)(h * 0.785f), (int)(w * 0.86f), (int)(h * 0.785f + bh));
             drawPillButton(cv, w * 0.14f, h * 0.785f, w * 0.72f, bh,
                     numHands > 1 ? "DEAL x" + numHands + "   \u2022   " + (BETS[betIdx] * numHands) + "  \u25B6" : "DEAL   \u25B6",
