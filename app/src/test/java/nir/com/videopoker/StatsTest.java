@@ -84,5 +84,17 @@ public class StatsTest {
         FileOutputStream fos = new FileOutputStream("/tmp/frames-vp-stats/panel.png");
         bmp.compress(Bitmap.CompressFormat.PNG, 80, fos);
         fos.close();
+        // small-screen fit check
+        int W2 = 720, H2 = 1480;
+        PokerView v2 = new PokerView(RuntimeEnvironment.getApplication());
+        v2.measure(View.MeasureSpec.makeMeasureSpec(W2, View.MeasureSpec.EXACTLY),
+                   View.MeasureSpec.makeMeasureSpec(H2, View.MeasureSpec.EXACTLY));
+        v2.layout(0, 0, W2, H2);
+        so.setBoolean(v2, true);
+        Bitmap bmp2 = Bitmap.createBitmap(W2, H2, Bitmap.Config.ARGB_8888);
+        v2.draw(new Canvas(bmp2));
+        FileOutputStream fos2 = new FileOutputStream("/tmp/frames-vp-stats/panel_small.png");
+        bmp2.compress(Bitmap.CompressFormat.PNG, 80, fos2);
+        fos2.close();
     }
 }

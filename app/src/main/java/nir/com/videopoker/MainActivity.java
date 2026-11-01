@@ -295,7 +295,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
             line.setGravity(Gravity.CENTER_VERTICAL);
             TextView t = new TextView(this);
             String status = i.claimed ? " (claimed)" : " - " + i.progress + "/" + i.goal;
-            t.setText(i.title + status + "  [+" + i.reward + "]");
+            t.setText(i.title + status + (i.reward > 0 ? "  [+" + i.reward + "]" : "  [badge]"));
             line.addView(t, new LinearLayout.LayoutParams(0, -2, 1f));
             if (!i.claimed && i.done()) {
                 Button c = new Button(this);
@@ -307,7 +307,7 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
                         Toast.makeText(this, "+" + reward + " coins!", Toast.LENGTH_SHORT).show();
                     }
                     c.setEnabled(false); c.setText("Done");
-                    t.setText(i.title + " (claimed)  [+" + i.reward + "]");
+                    t.setText(i.title + " (claimed)" + (i.reward > 0 ? "  [+" + i.reward + "]" : "  [badge]"));
                 });
                 line.addView(c);
             }

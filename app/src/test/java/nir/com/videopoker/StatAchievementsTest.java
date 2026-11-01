@@ -32,10 +32,10 @@ public class StatAchievementsTest {
         }
         assertTrue(streak != null && streak.done());
         assertTrue(sf != null && sf.done());
-        assertEquals(800, mm.claim(streak));
-        assertEquals(1500, mm.claim(sf));
-        // a freshly loaded list reflects the claim (claim() updates prefs, not the Item)
+        // badge-only while rewards are approval-gated: claim succeeds but grants 0
+        assertEquals(0, mm.claim(streak));
+        assertEquals(0, mm.claim(sf));
         for (MissionsManager.Item i : mm.achievements(1, 0))
-            if (i.id.equals("ach8")) assertEquals(0, mm.claim(i));
+            if (i.id.equals("ach8")) assertTrue(i.claimed);
     }
 }
