@@ -219,6 +219,8 @@ layout notification_template_part_chronometer
 layout notification_template_part_time
 layout offline_ads_dialog
 mipmap ic_launcher
+mipmap ic_launcher_background
+mipmap ic_launcher_foreground
 raw com_android_billingclient_heterodyne_info
 raw com_android_billingclient_registration_info
 string androidx_startup

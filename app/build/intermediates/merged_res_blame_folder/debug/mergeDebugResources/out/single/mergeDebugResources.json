@@ -1,14 +1,78 @@
 [
     {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-xxxhdpi_ic_launcher_background.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-xxxhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-mdpi_ic_launcher_background.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-mdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-xxhdpi_ic_launcher_background.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-xxhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-hdpi_ic_launcher_background.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-hdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-xhdpi_ic_launcher_background.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-xhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "/home/sandbox/.gradle/daemon/8.11.1/nir.com.videopoker.app-debug-22:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/sandbox/.gradle/daemon/8.11.1/nir.com.videopoker.app-main-24:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "/home/sandbox/.gradle/daemon/8.11.1/nir.com.videopoker.app-debug-22:/drawable_ic_bg.xml.flat",
+        "source": "/home/sandbox/.gradle/daemon/8.11.1/nir.com.videopoker.app-main-24:/drawable/ic_bg.xml"
+    },
+    {
+        "merged": "/home/sandbox/.gradle/daemon/8.11.1/nir.com.videopoker.app-debug-22:/drawable_ic_fg.xml.flat",
+        "source": "/home/sandbox/.gradle/daemon/8.11.1/nir.com.videopoker.app-main-24:/drawable/ic_fg.xml"
+    },
+    {
+        "merged": "nir.com.videopoker.app-debug-22:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "nir.com.videopoker.app-main-24:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
         "merged": "nir.com.videopoker.app-debug-22:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "nir.com.videopoker.app-main-24:/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
-        "merged": "nir.com.videopoker.app-debug-22:/drawable_ic_fg.xml.flat",
-        "source": "nir.com.videopoker.app-main-24:/drawable/ic_fg.xml"
-    },
-    {
-        "merged": "nir.com.videopoker.app-debug-22:/drawable_ic_bg.xml.flat",
-        "source": "nir.com.videopoker.app-main-24:/drawable/ic_bg.xml"
     }
 ]

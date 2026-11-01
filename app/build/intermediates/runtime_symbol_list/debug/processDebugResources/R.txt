@@ -218,6 +218,8 @@ int layout notification_template_part_chronometer 0x7f080008
 int layout notification_template_part_time 0x7f080009
 int layout offline_ads_dialog 0x7f08000a
 int mipmap ic_launcher 0x7f090000
+int mipmap ic_launcher_background 0x7f090001
+int mipmap ic_launcher_foreground 0x7f090002
 int raw com_android_billingclient_heterodyne_info 0x7f0a0000
 int raw com_android_billingclient_registration_info 0x7f0a0001
 int string androidx_startup 0x7f0b0000

@@ -3,5 +3,7 @@ local
 drawable ic_bg
 drawable ic_fg
 mipmap ic_launcher
+mipmap ic_launcher_background
+mipmap ic_launcher_foreground
 string app_name
 style Theme.Slots
