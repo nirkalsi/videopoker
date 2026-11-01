@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.StatsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-01T07:58:12" hostname="e2b.local" time="4.791">
+<testsuite name="nir.com.videopoker.StatAchievementsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T08:02:41" hostname="e2b.local" time="1.854">
   <properties/>
-  <testcase name="renderStatsPanel" classname="nir.com.videopoker.StatsTest" time="3.816"/>
-  <testcase name="statsAccumulateAndPersist" classname="nir.com.videopoker.StatsTest" time="0.975"/>
+  <testcase name="statDrivenAchievements" classname="nir.com.videopoker.StatAchievementsTest" time="1.854"/>
   <system-out><![CDATA[WARNING: No manifest file found at ./AndroidManifest.xml.
 Falling back to the Android OS resources only.
 To remove this warning, annotate your test class with @Config(manifest=Config.NONE).
