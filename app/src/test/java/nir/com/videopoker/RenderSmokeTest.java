@@ -28,6 +28,8 @@ public class RenderSmokeTest {
         v.layout(0, 0, w, h);
         Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         v.draw(new Canvas(bmp));
+        File parent = new File(path).getParentFile();
+        if (parent != null) parent.mkdirs();
         FileOutputStream fos = new FileOutputStream(path);
         bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
         fos.close();
