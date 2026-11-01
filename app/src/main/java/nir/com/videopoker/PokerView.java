@@ -44,6 +44,10 @@ public class PokerView extends View {
 
     // phases: 0=betting, 1=hold/draw, 2=result
     private int phase = 0;
+    /** Test hooks (read-only, written every onDraw): current phase and the
+     *  DEAL/DRAW action-button bounds in view coordinates. No behavior change. */
+    public static volatile int debugPhase = -1;
+    public static volatile android.graphics.Rect debugActionBtn = null;
     private final List<Integer> hand = new ArrayList<>();   // card = suit*13 + rank
     private final boolean[] held = new boolean[5];
     private final long[] cardT = new long[5];
@@ -1257,11 +1261,15 @@ public class PokerView extends View {
             p.setColor(0xFF4A3200); p.setTextSize(chipR * 0.4f * bump); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
             cv.drawText("MAX", mx, h * 0.710f + chipR * 0.14f * bump, p);
             p.setFakeBoldText(false);
+            debugPhase = 0;
+            debugActionBtn = new android.graphics.Rect((int)(w * 0.14f), (int)(h * 0.785f), (int)(w * 0.86f), (int)(h * 0.785f + bh));
             drawPillButton(cv, w * 0.14f, h * 0.785f, w * 0.72f, bh,
                     numHands > 1 ? "DEAL x" + numHands + "   \u2022   " + (BETS[betIdx] * numHands) + "  \u25B6" : "DEAL   \u25B6",
                     0xFF43A047, 0xFF1B5E20,
                     balance >= BETS[betIdx] * numHands, pressedBtn == 0, pulse);
         } else {
+            debugPhase = phase;
+            debugActionBtn = new android.graphics.Rect((int)(w * 0.14f), (int)(h * 0.765f), (int)(w * 0.86f), (int)(h * 0.765f + bh));
             drawPillButton(cv, w * 0.14f, h * 0.765f, w * 0.72f, bh, "DRAW", 0xFFFF5252, 0xFFB71C1C, true, pressedBtn == 1, pulse > 0 ? Math.max(pulse, 0.55f) : (float) (0.55 + 0.35 * Math.sin(now / 450.0)));
             animating = true;
         }

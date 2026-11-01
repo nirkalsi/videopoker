@@ -2,6 +2,9 @@ package nir.com.videopoker;
 
 import android.graphics.Rect;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
@@ -12,27 +15,73 @@ import org.junit.runner.RunWith;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 /** Verifies the adaptive banner actually LOADS (AdMob SDK onAdLoaded, sample unit ID)
- *  and becomes visible after a real played round. No ad content is clicked. */
+ *  and becomes visible after a real played round. No ad content is clicked.
+ *
+ *  Driver note: taps use the game view's own reported action-button bounds
+ *  (PokerView.debugActionBtn, written by onDraw) plus the view's on-screen
+ *  location - never hardcoded screen fractions, so the wrapper top bar,
+ *  device aspect and nav bar cannot shift the target. Round progress is
+ *  asserted via PokerView.debugPhase BEFORE any ad wait. */
 @RunWith(AndroidJUnit4.class)
 public class BannerLoadScriptTest {
     private static final String TAG = "BannerCheck";
     private UiDevice d;
-    private Rect v;
+    private ActivityScenario<MainActivity> sc;
+    private PokerView pv;
+    private final int[] loc = new int[2];
+    private final Rect[] btn = new Rect[1];
 
-    private void tap(float fx, float fy) {
-        d.click((int) (v.left + v.width() * fx), (int) (v.top + v.height() * fy));
+    private static PokerView findPokerView(View v) {
+        if (v instanceof PokerView) return (PokerView) v;
+        if (v instanceof ViewGroup) {
+            ViewGroup g = (ViewGroup) v;
+            for (int i = 0; i < g.getChildCount(); i++) {
+                PokerView r = findPokerView(g.getChildAt(i));
+                if (r != null) return r;
+            }
+        }
+        return null;
+    }
+
+    private boolean waitPhase(int want, long ms) throws Exception {
+        long end = System.currentTimeMillis() + ms;
+        while (System.currentTimeMillis() < end) {
+            if (PokerView.debugPhase == want) return true;
+            Thread.sleep(250);
+        }
+        return false;
+    }
+
+    /** Tap the center of the view-reported DEAL/DRAW button, in real screen coords. */
+    private void tapActionButton(String what) throws Exception {
+        long end = System.currentTimeMillis() + 10000;
+        btn[0] = null;
+        while (System.currentTimeMillis() < end) {
+            sc.onActivity(a -> {
+                if (pv == null) pv = findPokerView(a.findViewById(android.R.id.content));
+                if (pv != null) {
+                    pv.getLocationOnScreen(loc);
+                    Rect r = PokerView.debugActionBtn;
+                    btn[0] = r == null ? null : new Rect(r);
+                }
+            });
+            if (pv != null && btn[0] != null) break;
+            Thread.sleep(300);
+        }
+        if (pv == null) throw new AssertionError("PokerView not found in content hierarchy");
+        if (btn[0] == null) throw new AssertionError("view never reported " + what + " button bounds");
+        int x = loc[0] + btn[0].centerX(), y = loc[1] + btn[0].centerY();
+        Log.i(TAG, what + " tap at screen " + x + "," + y + " (view at " + loc[0] + "," + loc[1] + ", btn=" + btn[0] + ")");
+        d.click(x, y);
     }
 
     @Test public void bannerLoadsAfterFirstRound() throws Exception {
         d = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        android.content.Context c = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        android.content.Intent i = c.getPackageManager().getLaunchIntentForPackage("nir.com.videopoker");
-        i.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK | android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        c.startActivity(i);
+        sc = ActivityScenario.launch(MainActivity.class);
         if (d.wait(Until.findObject(By.pkg("nir.com.videopoker")), 20000) == null)
             throw new AssertionError("app did not come to foreground");
 
-        // UMP consent form: accept if shown (US test devices normally skip it)
+        // UMP consent form: accept if shown (gdprApplies=0 devices skip it)
         long umpDeadline = System.currentTimeMillis() + 12000;
         while (System.currentTimeMillis() < umpDeadline) {
             UiObject2 consent = d.findObject(By.textContains("Consent"));
@@ -45,23 +94,22 @@ public class BannerLoadScriptTest {
         }
         Thread.sleep(2000);
 
-        // locate game view region like GameplayScriptTest
-        int dh = d.getDisplayHeight(), dw = d.getDisplayWidth(), top = 0;
-        for (UiObject2 b : d.findObjects(By.pkg("nir.com.videopoker").clazz("android.widget.Button"))) {
-            Rect r = b.getVisibleBounds();
-            if (r.centerY() < dh / 4) top = Math.max(top, r.bottom);
-        }
-        int navId = c.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-        int nav = navId > 0 ? c.getResources().getDimensionPixelSize(navId) : 0;
-        v = new Rect(0, top, dw, dh - nav);
+        // betting screen must be drawn and reporting its hooks
+        if (!waitPhase(0, 20000))
+            throw new AssertionError("betting screen never reported by view (phase=" + PokerView.debugPhase + ")");
 
-        // play one real round: DEAL then DRAW (no holds)
-        tap(0.5f, 0.785f);                    // DEAL
-        Thread.sleep(4000);
-        tap(0.5f, 0.765f);                    // DRAW
-        Thread.sleep(6000);                   // settle + attachBanner fires on first round
+        // play one real round with view-reported bounds: DEAL -> cards -> DRAW -> result
+        tapActionButton("DEAL");
+        if (!waitPhase(1, 15000))
+            throw new AssertionError("DEAL tap did not deal cards (phase=" + PokerView.debugPhase + ")");
+        Log.i(TAG, "DEAL accepted, cards dealt");
+        Thread.sleep(1500);
+        tapActionButton("DRAW");
+        if (!waitPhase(2, 20000))
+            throw new AssertionError("DRAW tap did not complete the round (phase=" + PokerView.debugPhase + ")");
+        Log.i(TAG, "round completed (DEAL -> DRAW -> result); waiting for banner load");
 
-        // bounded wait for actual SDK load callback
+        // bounded wait for the actual SDK load callback (fires after first round attach)
         long deadline = System.currentTimeMillis() + 90000;
         while (System.currentTimeMillis() < deadline) {
             if (AdsManager.lastBannerLoadedAt != 0) break;
@@ -79,7 +127,7 @@ public class BannerLoadScriptTest {
         UiObject2 web = d.wait(Until.findObject(By.pkg("nir.com.videopoker").clazz("android.webkit.WebView")), 10000);
         if (web == null) throw new AssertionError("no rendered ad WebView in app window after onAdLoaded");
         Rect b = web.getVisibleBounds();
-        Log.i(TAG, "ad WebView bounds=" + b + " display=" + dw + "x" + dh);
+        Log.i(TAG, "ad WebView bounds=" + b);
         if (b.height() < 40) throw new AssertionError("ad view has no visible height: " + b);
 
         // dismiss possible daily-bonus dialog (do not click ad content) and screenshot
@@ -94,5 +142,6 @@ public class BannerLoadScriptTest {
         if (!"nir.com.videopoker".equals(pkg))
             throw new AssertionError("foreground=" + pkg + " (possible ad takeover - should not happen without clicks)");
         Log.i(TAG, "BANNER LOAD VERIFIED: loaded callback + rendered bounds " + b);
+        sc.close();
     }
 }
