@@ -15,7 +15,7 @@ import java.util.Random;
 public class PokerView extends View {
     public interface Listener {
         void onOutOfCoins();
-        void onSpinComplete(int handsDone, long win, long bet);
+        void onSpinComplete(int handsDone, long win, long bet, int hands, int winHands, int bestRow);
         void onBigWin(long win, long bet);
         void onLevelUp(int level, long reward);
         void saveState();
@@ -72,6 +72,13 @@ public class PokerView extends View {
     private long stHands, stWins, stBiggest, stStreak, stBestStreak;
     private int stBestHand = -1;
     private int winRow = -1;
+    // multi-hand: 1, 3 or 5 hands per round (feature approved by app owner via WhatsApp 01.11.26;
+    // paytable itself unchanged). Extra hands share the held cards and each draws replacements
+    // from its own shuffled deck of 52 minus the 5 initial cards.
+    private int numHands = 1;
+    private final java.util.List<java.util.List<Integer>> extraHands = new ArrayList<>();
+    private int[] extraRows = new int[0];
+    private final int[] initial5 = new int[5];
     private long resultAt = 0;
     private final float[] px = new float[16], py = new float[16], pvx = new float[16], pvy = new float[16];
     private boolean particlesOn = false;
@@ -126,7 +133,7 @@ public class PokerView extends View {
     public long getSpinsDone() { return handsDone; }
     private long xpNeeded() { return level * 500L; }
 
-    public String serialize() { return balance + ";" + betIdx + ";" + handsDone + ";" + lastRegenAt + ";" + xp + ";" + level; }
+    public String serialize() { return balance + ";" + betIdx + ";" + handsDone + ";" + lastRegenAt + ";" + xp + ";" + level + ";" + numHands; }
 
     public void restore(String s) {
         try {
@@ -138,6 +145,7 @@ public class PokerView extends View {
             lastRegenAt = Long.parseLong(a[3]);
             if (a.length > 4) xp = Long.parseLong(a[4]);
             if (a.length > 5) level = Math.max(1, Integer.parseInt(a[5]));
+            if (a.length > 6) { int nh = Integer.parseInt(a[6]); numHands = (nh == 3 || nh == 5) ? nh : 1; }
         } catch (Exception ignored) {}
     }
 
@@ -149,7 +157,7 @@ public class PokerView extends View {
 
     private void deal() {
         GameSounds.play(getContext(), GameSounds.CARD);
-        long bet = BETS[betIdx];
+        long bet = BETS[betIdx] * numHands;
         if (balance < bet) { if (listener != null) listener.onOutOfCoins(); return; }
         balance -= bet;
         xp += bet;
@@ -158,9 +166,12 @@ public class PokerView extends View {
         for (int i = 0; i < 52; i++) deck.add(i);
         Collections.shuffle(deck, rng);
         hand.clear();
+        extraHands.clear();
+        extraRows = new int[0];
         long now = System.currentTimeMillis();
         for (int i = 0; i < 5; i++) {
             hand.add(deck.get(i));
+            initial5[i] = deck.get(i);
             held[i] = false;
             cardT[i] = now + i * 110;
             cardNew[i] = true;
@@ -184,6 +195,19 @@ public class PokerView extends View {
             hand.set(i, deck.get(di++));
             cardT[i] = now + i * 70;
             cardNew[i] = true;
+        }
+        for (int k = 1; k < numHands; k++) {
+            List<Integer> d = new ArrayList<>();
+            for (int c = 0; c < 52; c++) {
+                boolean skip = false;
+                for (int ii = 0; ii < 5; ii++) if (c == initial5[ii]) { skip = true; break; }
+                if (!skip) d.add(c);
+            }
+            Collections.shuffle(d, rng);
+            List<Integer> ex = new ArrayList<>(5);
+            int di2 = 0;
+            for (int i = 0; i < 5; i++) ex.add(held[i] ? initial5[i] : d.get(di2++));
+            extraHands.add(ex);
         }
         settle();
     }
@@ -361,28 +385,39 @@ public class PokerView extends View {
     }
 
     private void settle() {
-        long bet = BETS[betIdx];
-        int idx = evaluate(hand);
+        long perBet = BETS[betIdx];
+        long totalBet = perBet * numHands;
+        int[] rows = new int[1 + extraHands.size()];
+        rows[0] = evaluate(hand);
+        for (int k = 0; k < extraHands.size(); k++) rows[k + 1] = evaluate(extraHands.get(k));
+        extraRows = rows;
         resultAt = System.currentTimeMillis();
-        stHands++;
-        if (idx >= 0) {
-            stWins++;
+        int winHands = 0, bestIdx = -1;
+        long totalWin = 0;
+        for (int r : rows) {
+            if (r >= 0) {
+                winHands++;
+                totalWin += perBet * PAY_MULT[r];
+                if (bestIdx < 0 || r < bestIdx) bestIdx = r;
+            }
+        }
+        stHands += numHands;
+        stWins += winHands;
+        if (totalWin > 0) {
             stStreak++;
             if (stStreak > stBestStreak) stBestStreak = stStreak;
-            long ww = bet * PAY_MULT[idx];
-            if (ww > stBiggest) stBiggest = ww;
-            if (stBestHand < 0 || idx < stBestHand) stBestHand = idx;
         } else {
             stStreak = 0;
         }
+        if (totalWin > stBiggest) stBiggest = totalWin;
+        if (bestIdx >= 0 && (stBestHand < 0 || bestIdx < stBestHand)) stBestHand = bestIdx;
         saveStats();
-        if (idx >= 0) {
-            long w = bet * PAY_MULT[idx];
-            balance += w;
-            GameSounds.play(idx >= 6 ? GameSounds.BIG_WIN : GameSounds.WIN);
-            lastWin = w;
-            message = PAY_NAMES[idx] + "!";
-            winRow = idx;
+        if (totalWin > 0) {
+            balance += totalWin;
+            GameSounds.play(bestIdx >= 6 ? GameSounds.BIG_WIN : GameSounds.WIN);
+            lastWin = totalWin;
+            message = PAY_NAMES[bestIdx] + "!" + (numHands > 1 ? "  " + winHands + "/" + numHands + " hands win" : "");
+            winRow = bestIdx;
             spawnParticles();
         } else {
             GameSounds.play(getContext(), GameSounds.LOSE);
@@ -391,7 +426,7 @@ public class PokerView extends View {
             winRow = -1;
         }
         phase = 2;
-        handsDone++;
+        handsDone += numHands;
         while (xp >= xpNeeded()) {
             xp -= xpNeeded();
             level++;
@@ -401,8 +436,8 @@ public class PokerView extends View {
             if (listener != null) listener.onLevelUp(level, reward);
         }
         if (listener != null) {
-            if (idx >= 0 && idx <= 2) listener.onBigWin(lastWin, bet);
-            listener.onSpinComplete((int) handsDone, lastWin, bet);
+            if (bestIdx >= 0 && bestIdx <= 2) listener.onBigWin(totalWin, totalBet);
+            listener.onSpinComplete((int) handsDone, totalWin, totalBet, numHands, winHands, bestIdx);
             listener.saveState();
         }
         if (balance < BETS[0] && listener != null) listener.onOutOfCoins();
@@ -1009,9 +1044,10 @@ public class PokerView extends View {
         }
 
         // ---- hand row ----
-        float cw = w * 0.165f, ch = cw * 1.42f, gap = w * 0.028f;
+        float pScale = primaryScale();
+        float cw = w * 0.165f * pScale, ch = cw * 1.42f, gap = w * 0.028f * pScale;
         float total = 5 * cw + 4 * gap;
-        float x0 = (w - total) / 2f, y0 = h * 0.358f;
+        float x0 = (w - total) / 2f, y0 = primaryY0(h);
         for (int i = 0; i < hand.size(); i++) {
             long t0 = cardT[i];
             float t = Math.min(1f, (now - t0) / 300f);
@@ -1030,13 +1066,48 @@ public class PokerView extends View {
                 p.setColor(((int) (0xA6 * pl) << 24) | 0x9FD8FF);
                 cv.drawRoundRect(rf, cw * 0.14f, cw * 0.14f, p);
                 p.setStyle(Paint.Style.FILL);
-                p.setColor(((int) (0xD8 * pl) << 24) | 0xCFE8FF);
-                p.setTextSize(cw * 0.125f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
-                cv.drawText("SUGGESTED", sx0 + cw / 2f, y + ch + h * 0.028f, p);
-                p.setFakeBoldText(false);
+                if (numHands == 1) {
+                    p.setColor(((int) (0xD8 * pl) << 24) | 0xCFE8FF);
+                    p.setTextSize(cw * 0.125f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
+                    cv.drawText("SUGGESTED", sx0 + cw / 2f, y + ch + h * 0.028f, p);
+                    p.setFakeBoldText(false);
+                }
                 animating = true;
             }
         }
+        // ---- extra hands (multi-hand results) ----
+        if (phase == 2 && !extraHands.isEmpty()) {
+            float ms = miniScale();
+            float mcw = w * 0.165f * ms, mch = mcw * 1.42f, mgap = w * 0.028f * ms;
+            float mtotal = 5 * mcw + 4 * mgap;
+            boolean grid = numHands == 5;
+            for (int k = 0; k < extraHands.size(); k++) {
+                float mx0 = miniX(k, w);
+                float my = miniY(k, h);
+                List<Integer> ex = extraHands.get(k);
+                int r = k + 1 < extraRows.length ? extraRows[k + 1] : -1;
+                boolean won = r >= 0;
+                if (won) {
+                    rf.set(mx0 - mcw * 0.06f, my - mch * 0.05f, mx0 + mtotal + mcw * 0.06f, my + mch * 1.05f);
+                    p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(Math.max(2f, mcw * 0.03f)); p.setColor(0x88FFD54F);
+                    cv.drawRoundRect(rf, mcw * 0.12f, mcw * 0.12f, p);
+                    p.setStyle(Paint.Style.FILL);
+                }
+                for (int i = 0; i < 5; i++) drawCard(cv, ex.get(i), mx0 + i * (mcw + mgap), my, mcw, mch, false, 1f, now);
+                String lbl = won ? PAY_NAMES[r] + "  +" + (PAY_MULT[r] * BETS[betIdx]) : "no win";
+                p.setFakeBoldText(won);
+                p.setColor(won ? 0xFFFFD54F : 0xFF7F8FB8);
+                if (grid) {
+                    p.setTextAlign(Paint.Align.CENTER); p.setTextSize(mch * 0.34f);
+                    cv.drawText(lbl, mx0 + mtotal / 2f, my + mch + h * 0.014f, p);
+                } else {
+                    p.setTextAlign(Paint.Align.LEFT); p.setTextSize(mch * 0.30f);
+                    cv.drawText(lbl, mx0 + mtotal + w * 0.02f, my + mch * 0.60f, p);
+                }
+                p.setFakeBoldText(false);
+            }
+        }
+
         if (hand.isEmpty()) {
             // empty card slots
             for (int i = 0; i < 5; i++) {
@@ -1059,7 +1130,7 @@ public class PokerView extends View {
         }
 
         // ---- message / win banner ----
-        if (phase == 2 && lastWin > 0 && now - resultAt < 2300 && !levelUpShowing) {
+        if (numHands == 1 && phase == 2 && lastWin > 0 && now - resultAt < 2300 && !levelUpShowing) {
             float t = Math.min(1f, (now - resultAt) / 380f);
             float sc = easeOutBack(t);
             animating = true;
@@ -1113,6 +1184,11 @@ public class PokerView extends View {
             p.setColor(0xFFE8F0FF); p.setTextSize(h * 0.022f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
             cv.drawText(message, w / 2, h * 0.598f, p);
             p.setFakeBoldText(false);
+            if (numHands > 1 && phase == 2 && lastWin > 0) {
+                p.setColor(0xFF7CFF9B); p.setTextSize(h * 0.026f); p.setFakeBoldText(true);
+                cv.drawText("+" + lastWin, w / 2, h * 0.630f, p);
+                p.setFakeBoldText(false);
+            }
         }
 
         drawCoinBurst(cv, w, h, now);
@@ -1128,11 +1204,37 @@ public class PokerView extends View {
             float cx0 = w / 2f - rowW / 2f + chipR;
             p.setColor(0xCCFFD54F); p.setTextSize(h * 0.0125f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
             p.setShadowLayer(4, 0, 1, 0x66000000);
-            boolean winBannerOn = (phase == 2 && lastWin > 0 && now - resultAt < 2300 && !levelUpShowing);
-            if (!winBannerOn)
-                cv.drawText("\u25BC  TAP A CHIP TO SET YOUR BET  \u25BC", w / 2f, h * 0.660f, p);
             p.clearShadowLayer();
             p.setFakeBoldText(false);
+            // HANDS selector (x1 / x3 / x5) + total wager
+            {
+                float pw2 = w * 0.10f, ph2 = h * 0.026f, pgap = w * 0.02f;
+                int[] opts = {1, 3, 5};
+                float px0 = w * 0.30f;
+                p.setTextAlign(Paint.Align.RIGHT); p.setTextSize(h * 0.014f); p.setColor(0xCCFFD54F); p.setFakeBoldText(true);
+                cv.drawText("HANDS", px0 - w * 0.02f, h * 0.660f + ph2 * 0.35f, p);
+                p.setTextAlign(Paint.Align.CENTER);
+                for (int o = 0; o < opts.length; o++) {
+                    boolean sel = numHands == opts[o];
+                    float lx = px0 + o * (pw2 + pgap);
+                    rf.set(lx, h * 0.660f - ph2 / 2f, lx + pw2, h * 0.660f + ph2 / 2f);
+                    p.setAlpha(0xFF); p.setShader(new LinearGradient(0, rf.top, 0, rf.bottom, sel ? 0xFF2A4A9E : 0xFF16244E, sel ? 0xFF12285E : 0xFF0A1434, Shader.TileMode.CLAMP));
+                    cv.drawRoundRect(rf, ph2 / 2, ph2 / 2, p);
+                    p.setAlpha(0xFF); p.setShader(null);
+                    p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(sel ? 3f : 1.5f); p.setColor(sel ? 0xFFFFD54F : 0x446FA8FF);
+                    cv.drawRoundRect(rf, ph2 / 2, ph2 / 2, p);
+                    p.setStyle(Paint.Style.FILL);
+                    p.setColor(sel ? 0xFFFFD54F : 0xFF9FB6E8); p.setTextSize(h * 0.014f); p.setFakeBoldText(sel);
+                    cv.drawText("x" + opts[o], lx + pw2 / 2f, h * 0.660f + ph2 * 0.35f, p);
+                }
+                p.setFakeBoldText(false);
+                if (numHands > 1) {
+                    p.setTextAlign(Paint.Align.LEFT); p.setColor(0xFFFFD54F); p.setTextSize(h * 0.014f); p.setFakeBoldText(true);
+                    cv.drawText("TOTAL " + (BETS[betIdx] * numHands), px0 + 3 * pw2 + 2 * pgap + w * 0.03f, h * 0.660f + ph2 * 0.35f, p);
+                    p.setFakeBoldText(false);
+                    p.setTextAlign(Paint.Align.CENTER);
+                }
+            }
             for (int i = 0; i < BETS.length; i++) {
                 boolean sel = i == betIdx;
                 drawChip(cv, cx0 + i * (chipR * 2 + chipGap), h * 0.710f + (sel ? -h * 0.008f : 0), chipR, CHIP_COLORS[i], "" + BETS[i], sel);
@@ -1154,8 +1256,10 @@ public class PokerView extends View {
             p.setColor(0xFF4A3200); p.setTextSize(chipR * 0.4f * bump); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
             cv.drawText("MAX", mx, h * 0.710f + chipR * 0.14f * bump, p);
             p.setFakeBoldText(false);
-            drawPillButton(cv, w * 0.14f, h * 0.785f, w * 0.72f, bh, "DEAL   \u25B6", 0xFF43A047, 0xFF1B5E20,
-                    balance >= BETS[betIdx], pressedBtn == 0, pulse);
+            drawPillButton(cv, w * 0.14f, h * 0.785f, w * 0.72f, bh,
+                    numHands > 1 ? "DEAL x" + numHands + "   \u2022   " + (BETS[betIdx] * numHands) + "  \u25B6" : "DEAL   \u25B6",
+                    0xFF43A047, 0xFF1B5E20,
+                    balance >= BETS[betIdx] * numHands, pressedBtn == 0, pulse);
         } else {
             drawPillButton(cv, w * 0.14f, h * 0.765f, w * 0.72f, bh, "DRAW", 0xFFFF5252, 0xFFB71C1C, true, pressedBtn == 1, pulse > 0 ? Math.max(pulse, 0.55f) : (float) (0.55 + 0.35 * Math.sin(now / 450.0)));
             animating = true;
@@ -1199,6 +1303,21 @@ public class PokerView extends View {
     }
 
     /** Draws the card-back face for a cosmetic variant into the given rect. */
+    private float primaryY0(int h) { return h * (numHands == 1 ? 0.358f : (numHands == 3 ? 0.448f : 0.480f)); }
+    private float primaryScale() { return numHands == 5 ? 0.9f : 1f; }
+    private float miniScale() { return numHands == 3 ? 0.45f : 0.30f; }
+    // extra-hand slot: x3 stacks two rows above the primary hand with right-side labels;
+    // x5 uses a 2x2 grid with labels under each mini hand.
+    private float miniX(int k, int w) {
+        if (numHands == 3) return (w - 5 * w * 0.165f * miniScale() - 4 * w * 0.028f * miniScale()) / 2f - w * 0.055f;
+        float handW = 5 * w * 0.165f * miniScale() + 4 * w * 0.028f * miniScale();
+        return (k % 2 == 0) ? w * 0.204f : w * 0.204f + handW + w * 0.03f;
+    }
+    private float miniY(int k, int h) {
+        if (numHands == 3) return h * (0.332f + k * 0.050f);
+        return h * (0.340f + (k / 2) * 0.052f);
+    }
+
     private void drawBackFace(Canvas cv, float dx, float y, float dw, float h, float rad, int variant) {
         int[] st = BACK_STYLE[Math.max(0, Math.min(variant, BACK_STYLE.length - 1))];
         p.setAlpha(0xFF); p.setShader(new LinearGradient(0, y, 0, y + h, st[0], st[1], Shader.TileMode.CLAMP));
@@ -1350,9 +1469,10 @@ public class PokerView extends View {
             }
             if (phase == 1) {
                 // card taps toggle hold
-                float cw = w * 0.165f, ch = cw * 1.42f, gap = w * 0.028f;
+                float pScale = primaryScale();
+                float cw = w * 0.165f * pScale, ch = cw * 1.42f, gap = w * 0.028f * pScale;
                 float total = 5 * cw + 4 * gap;
-                float x0 = (w - total) / 2f, y0 = h * 0.358f;
+                float x0 = (w - total) / 2f, y0 = primaryY0(h);
                 if (y >= y0 - h * 0.045f && y <= y0 + ch) {
                     for (int i = 0; i < hand.size(); i++) {
                         if (x >= x0 + i * (cw + gap) && x <= x0 + i * (cw + gap) + cw) {
@@ -1366,8 +1486,16 @@ public class PokerView extends View {
                 if (btn == 1 && was == 1) draw();
                 return true;
             }
-            if (btn == 0 && was == 0 && balance >= BETS[betIdx]) { deal(); return true; }
-            if ((phase == 0 || phase == 2) && btn < 0) selectChipAt(w, h, x, y);
+            if (btn == 0 && was == 0) {
+                if (balance >= BETS[betIdx] * numHands) { deal(); return true; }
+                message = "Not enough coins - lower bet or hands";
+                invalidate();
+                return true;
+            }
+            if ((phase == 0 || phase == 2) && btn < 0) {
+                if (selectHandsAt(w, h, x, y)) return true;
+                selectChipAt(w, h, x, y);
+            }
             return true;
         }
         return true;
@@ -1400,6 +1528,24 @@ public class PokerView extends View {
                 return;
             }
         }
+    }
+
+    private boolean selectHandsAt(int w, int h, float x, float y) {
+        float pw2 = w * 0.10f, ph2 = h * 0.026f, pgap = w * 0.02f;
+        int[] opts = {1, 3, 5};
+        float px0 = w * 0.30f;
+        if (y < h * 0.660f - ph2 || y > h * 0.660f + ph2) return false;
+        for (int o = 0; o < opts.length; o++) {
+            float lx = px0 + o * (pw2 + pgap);
+            if (x >= lx && x <= lx + pw2 && opts[o] != numHands) {
+                numHands = opts[o];
+                GameSounds.play(getContext(), GameSounds.CHIP);
+                invalidate();
+                if (listener != null) listener.saveState();
+                return true;
+            }
+        }
+        return false;
     }
 
     private void selectChipAt(int w, int h, float x, float y) {

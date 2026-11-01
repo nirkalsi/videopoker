@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nir.com.videopoker.DesignPreviewTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T08:53:57" hostname="e2b.local" time="0.869">
+  <properties/>
+  <testcase name="renderStates" classname="nir.com.videopoker.DesignPreviewTest" time="0.869"/>
+  <system-out><![CDATA[WROTE /tmp/vp-design/preview-1-betting.png
+WROTE /tmp/vp-design/preview-2-holds.png
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

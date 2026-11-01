@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nir.com.videopoker.PokerStrategyTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2026-11-01T08:54:57" hostname="e2b.local" time="0.735">
+  <properties/>
+  <testcase name="lowPairBeatsUnsuitedHighs" classname="nir.com.videopoker.PokerStrategyTest" time="0.609"/>
+  <testcase name="outsideStraightDraw" classname="nir.com.videopoker.PokerStrategyTest" time="0.013"/>
+  <testcase name="singleHighCard" classname="nir.com.videopoker.PokerStrategyTest" time="0.012"/>
+  <testcase name="straightFlushDraw4" classname="nir.com.videopoker.PokerStrategyTest" time="0.012"/>
+  <testcase name="highPairBeatsFlushDraw" classname="nir.com.videopoker.PokerStrategyTest" time="0.013"/>
+  <testcase name="twoPairHoldsFour" classname="nir.com.videopoker.PokerStrategyTest" time="0.008"/>
+  <testcase name="royalDraw4BeatsHighPair" classname="nir.com.videopoker.PokerStrategyTest" time="0.012"/>
+  <testcase name="suitedHighTwo" classname="nir.com.videopoker.PokerStrategyTest" time="0.011"/>
+  <testcase name="insideStraightDraw" classname="nir.com.videopoker.PokerStrategyTest" time="0.012"/>
+  <testcase name="tripsHoldThree" classname="nir.com.videopoker.PokerStrategyTest" time="0.008"/>
+  <testcase name="garbageDrawsFive" classname="nir.com.videopoker.PokerStrategyTest" time="0.012"/>
+  <testcase name="patFlushHoldsAll" classname="nir.com.videopoker.PokerStrategyTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

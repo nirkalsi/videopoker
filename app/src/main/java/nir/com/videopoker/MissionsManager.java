@@ -35,16 +35,22 @@ public class MissionsManager {
         }
     }
 
-    /** Call after each completed spin. */
+    /** Call after each completed spin (single-hand path). */
     public void onSpin(long win, long bet, int level, long totalSpins) {
+        onSpinN(win, bet, 1, win > 0 ? 1 : 0, win >= 25 * bet ? 0 : -1, level, totalSpins);
+    }
+
+    /** Call after each completed round; hands = hands played, winHands = how many won,
+     *  bestRow = best paytable row index across hands (0 = royal flush, -1 = no win). */
+    public void onSpinN(long win, long bet, int hands, int winHands, int bestRow, int level, long totalSpins) {
         rollDailyIfNeeded();
         SharedPreferences.Editor e = sp.edit();
-        e.putLong("dm1", sp.getLong("dm1", 0) + 1);
-        if (win > 0) {
-            e.putLong("dm2", sp.getLong("dm2", 0) + 1);
+        e.putLong("dm1", sp.getLong("dm1", 0) + hands);
+        if (winHands > 0) {
+            e.putLong("dm2", sp.getLong("dm2", 0) + winHands);
             e.putLong("dm3", sp.getLong("dm3", 0) + win);
         }
-        if (win >= 25 * bet) e.putBoolean("ach4_done", true);
+        if (bestRow >= 0 && bestRow <= 2) e.putBoolean("ach4_done", true);
         e.apply();
         if (onChanged != null) onChanged.run();
     }

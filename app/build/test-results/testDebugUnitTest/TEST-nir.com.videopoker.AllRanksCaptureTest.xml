@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nir.com.videopoker.AllRanksCaptureTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T08:53:52" hostname="e2b.local" time="3.91">
+  <properties/>
+  <testcase name="captureAllRanks" classname="nir.com.videopoker.AllRanksCaptureTest" time="3.91"/>
+  <system-out><![CDATA[WARNING: No manifest file found at ./AndroidManifest.xml.
+Falling back to the Android OS resources only.
+To remove this warning, annotate your test class with @Config(manifest=Config.NONE).
+If you're using Android Gradle Plugin, add testOptions.unitTests.includeAndroidResources = true to your build.gradle
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

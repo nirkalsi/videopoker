@@ -340,8 +340,8 @@ public class MainActivity extends Activity implements PokerView.Listener, Billin
         b.show();
     }
 
-    @Override public void onSpinComplete(int spinsDone, long win, long bet) {
-        missions.onSpin(win, bet, game.getLevel(), spinsDone);
+    @Override public void onSpinComplete(int spinsDone, long win, long bet, int hands, int winHands, int bestRow) {
+        missions.onSpinN(win, bet, hands, winHands, bestRow, game.getLevel(), spinsDone);
         if (sp.getInt("rounds_done", 0) == 0) {
             sp.edit().putInt("rounds_done", 1).apply();
             if (!sp.getBoolean("ads_removed", false)) ads.attachBanner(bannerBox);

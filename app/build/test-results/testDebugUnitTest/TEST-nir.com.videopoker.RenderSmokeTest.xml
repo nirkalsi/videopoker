@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nir.com.videopoker.RenderSmokeTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2026-11-01T08:54:58" hostname="e2b.local" time="3.512">
+  <properties/>
+  <testcase name="levelUpOverlay" classname="nir.com.videopoker.RenderSmokeTest" time="0.163"/>
+  <testcase name="coinBurstMidFlight" classname="nir.com.videopoker.RenderSmokeTest" time="0.198"/>
+  <testcase name="renderGameView720" classname="nir.com.videopoker.RenderSmokeTest" time="0.117"/>
+  <testcase name="winResultBanner" classname="nir.com.videopoker.RenderSmokeTest" time="0.196"/>
+  <testcase name="renderGameViewSmall" classname="nir.com.videopoker.RenderSmokeTest" time="0.151"/>
+  <testcase name="holdPhaseSmall" classname="nir.com.videopoker.RenderSmokeTest" time="0.141"/>
+  <testcase name="renderGameView1080" classname="nir.com.videopoker.RenderSmokeTest" time="0.2"/>
+  <testcase name="renderOutOfCoinsRewardPrompt" classname="nir.com.videopoker.RenderSmokeTest" time="1.037"/>
+  <testcase name="renderDailyBonus" classname="nir.com.videopoker.RenderSmokeTest" time="0.331"/>
+  <testcase name="renderShop" classname="nir.com.videopoker.RenderSmokeTest" time="0.16"/>
+  <testcase name="renderMissions" classname="nir.com.videopoker.RenderSmokeTest" time="0.288"/>
+  <testcase name="renderDealtCards" classname="nir.com.videopoker.RenderSmokeTest" time="0.216"/>
+  <testcase name="renderFullScreen1080" classname="nir.com.videopoker.RenderSmokeTest" time="0.311"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Nov 01, 2026 10:55:00 AM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+WARNING: Transport backend 'cct' is not registered
+Nov 01, 2026 10:55:01 AM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+WARNING: Transport backend 'cct' is not registered
+Nov 01, 2026 10:55:01 AM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+WARNING: Transport backend 'cct' is not registered
+Nov 01, 2026 10:55:01 AM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+WARNING: Transport backend 'cct' is not registered
+Nov 01, 2026 10:55:01 AM com.google.android.datatransport.runtime.scheduling.DefaultScheduler lambda$schedule$1
+WARNING: Transport backend 'cct' is not registered
+]]></system-err>
+</testsuite>
