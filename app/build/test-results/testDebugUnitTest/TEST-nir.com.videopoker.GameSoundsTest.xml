@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.GameSoundsTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-01T08:53:58" hostname="e2b.local" time="1.05">
+<testsuite name="nir.com.videopoker.GameSoundsTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-11-01T08:59:34" hostname="e2b.local" time="1.031">
   <properties/>
-  <testcase name="backgroundedAppIsSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.966"/>
-  <testcase name="mutePersistsAcrossReads" classname="nir.com.videopoker.GameSoundsTest" time="0.018"/>
-  <testcase name="synthBuffersAreNonSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.02"/>
-  <testcase name="musicLoopIsNonSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.045"/>
+  <testcase name="backgroundedAppIsSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.94"/>
+  <testcase name="mutePersistsAcrossReads" classname="nir.com.videopoker.GameSoundsTest" time="0.019"/>
+  <testcase name="synthBuffersAreNonSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.022"/>
+  <testcase name="musicLoopIsNonSilent" classname="nir.com.videopoker.GameSoundsTest" time="0.05"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1044,10 +1044,10 @@ public class PokerView extends View {
         }
 
         // ---- hand row ----
-        float pScale = primaryScale();
+        float pScale = primaryScale(w, h);
         float cw = w * 0.165f * pScale, ch = cw * 1.42f, gap = w * 0.028f * pScale;
         float total = 5 * cw + 4 * gap;
-        float x0 = (w - total) / 2f, y0 = primaryY0(h);
+        float x0 = (w - total) / 2f, y0 = primaryY0(w, h);
         for (int i = 0; i < hand.size(); i++) {
             long t0 = cardT[i];
             float t = Math.min(1f, (now - t0) / 300f);
@@ -1077,13 +1077,13 @@ public class PokerView extends View {
         }
         // ---- extra hands (multi-hand results) ----
         if (phase == 2 && !extraHands.isEmpty()) {
-            float ms = miniScale();
+            float ms = miniScale(w, h);
             float mcw = w * 0.165f * ms, mch = mcw * 1.42f, mgap = w * 0.028f * ms;
             float mtotal = 5 * mcw + 4 * mgap;
             boolean grid = numHands == 5;
             for (int k = 0; k < extraHands.size(); k++) {
-                float mx0 = miniX(k, w);
-                float my = miniY(k, h);
+                float mx0 = miniX(k, w, h);
+                float my = miniY(k, w, h);
                 List<Integer> ex = extraHands.get(k);
                 int r = k + 1 < extraRows.length ? extraRows[k + 1] : -1;
                 boolean won = r >= 0;
@@ -1182,11 +1182,12 @@ public class PokerView extends View {
             }
         } else {
             p.setColor(0xFFE8F0FF); p.setTextSize(h * 0.022f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
-            cv.drawText(message, w / 2, h * 0.598f, p);
+            float msgBase = msgY(w, h);
+            cv.drawText(message, w / 2, msgBase, p);
             p.setFakeBoldText(false);
             if (numHands > 1 && phase == 2 && lastWin > 0) {
                 p.setColor(0xFF7CFF9B); p.setTextSize(h * 0.026f); p.setFakeBoldText(true);
-                cv.drawText("+" + lastWin, w / 2, h * 0.630f, p);
+                cv.drawText("+" + lastWin, w / 2, msgBase + h * 0.032f, p);
                 p.setFakeBoldText(false);
             }
         }
@@ -1208,16 +1209,16 @@ public class PokerView extends View {
             p.setFakeBoldText(false);
             // HANDS selector (x1 / x3 / x5) + total wager
             {
-                float pw2 = w * 0.10f, ph2 = h * 0.026f, pgap = w * 0.02f;
+                float pw2 = w * 0.10f, ph2 = h * 0.024f, pgap = w * 0.02f;
                 int[] opts = {1, 3, 5};
                 float px0 = w * 0.30f;
                 p.setTextAlign(Paint.Align.RIGHT); p.setTextSize(h * 0.014f); p.setColor(0xCCFFD54F); p.setFakeBoldText(true);
-                cv.drawText("HANDS", px0 - w * 0.02f, h * 0.660f + ph2 * 0.35f, p);
+                cv.drawText("HANDS", px0 - w * 0.02f, h * 0.646f + ph2 * 0.35f, p);
                 p.setTextAlign(Paint.Align.CENTER);
                 for (int o = 0; o < opts.length; o++) {
                     boolean sel = numHands == opts[o];
                     float lx = px0 + o * (pw2 + pgap);
-                    rf.set(lx, h * 0.660f - ph2 / 2f, lx + pw2, h * 0.660f + ph2 / 2f);
+                    rf.set(lx, h * 0.646f - ph2 / 2f, lx + pw2, h * 0.646f + ph2 / 2f);
                     p.setAlpha(0xFF); p.setShader(new LinearGradient(0, rf.top, 0, rf.bottom, sel ? 0xFF2A4A9E : 0xFF16244E, sel ? 0xFF12285E : 0xFF0A1434, Shader.TileMode.CLAMP));
                     cv.drawRoundRect(rf, ph2 / 2, ph2 / 2, p);
                     p.setAlpha(0xFF); p.setShader(null);
@@ -1225,12 +1226,12 @@ public class PokerView extends View {
                     cv.drawRoundRect(rf, ph2 / 2, ph2 / 2, p);
                     p.setStyle(Paint.Style.FILL);
                     p.setColor(sel ? 0xFFFFD54F : 0xFF9FB6E8); p.setTextSize(h * 0.014f); p.setFakeBoldText(sel);
-                    cv.drawText("x" + opts[o], lx + pw2 / 2f, h * 0.660f + ph2 * 0.35f, p);
+                    cv.drawText("x" + opts[o], lx + pw2 / 2f, h * 0.646f + ph2 * 0.35f, p);
                 }
                 p.setFakeBoldText(false);
                 if (numHands > 1) {
                     p.setTextAlign(Paint.Align.LEFT); p.setColor(0xFFFFD54F); p.setTextSize(h * 0.014f); p.setFakeBoldText(true);
-                    cv.drawText("TOTAL " + (BETS[betIdx] * numHands), px0 + 3 * pw2 + 2 * pgap + w * 0.03f, h * 0.660f + ph2 * 0.35f, p);
+                    cv.drawText("TOTAL " + (BETS[betIdx] * numHands), px0 + 3 * pw2 + 2 * pgap + w * 0.03f, h * 0.646f + ph2 * 0.35f, p);
                     p.setFakeBoldText(false);
                     p.setTextAlign(Paint.Align.CENTER);
                 }
@@ -1303,19 +1304,41 @@ public class PokerView extends View {
     }
 
     /** Draws the card-back face for a cosmetic variant into the given rect. */
-    private float primaryY0(int h) { return h * (numHands == 1 ? 0.358f : (numHands == 3 ? 0.448f : 0.480f)); }
-    private float primaryScale() { return numHands == 5 ? 0.9f : 1f; }
-    private float miniScale() { return numHands == 3 ? 0.45f : 0.30f; }
+    // On screens shorter than ~2.08:1 the w-sized cards grow relative to h, so shrink the
+    // multi-hand stack proportionally and chain the rows: minis -> primary -> message.
+    private float fit(int w, int h) { return Math.min(1f, (h / (float) w) / 2.077f); }
+    private float primaryCh(int w, int h) { return w * 0.165f * primaryScale(w, h) * 1.42f; }
+    private float primaryY0(int w, int h) {
+        if (numHands == 1) return h * 0.358f;
+        float mch = miniCardH(w, h);
+        if (numHands == 3) {
+            float y2 = h * 0.330f + mch + h * 0.006f;
+            return y2 + mch + h * 0.018f;
+        }
+        float y2 = h * 0.336f + mch + h * 0.018f;
+        return y2 + mch + h * 0.032f;
+    }
+    private float msgY(int w, int h) {
+        return numHands == 1 ? h * 0.598f : primaryY0(w, h) + primaryCh(w, h) + h * 0.024f;
+    }
+    private float primaryScale(int w, int h) {
+        if (numHands == 1) return 1f;
+        return (numHands == 3 ? 0.92f : 0.86f) * fit(w, h);
+    }
+    private float miniScale(int w, int h) { return (numHands == 3 ? 0.45f : 0.30f) * fit(w, h); }
+    private float miniCardH(int w, int h) { return w * 0.165f * miniScale(w, h) * 1.42f; }
     // extra-hand slot: x3 stacks two rows above the primary hand with right-side labels;
     // x5 uses a 2x2 grid with labels under each mini hand.
-    private float miniX(int k, int w) {
-        if (numHands == 3) return (w - 5 * w * 0.165f * miniScale() - 4 * w * 0.028f * miniScale()) / 2f - w * 0.055f;
-        float handW = 5 * w * 0.165f * miniScale() + 4 * w * 0.028f * miniScale();
+    private float miniX(int k, int w, int h) {
+        float ms = miniScale(w, h);
+        float handW = 5 * w * 0.165f * ms + 4 * w * 0.028f * ms;
+        if (numHands == 3) return (w - handW) / 2f - w * 0.055f;
         return (k % 2 == 0) ? w * 0.204f : w * 0.204f + handW + w * 0.03f;
     }
-    private float miniY(int k, int h) {
-        if (numHands == 3) return h * (0.332f + k * 0.050f);
-        return h * (0.340f + (k / 2) * 0.052f);
+    private float miniY(int k, int w, int h) {
+        float mch = miniCardH(w, h);
+        if (numHands == 3) return h * 0.330f + k * (mch + h * 0.006f);
+        return h * 0.336f + (k / 2) * (mch + h * 0.018f);
     }
 
     private void drawBackFace(Canvas cv, float dx, float y, float dw, float h, float rad, int variant) {
@@ -1469,10 +1492,10 @@ public class PokerView extends View {
             }
             if (phase == 1) {
                 // card taps toggle hold
-                float pScale = primaryScale();
+                float pScale = primaryScale(w, h);
                 float cw = w * 0.165f * pScale, ch = cw * 1.42f, gap = w * 0.028f * pScale;
                 float total = 5 * cw + 4 * gap;
-                float x0 = (w - total) / 2f, y0 = primaryY0(h);
+                float x0 = (w - total) / 2f, y0 = primaryY0(w, h);
                 if (y >= y0 - h * 0.045f && y <= y0 + ch) {
                     for (int i = 0; i < hand.size(); i++) {
                         if (x >= x0 + i * (cw + gap) && x <= x0 + i * (cw + gap) + cw) {
@@ -1531,10 +1554,10 @@ public class PokerView extends View {
     }
 
     private boolean selectHandsAt(int w, int h, float x, float y) {
-        float pw2 = w * 0.10f, ph2 = h * 0.026f, pgap = w * 0.02f;
+        float pw2 = w * 0.10f, ph2 = h * 0.024f, pgap = w * 0.02f;
         int[] opts = {1, 3, 5};
         float px0 = w * 0.30f;
-        if (y < h * 0.660f - ph2 || y > h * 0.660f + ph2) return false;
+        if (y < h * 0.646f - ph2 || y > h * 0.646f + ph2) return false;
         for (int o = 0; o < opts.length; o++) {
             float lx = px0 + o * (pw2 + pgap);
             if (x >= lx && x <= lx + pw2 && opts[o] != numHands) {

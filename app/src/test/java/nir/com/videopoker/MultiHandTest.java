@@ -143,12 +143,19 @@ public class MultiHandTest {
     @GraphicsMode(GraphicsMode.Mode.NATIVE)
     @Test public void captureFiveHandResult() throws Exception {
         new File("/tmp/frames-vp-multihand").mkdirs();
-        capture(5, 11, "/tmp/frames-vp-multihand/five_hand.png");
-        capture(3, 23, "/tmp/frames-vp-multihand/three_hand.png");
+        capture(5, 11, 1080, 2243, "/tmp/frames-vp-multihand/five_hand.png");
+        capture(3, 23, 1080, 2243, "/tmp/frames-vp-multihand/three_hand.png");
+        capture(5, 11, 720, 1480, "/tmp/frames-vp-multihand/five_hand_small.png");
+        capture(3, 23, 720, 1480, "/tmp/frames-vp-multihand/three_hand_small.png");
+        capture(5, 11, 1080, 1920, "/tmp/frames-vp-multihand/five_hand_short.png");
+        capture(3, 23, 1080, 1920, "/tmp/frames-vp-multihand/three_hand_short.png");
     }
 
-    private void capture(int nh, int seed, String path) throws Exception {
-        PokerView v = newView();
+    private void capture(int nh, int seed, int W, int H, String path) throws Exception {
+        PokerView v = new PokerView(RuntimeEnvironment.getApplication());
+        v.measure(View.MeasureSpec.makeMeasureSpec(W, View.MeasureSpec.EXACTLY),
+                  View.MeasureSpec.makeMeasureSpec(H, View.MeasureSpec.EXACTLY));
+        v.layout(0, 0, W, H);
         set(v, "rng", new Random(seed));
         set(v, "balance", 50_000L);
         set(v, "betIdx", 2); // 25 per hand
@@ -162,7 +169,7 @@ public class MultiHandTest {
         for (int i = 0; i < 5; i++) cardT[i] = 0;
         call(v, "draw");
         for (int i = 0; i < 5; i++) cardT[i] = 0;
-        Bitmap bmp = Bitmap.createBitmap(1080, 2243, Bitmap.Config.ARGB_8888);
+        Bitmap bmp = Bitmap.createBitmap(W, H, Bitmap.Config.ARGB_8888);
         Canvas cv = new Canvas(bmp);
         v.draw(cv);
         FileOutputStream out = new FileOutputStream(path);

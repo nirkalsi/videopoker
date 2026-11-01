@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.WinBannerCaptureTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T08:55:02" hostname="e2b.local" time="7.361">
+<testsuite name="nir.com.videopoker.WinBannerCaptureTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T09:00:38" hostname="e2b.local" time="7.383">
   <properties/>
-  <testcase name="captureWin" classname="nir.com.videopoker.WinBannerCaptureTest" time="7.361"/>
+  <testcase name="captureWin" classname="nir.com.videopoker.WinBannerCaptureTest" time="7.383"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
