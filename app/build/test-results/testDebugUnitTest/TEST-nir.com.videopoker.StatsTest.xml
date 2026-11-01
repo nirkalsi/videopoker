@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.StatsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-01T09:00:38" hostname="e2b.local" time="0.262">
+<testsuite name="nir.com.videopoker.StatsTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-01T09:24:49" hostname="e2b.local" time="0.25">
   <properties/>
-  <testcase name="renderStatsPanel" classname="nir.com.videopoker.StatsTest" time="0.241"/>
-  <testcase name="statsAccumulateAndPersist" classname="nir.com.videopoker.StatsTest" time="0.02"/>
+  <testcase name="renderStatsPanel" classname="nir.com.videopoker.StatsTest" time="0.232"/>
+  <testcase name="statsAccumulateAndPersist" classname="nir.com.videopoker.StatsTest" time="0.018"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.MissionsDialogTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T09:00:32" hostname="e2b.local" time="0.246">
+<testsuite name="nir.com.videopoker.MissionsDialogTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-11-01T09:24:44" hostname="e2b.local" time="0.223">
   <properties/>
-  <testcase name="renderDialogContent" classname="nir.com.videopoker.MissionsDialogTest" time="0.246"/>
+  <testcase name="renderDialogContent" classname="nir.com.videopoker.MissionsDialogTest" time="0.223"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

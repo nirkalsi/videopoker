@@ -81,18 +81,49 @@ public class BannerLoadScriptTest {
         if (d.wait(Until.findObject(By.pkg("nir.com.videopoker")), 20000) == null)
             throw new AssertionError("app did not come to foreground");
 
-        // UMP consent form: accept if shown (gdprApplies=0 devices skip it)
-        long umpDeadline = System.currentTimeMillis() + 12000;
-        while (System.currentTimeMillis() < umpDeadline) {
-            UiObject2 consent = d.findObject(By.textContains("Consent"));
-            if (consent == null) consent = d.findObject(By.textContains("Agree"));
-            if (consent == null) consent = d.findObject(By.textContains("Accept"));
-            if (consent != null) { Log.i(TAG, "UMP form shown - accepting"); consent.click(); break; }
-            UiObject2 any = d.findObject(By.pkg("nir.com.videopoker").clazz("android.widget.Button"));
-            if (any != null) break; // game UI up, no form
-            Thread.sleep(500);
+        // --- UMP consent (real production form; handle it, never bypass) ---
+        // The form appears asynchronously after launch. On the welcome page prefer
+        // "Do not consent"; if the manage/preferences page is open, click
+        // "Confirm choices" leaving every toggle as found (never "Accept all").
+        // Consent is settled only when no consent marker survives several polls.
+        long consentDeadline = System.currentTimeMillis() + 75000;
+        int cleanPolls = 0;
+        boolean sawForm = false;
+        while (System.currentTimeMillis() < consentDeadline) {
+            UiObject2 doNot = d.findObject(By.text("Do not consent"));
+            UiObject2 confirm = d.findObject(By.text("Confirm choices"));
+            UiObject2 welcome = d.findObject(By.textContains("asks for your consent"));
+            UiObject2 manageData = d.findObject(By.text("Manage your data"));
+            UiObject2 acceptAll = d.findObject(By.text("Accept all"));
+            if (doNot != null) {
+                sawForm = true;
+                Log.i(TAG, "UMP welcome page - choosing 'Do not consent'");
+                doNot.click();
+                cleanPolls = 0;
+            } else if (confirm != null) {
+                sawForm = true;
+                Log.i(TAG, "UMP preferences page - 'Confirm choices' with all toggles left off");
+                confirm.click();
+                cleanPolls = 0;
+            } else if (welcome != null || manageData != null || acceptAll != null) {
+                // form visible but no refuse/confirm button on this page: open Manage options
+                sawForm = true;
+                UiObject2 opts = d.findObject(By.text("Manage options"));
+                if (opts != null) { Log.i(TAG, "UMP page without refuse button - opening Manage options"); opts.click(); }
+                cleanPolls = 0;
+            } else {
+                cleanPolls++;
+                if (cleanPolls >= (sawForm ? 4 : 12)) break; // gone for good, or never appeared
+            }
+            Thread.sleep(750);
         }
-        Thread.sleep(2000);
+        if (d.findObject(By.text("Do not consent")) != null
+                || d.findObject(By.text("Confirm choices")) != null
+                || d.findObject(By.text("Accept all")) != null
+                || d.findObject(By.textContains("asks for your consent")) != null
+                || d.findObject(By.text("Manage your data")) != null)
+            throw new AssertionError("consent overlay still present before gameplay");
+        Log.i(TAG, "consent settled (form shown=" + sawForm + ")");
 
         // betting screen must be drawn and reporting its hooks
         if (!waitPhase(0, 20000))

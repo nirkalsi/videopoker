@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nir.com.videopoker.MultiHandTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-01T09:00:32" hostname="e2b.local" time="1.165">
+<testsuite name="nir.com.videopoker.MultiHandTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-01T09:24:44" hostname="e2b.local" time="1.144">
   <properties/>
-  <testcase name="payoutIsSumAcrossHands" classname="nir.com.videopoker.MultiHandTest" time="0.113"/>
-  <testcase name="statsCountHandsNotRounds" classname="nir.com.videopoker.MultiHandTest" time="0.014"/>
-  <testcase name="captureFiveHandResult" classname="nir.com.videopoker.MultiHandTest" time="0.94"/>
-  <testcase name="numHandsPersists" classname="nir.com.videopoker.MultiHandTest" time="0.018"/>
-  <testcase name="extraDecksExcludeInitialFiveAndShareHolds" classname="nir.com.videopoker.MultiHandTest" time="0.08"/>
+  <testcase name="payoutIsSumAcrossHands" classname="nir.com.videopoker.MultiHandTest" time="0.129"/>
+  <testcase name="statsCountHandsNotRounds" classname="nir.com.videopoker.MultiHandTest" time="0.015"/>
+  <testcase name="captureFiveHandResult" classname="nir.com.videopoker.MultiHandTest" time="0.93"/>
+  <testcase name="numHandsPersists" classname="nir.com.videopoker.MultiHandTest" time="0.02"/>
+  <testcase name="extraDecksExcludeInitialFiveAndShareHolds" classname="nir.com.videopoker.MultiHandTest" time="0.049"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
