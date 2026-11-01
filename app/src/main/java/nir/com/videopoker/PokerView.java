@@ -1,6 +1,7 @@
 package nir.com.videopoker;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.*;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,6 +51,11 @@ public class PokerView extends View {
     private String message = "Place your bet";
     private final boolean[] suggested = new boolean[5];
     private boolean suggestVisible = false;
+
+    // lifetime stats (persisted in app prefs)
+    private boolean statsOpen = false;
+    private long stHands, stWins, stBiggest, stStreak, stBestStreak;
+    private int stBestHand = -1;
     private int winRow = -1;
     private long resultAt = 0;
     private final float[] px = new float[16], py = new float[16], pvx = new float[16], pvy = new float[16];
@@ -72,7 +78,28 @@ public class PokerView extends View {
     private float[] dustX, dustY, dustS, dustV;
     private float[] texX, texY; private boolean[] texL;
 
-    public PokerView(Context c) { super(c); }
+    public PokerView(Context c) { super(c); loadStats(); }
+
+    private void loadStats() {
+        SharedPreferences sp = getContext().getSharedPreferences("videopoker", Context.MODE_PRIVATE);
+        stHands = sp.getLong("st_hands", 0);
+        stWins = sp.getLong("st_wins", 0);
+        stBiggest = sp.getLong("st_biggest", 0);
+        stStreak = sp.getLong("st_streak", 0);
+        stBestStreak = sp.getLong("st_best_streak", 0);
+        stBestHand = sp.getInt("st_best_hand", -1);
+    }
+
+    private void saveStats() {
+        getContext().getSharedPreferences("videopoker", Context.MODE_PRIVATE).edit()
+                .putLong("st_hands", stHands)
+                .putLong("st_wins", stWins)
+                .putLong("st_biggest", stBiggest)
+                .putLong("st_streak", stStreak)
+                .putLong("st_best_streak", stBestStreak)
+                .putInt("st_best_hand", stBestHand)
+                .apply();
+    }
 
     public void setListener(Listener l) { listener = l; }
 
@@ -320,6 +347,18 @@ public class PokerView extends View {
         long bet = BETS[betIdx];
         int idx = evaluate(hand);
         resultAt = System.currentTimeMillis();
+        stHands++;
+        if (idx >= 0) {
+            stWins++;
+            stStreak++;
+            if (stStreak > stBestStreak) stBestStreak = stStreak;
+            long ww = bet * PAY_MULT[idx];
+            if (ww > stBiggest) stBiggest = ww;
+            if (stBestHand < 0 || idx < stBestHand) stBestHand = idx;
+        } else {
+            stStreak = 0;
+        }
+        saveStats();
         if (idx >= 0) {
             long w = bet * PAY_MULT[idx];
             balance += w;
@@ -773,6 +812,18 @@ public class PokerView extends View {
         p.setStyle(Paint.Style.FILL);
         p.setTextSize(spR * 0.9f); p.setTextAlign(Paint.Align.CENTER);
         cv.drawText(GameSounds.isEnabled(getContext()) ? "\uD83D\uDD0A" : "\uD83D\uDD07", spX, spY + spR * 0.32f, p);
+        // stats toggle (mini bar chart)
+        float stX = w * 0.80f;
+        p.setColor(0x66000000);
+        cv.drawCircle(stX, spY, spR, p);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(2); p.setColor(0x55FFFFFF);
+        cv.drawCircle(stX, spY, spR, p);
+        p.setStyle(Paint.Style.FILL); p.setColor(0xCCFFD700);
+        for (int bi = 0; bi < 3; bi++) {
+            float bw = spR * 0.26f, bhv = spR * (0.45f + bi * 0.33f);
+            rf.set(stX + (bi - 1) * spR * 0.42f - bw / 2, spY + spR * 0.55f - bhv, stX + (bi - 1) * spR * 0.42f + bw / 2, spY + spR * 0.55f);
+            cv.drawRoundRect(rf, bw * 0.25f, bw * 0.25f, p);
+        }
 
 
         float pillW = w * 0.34f, pillH = h * 0.032f, pillX = w / 2f - pillW / 2f + w * 0.06f, pillY = h * 0.026f;
@@ -1140,7 +1191,59 @@ public class PokerView extends View {
                 drawPillButton(cv, w * 0.3f, h * 0.62f, w * 0.4f, h * 0.052f, "COLLECT", 0xFF8E24AA, 0xFF4A148C, true, pressedBtn == 9, 0);
         }
 
+        if (statsOpen) drawStatsPanel(cv, w, h);
+
         if (animating) postInvalidateDelayed(32);
+    }
+
+    private void drawStatsPanel(Canvas cv, int w, int h) {
+        p.setStyle(Paint.Style.FILL); p.setColor(0x90000818);
+        cv.drawRect(0, 0, w, h, p);
+        float pw = w * 0.80f, ph = h * 0.44f, px = (w - pw) / 2f, py = h * 0.24f;
+        rf.set(px + 4, py + 6, px + pw + 4, py + ph + 6);
+        p.setColor(0x73000000);
+        cv.drawRoundRect(rf, pw * 0.06f, pw * 0.06f, p);
+        rf.set(px, py, px + pw, py + ph);
+        p.setAlpha(0xFF); p.setShader(new LinearGradient(0, py, 0, py + ph, 0xF21E2A4E, 0xF2070F28, Shader.TileMode.CLAMP));
+        cv.drawRoundRect(rf, pw * 0.06f, pw * 0.06f, p);
+        p.setAlpha(0xFF); p.setShader(null);
+        p.setAlpha(0xFF); p.setShader(new LinearGradient(0, py, 0, py + ph * 0.4f, 0x30FFFFFF, 0x00FFFFFF, Shader.TileMode.CLAMP));
+        rf.set(px + pw * 0.03f, py + ph * 0.03f, px + pw * 0.97f, py + ph * 0.38f);
+        cv.drawRoundRect(rf, pw * 0.05f, pw * 0.05f, p);
+        p.setAlpha(0xFF); p.setShader(null);
+        rf.set(px, py, px + pw, py + ph);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3f); p.setColor(0xCCFFD700);
+        cv.drawRoundRect(rf, pw * 0.06f, pw * 0.06f, p);
+        p.setStrokeWidth(1.5f); p.setColor(0x55FFF3C4);
+        rf.inset(4f, 4f);
+        cv.drawRoundRect(rf, pw * 0.05f, pw * 0.05f, p);
+        p.setStyle(Paint.Style.FILL);
+        drawFancyText(cv, "LIFETIME STATS", w / 2f, py + ph * 0.14f, h * 0.024f, 0xFFFFE082, 0xFFFF8F00);
+        String[][] rows = {
+                {"Hands played", String.valueOf(stHands)},
+                {"Winning hands", String.valueOf(stWins)},
+                {"Win rate", stHands > 0 ? String.format(java.util.Locale.US, "%.1f%%", 100f * stWins / stHands) : "-"},
+                {"Biggest win", stBiggest > 0 ? "+" + stBiggest : "-"},
+                {"Best hand", stBestHand >= 0 ? PAY_NAMES[stBestHand] : "-"},
+                {"Current streak", String.valueOf(stStreak)},
+                {"Best streak", String.valueOf(stBestStreak)},
+        };
+        float ry = py + ph * 0.24f, rstep = ph * 0.105f;
+        for (int i = 0; i < rows.length; i++) {
+            if (i % 2 == 0) {
+                rf.set(px + pw * 0.05f, ry - rstep * 0.62f, px + pw * 0.95f, ry + rstep * 0.38f);
+                p.setColor(0x14FFFFFF);
+                cv.drawRoundRect(rf, rstep * 0.2f, rstep * 0.2f, p);
+            }
+            p.setColor(0xFFB9C8E8); p.setTextSize(h * 0.017f); p.setTextAlign(Paint.Align.LEFT); p.setFakeBoldText(false);
+            cv.drawText(rows[i][0], px + pw * 0.09f, ry, p);
+            p.setColor(0xFFFFE082); p.setTextAlign(Paint.Align.RIGHT); p.setFakeBoldText(true);
+            cv.drawText(rows[i][1], px + pw * 0.91f, ry, p);
+            p.setFakeBoldText(false);
+            ry += rstep;
+        }
+        p.setColor(0x66FFFFFF); p.setTextSize(h * 0.013f); p.setTextAlign(Paint.Align.CENTER);
+        cv.drawText("tap anywhere to close", w / 2f, py + ph * 0.965f, p);
     }
 
     @Override public boolean onTouchEvent(MotionEvent e) {
@@ -1149,6 +1252,14 @@ public class PokerView extends View {
         if (Math.hypot(x - w * 0.93f, y - getHeight() * 0.042f) <= w * 0.06f) {
             GameSounds.toggle(getContext());
             invalidate();
+            return true;
+        }
+        if (Math.hypot(x - w * 0.80f, y - getHeight() * 0.042f) <= w * 0.06f) {
+            if (e.getAction() == MotionEvent.ACTION_UP) { statsOpen = !statsOpen; invalidate(); }
+            return true;
+        }
+        if (statsOpen) {
+            if (e.getAction() == MotionEvent.ACTION_UP) { statsOpen = false; invalidate(); }
             return true;
         }
 
