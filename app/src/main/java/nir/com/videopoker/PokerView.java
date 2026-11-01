@@ -48,6 +48,8 @@ public class PokerView extends View {
     private final long[] cardT = new long[5];
     private final boolean[] cardNew = new boolean[5];
     private String message = "Place your bet";
+    private final boolean[] suggested = new boolean[5];
+    private boolean suggestVisible = false;
     private int winRow = -1;
     private long resultAt = 0;
     private final float[] px = new float[16], py = new float[16], pvx = new float[16], pvy = new float[16];
@@ -119,6 +121,9 @@ public class PokerView extends View {
             cardT[i] = now + i * 110;
             cardNew[i] = true;
         }
+        boolean[] sug = basicStrategyHolds(hand);
+        System.arraycopy(sug, 0, suggested, 0, 5);
+        suggestVisible = true;
         message = "Tap cards to HOLD, then DRAW";
         phase = 1;
         invalidate(); if (listener != null) listener.saveState();
@@ -139,7 +144,7 @@ public class PokerView extends View {
         settle();
     }
 
-    private int evaluate(List<Integer> cards) {
+    static int evaluate(List<Integer> cards) {
         int[] rankCount = new int[13];
         int[] suitCount = new int[4];
         boolean[] present = new boolean[13];
@@ -167,6 +172,148 @@ public class PokerView extends View {
         if (pairs == 2) return 7;
         if (pairJacksUp) return 8;
         return -1;
+    }
+
+    // ---------- basic strategy hint (simplified Jacks-or-Better, not full optimal EV) ----------
+    static boolean[] basicStrategyHolds(List<Integer> cards) {
+        boolean[] hold = new boolean[5];
+        int[] r = new int[5], s = new int[5];
+        for (int i = 0; i < 5; i++) { r[i] = cards.get(i) % 13; s[i] = cards.get(i) / 13; }
+        int ev = evaluate(cards);
+        if (ev >= 0 && ev <= 5) { java.util.Arrays.fill(hold, true); return hold; } // pat straight or better
+        boolean[] m;
+        if ((m = royalDraw4(r, s)) != null) return m;
+        if ((m = straightFlushDraw4(r, s)) != null) return m;
+        if (ev == 6) { holdCount(hold, r, 3); return hold; }   // trips
+        if (ev == 7) { holdCount(hold, r, 2); return hold; }   // two pair
+        if (ev == 8) { holdCount(hold, r, 2); return hold; }   // high pair
+        if ((m = flushDraw4(r, s)) != null) return m;
+        if ((m = straightDraw4(r, s, true)) != null) return m; // outside straight
+        int lp = lowPairRank(r);
+        if (lp >= 0) { for (int i = 0; i < 5; i++) hold[i] = r[i] == lp; return hold; }
+        if ((m = straightFlushDraw3(r, s)) != null) return m;
+        if ((m = suitedHigh2(r, s)) != null) return m;
+        if ((m = straightDraw4(r, s, false)) != null) return m; // inside straight
+        List<Integer> his = new ArrayList<>();
+        for (int i = 0; i < 5; i++) if (isHigh(r[i])) his.add(i);
+        his.sort((a, b) -> Integer.compare(highOrder(r[a]), highOrder(r[b])));
+        for (int i = 0; i < Math.min(2, his.size()); i++) hold[his.get(i)] = true;
+        return hold;
+    }
+
+    private static boolean isHigh(int rank) { return rank == 0 || rank >= 10; }
+    private static boolean isRoyal(int rank) { return rank == 0 || rank >= 9; }
+    private static int highOrder(int rank) { return rank == 0 ? 13 : rank; } // J<Q<K<A
+
+    private static void holdCount(boolean[] hold, int[] r, int cnt) {
+        for (int i = 0; i < 5; i++) {
+            int c = 0; for (int j = 0; j < 5; j++) if (r[j] == r[i]) c++;
+            if (c == cnt) hold[i] = true;
+        }
+    }
+
+    private static int lowPairRank(int[] r) {
+        for (int i = 0; i < 5; i++) for (int j = i + 1; j < 5; j++)
+            if (r[i] == r[j] && r[i] != 0 && r[i] < 10) return r[i];
+        return -1;
+    }
+
+    private static boolean[] maskExcept(int drop) {
+        boolean[] m = new boolean[5];
+        for (int i = 0; i < 5; i++) m[i] = i != drop;
+        return m;
+    }
+
+    private static boolean[] royalDraw4(int[] r, int[] s) {
+        for (int drop = 0; drop < 5; drop++) {
+            boolean ok = true; int suit = -1;
+            for (int i = 0; i < 5 && ok; i++) {
+                if (i == drop) continue;
+                if (!isRoyal(r[i])) ok = false;
+                else if (suit < 0) suit = s[i];
+                else if (s[i] != suit) ok = false;
+            }
+            if (ok) return maskExcept(drop);
+        }
+        return null;
+    }
+
+    private static boolean[] straightFlushDraw4(int[] r, int[] s) {
+        for (int drop = 0; drop < 5; drop++) {
+            int[] rr = new int[4]; int suit = -1; boolean ok = true; int k = 0;
+            for (int i = 0; i < 5; i++) {
+                if (i == drop) continue;
+                if (suit < 0) suit = s[i]; else if (s[i] != suit) { ok = false; break; }
+                rr[k++] = r[i];
+            }
+            if (ok && fitsWindow(rr, 5)) return maskExcept(drop);
+        }
+        return null;
+    }
+
+    private static boolean[] flushDraw4(int[] r, int[] s) {
+        for (int drop = 0; drop < 5; drop++) {
+            int suit = -1; boolean ok = true;
+            for (int i = 0; i < 5; i++) {
+                if (i == drop) continue;
+                if (suit < 0) suit = s[i]; else if (s[i] != suit) { ok = false; break; }
+            }
+            if (ok) return maskExcept(drop);
+        }
+        return null;
+    }
+
+    private static boolean[] straightDraw4(int[] r, int[] s, boolean outside) {
+        for (int drop = 0; drop < 5; drop++) {
+            int[] rr = new int[4]; int k = 0;
+            for (int i = 0; i < 5; i++) { if (i == drop) continue; rr[k++] = r[i]; }
+            boolean consec = fitsWindow(rr, 4);
+            boolean win5 = fitsWindow(rr, 5);
+            if (outside ? consec : (win5 && !consec)) return maskExcept(drop);
+        }
+        return null;
+    }
+
+    private static boolean[] straightFlushDraw3(int[] r, int[] s) {
+        for (int a = 0; a < 5; a++) for (int b = a + 1; b < 5; b++) {
+            int[] rr = new int[3]; int suit = -1; boolean ok = true; int k = 0;
+            for (int i = 0; i < 5; i++) {
+                if (i == a || i == b) continue;
+                if (suit < 0) suit = s[i]; else if (s[i] != suit) { ok = false; break; }
+                rr[k++] = r[i];
+            }
+            if (ok && fitsWindow(rr, 5)) {
+                boolean[] m = new boolean[5];
+                for (int i = 0; i < 5; i++) m[i] = i != a && i != b;
+                return m;
+            }
+        }
+        return null;
+    }
+
+    private static boolean[] suitedHigh2(int[] r, int[] s) {
+        for (int i = 0; i < 5; i++) for (int j = i + 1; j < 5; j++)
+            if (s[i] == s[j] && isHigh(r[i]) && isHigh(r[j])) {
+                boolean[] m = new boolean[5];
+                m[i] = m[j] = true;
+                return m;
+            }
+        return null;
+    }
+
+    private static boolean fitsWindow(int[] ranks, int w) {
+        return fitsAssign(ranks, w, false) || fitsAssign(ranks, w, true);
+    }
+
+    private static boolean fitsAssign(int[] ranks, int w, boolean aceHigh) {
+        int mn = 99, mx = -1; long seen = 0;
+        for (int rank : ranks) {
+            int v = rank == 0 ? (aceHigh ? 14 : 1) : rank + 1;
+            if ((seen & (1L << v)) != 0) return false;
+            seen |= 1L << v;
+            mn = Math.min(mn, v); mx = Math.max(mx, v);
+        }
+        return mx - mn <= w - 1;
     }
 
     private void settle() {
@@ -821,6 +968,21 @@ public class PokerView extends View {
             float y = y0 + (held[i] ? -h * 0.008f : 0);
             drawCard(cv, hand.get(i), x0 + i * (cw + gap), y, cw, ch, held[i], scaleX, now);
             if (held[i]) animating = true;
+            if (phase == 1 && suggestVisible && suggested[i] && !held[i] && t >= 1f) {
+                float pl = 0.55f + 0.45f * (float) Math.sin(now / 300.0);
+                float sx0 = x0 + i * (cw + gap);
+                rf.set(sx0 - cw * 0.035f, y - ch * 0.018f, sx0 + cw * 1.035f, y + ch * 1.018f);
+                p.setStyle(Paint.Style.STROKE);
+                p.setStrokeWidth(cw * 0.028f);
+                p.setColor(((int) (0xA6 * pl) << 24) | 0x9FD8FF);
+                cv.drawRoundRect(rf, cw * 0.14f, cw * 0.14f, p);
+                p.setStyle(Paint.Style.FILL);
+                p.setColor(((int) (0xD8 * pl) << 24) | 0xCFE8FF);
+                p.setTextSize(cw * 0.125f); p.setTextAlign(Paint.Align.CENTER); p.setFakeBoldText(true);
+                cv.drawText("SUGGESTED", sx0 + cw / 2f, y + ch + h * 0.028f, p);
+                p.setFakeBoldText(false);
+                animating = true;
+            }
         }
         if (hand.isEmpty()) {
             // empty card slots
@@ -1012,7 +1174,7 @@ public class PokerView extends View {
                 if (y >= y0 - h * 0.045f && y <= y0 + ch) {
                     for (int i = 0; i < hand.size(); i++) {
                         if (x >= x0 + i * (cw + gap) && x <= x0 + i * (cw + gap) + cw) {
-                            held[i] = !held[i]; cardNew[i] = false;
+                            held[i] = !held[i]; cardNew[i] = false; suggestVisible = false;
                             heldFlash = i; heldFlashAt = System.currentTimeMillis();
                             invalidate();
                             return true;
