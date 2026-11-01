@@ -387,7 +387,7 @@ public class PokerView extends View {
             p.setFakeBoldText(false);
             p.setTextAlign(Paint.Align.CENTER);
             if (face) {
-                float mr = w * 0.27f, my = y + h * 0.585f;
+                float mr = w * 0.24f, my = y + h * 0.575f;
                 p.setStyle(Paint.Style.FILL);
                 p.setAlpha(0xFF); p.setShader(new RadialGradient(cx - mr * 0.3f, my - mr * 0.35f, mr * 1.9f, 0xFFFFFDF6, 0xFFEFE3C4, Shader.TileMode.CLAMP));
                 cv.drawCircle(cx, my, mr, p);
@@ -404,26 +404,26 @@ public class PokerView extends View {
                 cv.drawText("\u265B", cx, my - mr * 0.60f, p);
                 p.setFakeBoldText(false);
             } else if (rank == 0) {
-                p.setTextSize(w * 0.72f);
-                cv.drawText(SUITS[suit], cx, y + h * 0.795f, p);
+                p.setTextSize(w * 0.58f);
+                cv.drawText(SUITS[suit], cx, y + h * 0.75f, p);
             } else {
-                float pip = w * 0.26f;
-                float xl = dx + dw * 0.315f, xr = dx + dw * 0.685f, xc = cx;
-                float y1 = y + h * 0.365f, y2 = y + h * 0.47f, y3 = y + h * 0.575f, y4 = y + h * 0.68f;
-                float ym = y + h * 0.5225f, yu = y + h * 0.4175f, yd = y + h * 0.6275f;
                 int n = rank + 1;
+                float pip = n >= 7 ? w * 0.125f : w * 0.155f;
+                float xl = dx + dw * 0.325f, xr = dx + dw * 0.675f, xc = cx;
+                float T0 = y + h * 0.390f, T1 = y + h * 0.475f, T2 = y + h * 0.560f, T3 = y + h * 0.645f, T4 = y + h * 0.730f;
+                float TH0 = y + h * 0.4325f, TH1 = y + h * 0.6875f;
                 p.setTextSize(pip);
                 java.util.List<float[]> pts = new java.util.ArrayList<>();
                 switch (n) {
-                    case 2: pts.add(new float[]{xc, y1, 0}); pts.add(new float[]{xc, y4, 1}); break;
-                    case 3: pts.add(new float[]{xc, y1, 0}); pts.add(new float[]{xc, ym, 0}); pts.add(new float[]{xc, y4, 1}); break;
-                    case 4: pts.add(new float[]{xl, y1, 0}); pts.add(new float[]{xr, y1, 0}); pts.add(new float[]{xl, y4, 1}); pts.add(new float[]{xr, y4, 1}); break;
-                    case 5: pts.add(new float[]{xl, y1, 0}); pts.add(new float[]{xr, y1, 0}); pts.add(new float[]{xc, ym, 0}); pts.add(new float[]{xl, y4, 1}); pts.add(new float[]{xr, y4, 1}); break;
-                    case 6: pts.add(new float[]{xl, y1, 0}); pts.add(new float[]{xr, y1, 0}); pts.add(new float[]{xl, ym, 0}); pts.add(new float[]{xr, ym, 0}); pts.add(new float[]{xl, y4, 1}); pts.add(new float[]{xr, y4, 1}); break;
-                    case 7: pts.add(new float[]{xl, y1, 0}); pts.add(new float[]{xr, y1, 0}); pts.add(new float[]{xc, yu, 0}); pts.add(new float[]{xl, ym, 0}); pts.add(new float[]{xr, ym, 0}); pts.add(new float[]{xl, y4, 1}); pts.add(new float[]{xr, y4, 1}); break;
-                    case 8: pts.add(new float[]{xl, y1, 0}); pts.add(new float[]{xr, y1, 0}); pts.add(new float[]{xc, yu, 0}); pts.add(new float[]{xl, ym, 0}); pts.add(new float[]{xr, ym, 0}); pts.add(new float[]{xc, yd, 1}); pts.add(new float[]{xl, y4, 1}); pts.add(new float[]{xr, y4, 1}); break;
-                    case 9: pts.add(new float[]{xl, y1, 0}); pts.add(new float[]{xr, y1, 0}); pts.add(new float[]{xl, y2, 0}); pts.add(new float[]{xr, y2, 0}); pts.add(new float[]{xc, ym, 0}); pts.add(new float[]{xl, y3, 1}); pts.add(new float[]{xr, y3, 1}); pts.add(new float[]{xl, y4, 1}); pts.add(new float[]{xr, y4, 1}); break;
-                    default: pts.add(new float[]{xl, y1, 0}); pts.add(new float[]{xr, y1, 0}); pts.add(new float[]{xc, yu, 0}); pts.add(new float[]{xl, y2, 0}); pts.add(new float[]{xr, y2, 0}); pts.add(new float[]{xl, y3, 1}); pts.add(new float[]{xr, y3, 1}); pts.add(new float[]{xc, yd, 1}); pts.add(new float[]{xl, y4, 1}); pts.add(new float[]{xr, y4, 1}); break;
+                    case 2: pts.add(new float[]{xc, T0, 0}); pts.add(new float[]{xc, T4, 1}); break;
+                    case 3: pts.add(new float[]{xc, T0, 0}); pts.add(new float[]{xc, T2, 0}); pts.add(new float[]{xc, T4, 1}); break;
+                    case 4: pts.add(new float[]{xl, T0, 0}); pts.add(new float[]{xr, T0, 0}); pts.add(new float[]{xl, T4, 1}); pts.add(new float[]{xr, T4, 1}); break;
+                    case 5: pts.add(new float[]{xl, T0, 0}); pts.add(new float[]{xr, T0, 0}); pts.add(new float[]{xc, T2, 0}); pts.add(new float[]{xl, T4, 1}); pts.add(new float[]{xr, T4, 1}); break;
+                    case 6: pts.add(new float[]{xl, T0, 0}); pts.add(new float[]{xr, T0, 0}); pts.add(new float[]{xl, T2, 0}); pts.add(new float[]{xr, T2, 0}); pts.add(new float[]{xl, T4, 1}); pts.add(new float[]{xr, T4, 1}); break;
+                    case 7: pts.add(new float[]{xl, T0, 0}); pts.add(new float[]{xr, T0, 0}); pts.add(new float[]{xc, T1, 0}); pts.add(new float[]{xl, T2, 0}); pts.add(new float[]{xr, T2, 0}); pts.add(new float[]{xl, T4, 1}); pts.add(new float[]{xr, T4, 1}); break;
+                    case 8: pts.add(new float[]{xl, T0, 0}); pts.add(new float[]{xr, T0, 0}); pts.add(new float[]{xc, T1, 0}); pts.add(new float[]{xl, T2, 0}); pts.add(new float[]{xr, T2, 0}); pts.add(new float[]{xc, T3, 1}); pts.add(new float[]{xl, T4, 1}); pts.add(new float[]{xr, T4, 1}); break;
+                    case 9: pts.add(new float[]{xl, T0, 0}); pts.add(new float[]{xr, T0, 0}); pts.add(new float[]{xl, T1, 0}); pts.add(new float[]{xr, T1, 0}); pts.add(new float[]{xc, T2, 0}); pts.add(new float[]{xl, T3, 1}); pts.add(new float[]{xr, T3, 1}); pts.add(new float[]{xl, T4, 1}); pts.add(new float[]{xr, T4, 1}); break;
+                    default: pts.add(new float[]{xl, T0, 0}); pts.add(new float[]{xr, T0, 0}); pts.add(new float[]{xc, TH0, 0}); pts.add(new float[]{xl, T1, 0}); pts.add(new float[]{xr, T1, 0}); pts.add(new float[]{xl, T3, 1}); pts.add(new float[]{xr, T3, 1}); pts.add(new float[]{xc, TH1, 1}); pts.add(new float[]{xl, T4, 1}); pts.add(new float[]{xr, T4, 1}); break;
                 }
                 for (float[] pt : pts) {
                     float pxp = pt[0], pyp = pt[1];
