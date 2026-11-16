@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 /** Store-screenshot capture driver: plays one scripted 5-hand round on the live v6 design,
- *  pausing at photogenic states and saving full-screen PNGs to /sdcard/Download/.
+ *  pausing at photogenic states and saving full-screen PNGs via androidx Screenshot + FirebaseScreenCaptureProcessor (auto-uploaded by Test Lab).
  *  Taps reuse the proven GameplayScriptTest layout math. Sample ads only (debug build);
  *  no ad content is clicked. */
 @RunWith(AndroidJUnit4.class)
@@ -26,11 +26,23 @@ public class StoreCaptureScriptTest {
         d.click((int) (v.left + v.width() * fx), (int) (v.top + v.height() * fy));
     }
 
+    // PNGs via the documented Test Lab route: androidx Screenshot.capture() processed by
+    // FirebaseScreenCaptureProcessor (com.google.firebase:testlab-instr-lib), passed
+    // explicitly so no manifest metadata registration is needed. Test Lab uploads these
+    // as matrix screen captures; no pull-directories flag required.
     private void shot(String name) throws Exception {
         shot++;
-        java.io.File f = new java.io.File("/sdcard/Download/vp_store_" + shot + "_" + name + ".png");
-        d.takeScreenshot(f);
-        Log.i(TAG, "shot " + f + " exists=" + f.exists());
+        String fn = "vp_store_" + shot + "_" + name;
+        androidx.test.runner.screenshot.ScreenCapture cap = androidx.test.runner.screenshot.Screenshot.capture();
+        cap.setName(fn).setFormat(android.graphics.Bitmap.CompressFormat.PNG);
+        java.util.HashSet<androidx.test.runner.screenshot.ScreenCaptureProcessor> procs = new java.util.HashSet<>();
+        procs.add(new com.google.firebase.testlab.screenshot.FirebaseScreenCaptureProcessor());
+        try {
+            cap.process(procs);
+        } catch (java.io.IOException e) {
+            throw new AssertionError("screenshot process failed for " + fn + ": " + e);
+        }
+        Log.i(TAG, "shot " + fn + ".png");
     }
 
     @Test public void captureStoreScreens() throws Exception {
