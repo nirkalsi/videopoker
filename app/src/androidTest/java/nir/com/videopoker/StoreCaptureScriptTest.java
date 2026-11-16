@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 /** Store-screenshot capture driver: plays one scripted 5-hand round on the live v6 design,
- *  pausing at photogenic states and saving full-screen PNGs via androidx Screenshot + FirebaseScreenCaptureProcessor (auto-uploaded by Test Lab).
+ *  pausing at photogenic states and saving full-screen PNGs via androidx Test Services TestStorage (auto-collected by Test Lab as additional test output).
  *  Taps reuse the proven GameplayScriptTest layout math. Sample ads only (debug build);
  *  no ad content is clicked. */
 @RunWith(AndroidJUnit4.class)
@@ -26,23 +26,26 @@ public class StoreCaptureScriptTest {
         d.click((int) (v.left + v.width() * fx), (int) (v.top + v.height() * fy));
     }
 
-    // PNGs via the documented Test Lab route: androidx Screenshot.capture() processed by
-    // FirebaseScreenCaptureProcessor (com.google.firebase:testlab-instr-lib), passed
-    // explicitly so no manifest metadata registration is needed. Test Lab uploads these
-    // as matrix screen captures; no pull-directories flag required.
+    // PNGs via androidx Test Services TestStorage (documented 'additional test output'
+    // route, auto-collected by Test Lab, no pull-directories flag). This replaces
+    // FirebaseScreenCaptureProcessor, which hardcodes /sdcard/screenshots and fails on
+    // API 36 scoped storage (verified: both matrices 6108774621142934843 / 4806083415969755977
+    // failed on the first shot at 12s).
     private void shot(String name) throws Exception {
         shot++;
-        String fn = "vp_store_" + shot + "_" + name;
-        androidx.test.runner.screenshot.ScreenCapture cap = androidx.test.runner.screenshot.Screenshot.capture();
-        cap.setName(fn).setFormat(android.graphics.Bitmap.CompressFormat.PNG);
-        java.util.HashSet<androidx.test.runner.screenshot.ScreenCaptureProcessor> procs = new java.util.HashSet<>();
-        procs.add(new com.google.firebase.testlab.screenshot.FirebaseScreenCaptureProcessor());
-        try {
-            cap.process(procs);
-        } catch (java.io.IOException e) {
-            throw new AssertionError("screenshot process failed for " + fn + ": " + e);
+        String fn = "vp_store_" + shot + "_" + name + ".png";
+        java.io.File tmp = new java.io.File(
+                InstrumentationRegistry.getInstrumentation().getTargetContext().getCacheDir(), fn);
+        if (!d.takeScreenshot(tmp)) throw new AssertionError("takeScreenshot failed for " + fn);
+        long bytes = tmp.length();
+        androidx.test.services.storage.TestStorage ts = new androidx.test.services.storage.TestStorage();
+        try (java.io.InputStream in = new java.io.FileInputStream(tmp);
+             java.io.OutputStream out = ts.openOutputFile(fn)) {
+            byte[] buf = new byte[16384];
+            for (int n; (n = in.read(buf)) > 0; ) out.write(buf, 0, n);
         }
-        Log.i(TAG, "shot " + fn + ".png");
+        Log.i(TAG, "shot " + fn + " bytes=" + bytes);
+        tmp.delete();
     }
 
     @Test public void captureStoreScreens() throws Exception {
